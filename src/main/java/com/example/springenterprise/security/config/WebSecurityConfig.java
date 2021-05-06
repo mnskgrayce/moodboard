@@ -25,12 +25,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // Send POST requests without being rejected
                 .csrf().disable()
                 .authorizeRequests()
-                    // Permit any request coming from the following endpoint
-                    .antMatchers("/api/v*/registration/**")
+                    // Permit any request coming from the following endpoints
+                    .antMatchers("/resources/**", "/register", "/api/v*/registration/**")
                     .permitAll()
                 .anyRequest()
                 .authenticated().and()
-                .formLogin();
+                .formLogin()
+                    .loginPage("/login")
+                    .usernameParameter("email")
+                    .permitAll().and()
+                .logout()
+                    .permitAll();
+        // TODO: Configure login error page
+        // TODO: Let users registers via form
+        ;
     }
 
     @Override
