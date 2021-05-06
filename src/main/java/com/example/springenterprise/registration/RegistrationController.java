@@ -13,6 +13,7 @@ public class RegistrationController {
 
     private RegistrationService registrationService;
 
+    // Handle POST requests sent to "api/v1/registration"
     @PostMapping
     public String register(@RequestBody RegistrationRequest request) {
         return registrationService.register(request);
