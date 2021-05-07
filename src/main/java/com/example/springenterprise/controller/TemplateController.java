@@ -1,10 +1,9 @@
 package com.example.springenterprise.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+// This class only serves to display the HTML templates
 // Do NOT use RestController
 // It will convert the response to JSON/XML
 // ..and you get a string, instead of the Thymeleaf template
@@ -15,6 +14,8 @@ public class TemplateController {
     public String getLoginView() {
         return "login";
     }
+
+    // TODO: Configure login error page
 
     @RequestMapping("/register")
     public String getRegisterView() {

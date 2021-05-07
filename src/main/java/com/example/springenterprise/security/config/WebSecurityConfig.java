@@ -26,7 +26,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                     // Permit any request coming from the following endpoints
-                    .antMatchers("/resources/**", "/register", "/api/v*/registration/**")
+                    .antMatchers(
+                            "/register",
+                            "/api/v*/registration",
+                            "/css/*",
+                            "/js/*")
                     .permitAll()
                 .anyRequest()
                 .authenticated().and()
@@ -36,9 +40,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll().and()
                 .logout()
                     .permitAll();
-        // TODO: Configure login error page
-        // TODO: Let users registers via form
-        ;
     }
 
     @Override

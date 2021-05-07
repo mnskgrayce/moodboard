@@ -14,6 +14,11 @@ public class RegistrationService {
     private final EmailValidator emailValidator;
 
     public String register(RegistrationRequest request) {
+        boolean isCorrectPassword =
+                request.getPassword().equals(request.getConfirmPassword());
+        if (!isCorrectPassword) {
+            throw new IllegalStateException("Password is not confirmed!");
+        }
         boolean isValidEmail = emailValidator.test(request.getEmail());
         if (!isValidEmail) {
             throw new IllegalStateException("Email is not valid!");
