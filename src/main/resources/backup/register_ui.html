@@ -10,9 +10,9 @@
 
     body{
       font-family: Arial, Helvetica, sans-serif;
-      background-image: url("../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/img/backgroundImage.jpeg");
-      background-size: 1450px 1100px;
-      background-position: auto;
+      background-image: url("https://media3.giphy.com/media/6nFKE6LmON4UD8vRRf/giphy.webp?cid=ecf05e47pdllm99so0jr6z653erifmproia7bexbxzr9cbev&rid=giphy.webp&ct=g");
+      background-size: 3000px 1400px;
+      background-position: ;
     }
 
     h1 {
@@ -60,6 +60,7 @@
       text-align: center;
       border-left: 0px;
       border: 1px solid black;
+      width: 500px;
     }
 
     input[type = text], input[type = password]{
@@ -74,6 +75,12 @@
     input[type = text]:focus, input[type = password]:focus{
       background: #ddd;
       outline: none;
+
+    }
+
+    input[type = text]:-webkit-autofill, input[type = password]:-webkit-full-screen{
+      min-width: 100px;
+      min-height: auto;
     }
   </style>
 </head>
@@ -138,17 +145,17 @@
   </div>
   <div class="column">
     <br><br><br><br>
-    <form style="background-color:rgba(0,0,0,0.5) !important" class="formSignUp"action="">
+    <form  class="formSignUp"action="">
       <label style="color: white;" for="fullName">Full Name:</label><br>
-      <input type="text" name="fullName" placeholder="Enter Full Name"><br>
+      <input size="1" type="text" id= "fullName" name="fullName" placeholder="Enter Full Name"><br>
       <label style="color: white;" for="password">Password:</label><br>
-      <input type="password" name="password" placeholder="Enter Password"><br>
+      <input type="password" id="password" name="password" placeholder="Enter Password"><br>
       <label style="color: white;" for="repeatPassword">Repeat Password:</label><br>
-      <input type="password" name="repeatPassword" placeholder="Repeat Password"><br>
+      <input type="password" id="repeatPassword" name="repeatPassword" placeholder="Repeat Password"><br>
       <label style="color: white;" for="Age">Age:</label><br>
-      <input type="text" name="Age" placeholder="Enter Age"><br>
+      <input type="text" id="Age" name="Age" placeholder="Enter Age"><br>
       <label style="color: white;" for="email">Email: </label><br>
-      <input type="text" name="email" placeholder="Enter Email"><br>
+      <input type="text" id="email" name="email" placeholder="Enter Email"><br>
       <input type="checkbox">
       <label style="color: white;" for="remember">Remember me</label><br>
       <label style="color: white;" for="">By creating an account you accept to our <a style="color: dodgerblue;">Terms & Privacy</a></label><br><br>
