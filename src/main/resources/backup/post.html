@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Post</title>
+    <script>
+      window.onload = function () {
+        var url = document.location.href,
+          params = url.split("?")[1].split("&"),
+          data = {},
+          tmp;
+        for (var i = 0, l = params.length; i < l; i++) {
+          tmp = params[i].split("=");
+          data[tmp[0]] = tmp[1];
+        }
+
+        loadInfo(data.id);
+      };
+
+      function loadInfo(my_id) {
+        var access_key = "ciSDJprk_BRsXoaM0uQC8d5y5_bv2ekXCZv6QxquHLU";
+        var unsplash_API = "https://api.unsplash.com/";
+        var request =
+          unsplash_API + "photos/" + my_id + "?client_id=" + access_key;
+
+        fetch(request)
+          .then((response) => response.json())
+          .then((json) => {
+            console.log(json);
+            var description = json.description;
+            if (description == null) {
+              description = json.alt_description;
+            }
+            var link = json.links.download;
+            var source = json.urls.regular;
+
+            document.querySelector("#image").src = source;
+            document.querySelector("#description1").innerHTML +=
+              " " + description + "<br/>";
+            document.querySelector("#download_link").href = link;
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <img id="image" class="w-100" />
+    <h2 id="description1">Description:</h2>
+    <span><h2 id="description2">Download link:</h2></span>
+    <span> <a id="download_link">Click here</a> </span>
+  </body>
+</html>
