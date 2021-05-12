@@ -73,6 +73,49 @@
         color: #fff !important;
     }
 </style>
+<script>
+    window.onload = function () {
+        fetch_random_image(10);
+      };
+
+      function fetch_random_image(i) {
+        var access_key = "ciSDJprk_BRsXoaM0uQC8d5y5_bv2ekXCZv6QxquHLU";
+        var unsplash_API = "https://api.unsplash.com/";
+        var request =
+          unsplash_API +
+          "photos/random?count=" +
+          i +
+          "&client_id=" +
+          access_key;
+
+        fetch(request)
+          .then((response) => response.json())
+          .then((json) => {
+            console.log(json);
+            for (
+              let index = 0;
+              index < 6;
+              index++
+            ) {
+              var result = json[index];
+              var adj_html =
+                `<img src="${result.urls.regular}" class="w-100" id="${result.id}" onClick="open_post(this.id)" class="img_fluid">` +
+                "<br/>";
+                console.log(adj_html);
+              document
+                .getElementById(`frame_${index + 1}`)
+                .insertAdjacentHTML("afterend", adj_html);
+            }
+          });
+      }
+
+      // Open new post on clicked image
+      function open_post(image_id) {
+        document.location.href = url =
+          "post.html?id=" + encodeURIComponent(image_id);
+      }
+</script>
+
 <title>Document</title>
 </head>
 <body>
@@ -239,7 +282,7 @@
         <div class="col-lg-4 col-md-12 mb-3">
 
             <div class="view overlay z-depth-1-half">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/6-col/img(115).jpg" class="img-fluid" alt="">
+                 <div id="frame_1"></div>
                 <a>
                     <div class="mask rgba-white-light"></div>
                 </a>
@@ -252,7 +295,7 @@
         <div class="col-lg-4 col-md-6 mb-3">
 
             <div class="view overlay z-depth-1-half">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/6-col/img(116).jpg" class="img-fluid" alt="">
+                <div id="frame_2"></div>
                 <a>
                     <div class="mask rgba-white-light"></div>
                 </a>
@@ -265,7 +308,7 @@
         <div class="col-lg-4 col-md-6 mb-3">
 
             <div class="view overlay z-depth-1-half">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/6-col/img(117).jpg" class="img-fluid" alt="">
+                <div id="frame_3"></div>
                 <a>
                     <div class="mask rgba-white-light"></div>
                 </a>
@@ -284,7 +327,7 @@
         <div class="col-md-6 mb-3">
 
             <div class="view overlay z-depth-1-half">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img(117).jpg" class="img-fluid" alt="">
+                <div id="frame_4"></div>
                 <a>
                     <div class="mask rgba-white-light"></div>
                 </a>
@@ -297,7 +340,7 @@
         <div class="col-md-6 mb-3">
 
             <div class="view overlay z-depth-1-half">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img(129).jpg" class="img-fluid" alt="">
+                <div id="frame_5"></div>
                 <a>
                     <div class="mask rgba-white-light"></div>
                 </a>
@@ -316,7 +359,7 @@
         <div class="col-md-12 mb-3">
 
             <div class="view overlay z-depth-1-half">
-                <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(137).jpg" class="img-fluid" alt="">
+                <div id="frame_6"></div>
                 <a>
                     <div class="mask rgba-white-light"></div>
                 </a>
