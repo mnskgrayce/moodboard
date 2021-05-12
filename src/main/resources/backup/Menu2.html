@@ -3,24 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../Bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/css/mdb.dark.min.css"/>
+    <link rel="stylesheet" href="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/css/MDBoostrap/mdb.min.css" />
+
+
+    <script type = "text/javascript" src="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/js/mdb.min.js"></script>
+    <script type="text/javascript" src="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/js/bootstrap.min.js"></script>
+    <script src="../Bootstrap/js/"></script>
+
+
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 
     <link rel="stylesheet" href="../fonts/icomoon/style.css">
 
-    <link rel="stylesheet" href="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/css/owl.carousel.min.css">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/css/MDBoostrap/owl.carousel.min.css">
 
     <!-- Style -->
     <link rel="stylesheet" href="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/css/style.css">
 
+
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
-    <!-- Script --->
-    <script type="text/javascript" src="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/js/mdb.min.js"></script>
+
     <style>
         /* Carousel styling */
         #introCarousel,
@@ -31,7 +36,7 @@
         }
 
         .carousel-item:nth-child(1) {
-            background-image: url('https://images.unsplash.com/photo-1465815367149-ca149851a3a9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2033&q=80');
+            background-image: url('https://images.unsplash.com/photo-1495954380655-01609180eda3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80');
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center center;
@@ -61,38 +66,20 @@
         .navbar .nav-link {
             color: #fff !important;
         }
-
-        ::placeholder {
-            color: red;
-            opacity: 1;
-        }
-
-        form {
-            display: inline-block;
-            width: 200px;
-            margin-left: 150%;
-            /*transform: translateX(-450%);*/
-        }
-
-        input[type = password]::placeholder {
-            color: red;
-        }
-
-        mdb-navbar .navbar.navbar-2 .navbar-toggler-icon {
-            background-image: url('https://mdbcdn.b-cdn.net/img/svg/hamburger2.svg?color=fff');
-        }
     </style>
-    <title>Menu</title>
+    <title>Document</title>
 </head>
 <body>
 <!--Main Navigation-->
-<header>
+
+    <!-- Carousel wrapper -->
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark d-none d-lg-block" style="z-index: 2000;">
+
+
+<nav class="navbar navbar-expand-lg navbar-dark d-none d-lg-block" style="z-index: 2000; color:rgb">
         <div class="container-fluid">
             <!-- Navbar brand -->
-            <img style="height: 30px; width: 30px;" src="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/img/icon.png"
-                 alt="icon">
+            <img style="width: 40px; height: 40px" src="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/img/icon.png">
             <a class="navbar-brand nav-link" target="_blank" href="">
                 <strong>My Picture</strong>
             </a>
@@ -102,16 +89,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarExample01">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item active">
-                    </li>
-                    <li class="nav-item">
-                    </li>
-                    <li class="nav-item">
-                    </li>
                     <li class="nav-item">
                         <form action="search_result.html" class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-                                   name="search">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                            <button id="searchbtn" style="color: white; border-color: white;" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
                     </li>
                     <li class="nav-item">
@@ -125,6 +106,9 @@
 
                 <ul class="navbar-nav list-inline">
                     <!-- Icons -->
+                    <li>
+
+                    </li>
                     <li class="">
                         <a class="nav-link" href="" rel="nofollow"
                            target="_blank">
@@ -132,51 +116,33 @@
                         </a>
                     </li>
                     <li class="">
-                        <a class="nav-link" href="https://www.facebook.com/" rel="nofollow" target="_blank">
+                        <a class="nav-link" href="https://www.facebook.com/mdbootstrap" rel="nofollow" target="_blank">
                             <i class="fab fa-facebook-f"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://twitter.com/" rel="nofollow" target="_blank">
+                        <a class="nav-link" href="https://twitter.com/MDBootstrap" rel="nofollow" target="_blank">
                             <i class="fab fa-twitter"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://github.com/" rel="nofollow" target="_blank">
+                        <a class="nav-link" href="https://github.com/mdbootstrap/mdb-ui-kit" rel="nofollow" target="_blank">
                             <i class="fab fa-github"></i>
                         </a>
                     </li>
                     <li class="nav-item">
+                        <!-- Collapse button -->
+                        <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+                                aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i
+                                class="fas fa-bars fa-1x"></i></span></button>
                     </li>
                 </ul>
-                <!-- Collapsible content -->
             </div>
         </div>
     </nav>
-    <!-- Navbar -->
-    <div class="site-mobile-menu site-navbar-target">
-        <div class="site-mobile-menu-header">
-            <div class="site-mobile-menu-close mt-3">
-                <span class="icon-close2 js-menu-toggle"></span>
-            </div>
-        </div>
-        <div class="site-mobile-menu-body"></div>
-    </div>
-    <header class="site-navbar site-navbar-target py-4" role="banner">
-        <div class="col-9 order-1 text-left mr-auto">
-            <span class="d-inline-block d-lg-block"><a href="#" class="text-black site-menu-toggle js-menu-toggle py-5"><span class="icon-menu h3 text-white"></span></a></span>
-            <nav class="site-navigation text-right ml-auto d-none d-lg-none" role="navigation">
-                <ul class="site-menu main-menu js-clone-nav ml-auto ">
-                    <li class="active"><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="about.html" class="nav-link">About</a></li>
-                    <li><a href="services.html" class="nav-link">Services</a></li>
-                    <li><a href="blog.html" class="nav-link">Blog</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
 
-    </header>
+    <!-- Navbar -->
+
     <!-- Carousel wrapper -->
     <div id="introCarousel" class="carousel slide carousel-fade shadow-2-strong" data-mdb-ride="carousel">
         <!-- Indicators -->
@@ -190,19 +156,10 @@
         <div class="carousel-inner">
             <!-- Single item -->
             <div class="carousel-item active">
-                <div class="mask">
+                <div class="mask" >
                     <div class="d-flex justify-content-center align-items-center h-100">
                         <div class="text-white text-center">
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Single item -->
-            <div class="carousel-item">
-                <div class="mask">
-                    <div class="d-flex justify-content-center align-items-center h-100">
-                        <div class="text-white text-center">
 
                         </div>
                     </div>
@@ -211,7 +168,18 @@
 
             <!-- Single item -->
             <div class="carousel-item">
-                <div class="mask">
+                <div class="mask" >
+                    <div class="d-flex justify-content-center align-items-center h-100">
+                        <div class="text-white text-center">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single item -->
+            <div class="carousel-item">
+                <div class="mask" >
                     <div class="d-flex justify-content-center align-items-center h-100">
                         <div class="text-white text-center">
 
@@ -248,8 +216,7 @@
         <div class="col-lg-4 col-md-12 mb-3">
 
             <div class="view overlay z-depth-1-half">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/6-col/img(115).jpg" class="img-fluid"
-                     alt="">
+                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/6-col/img(115).jpg" class="img-fluid" alt="">
                 <a>
                     <div class="mask rgba-white-light"></div>
                 </a>
@@ -262,8 +229,7 @@
         <div class="col-lg-4 col-md-6 mb-3">
 
             <div class="view overlay z-depth-1-half">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/6-col/img(116).jpg" class="img-fluid"
-                     alt="">
+                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/6-col/img(116).jpg" class="img-fluid" alt="">
                 <a>
                     <div class="mask rgba-white-light"></div>
                 </a>
@@ -276,8 +242,7 @@
         <div class="col-lg-4 col-md-6 mb-3">
 
             <div class="view overlay z-depth-1-half">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/6-col/img(117).jpg" class="img-fluid"
-                     alt="">
+                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/6-col/img(117).jpg" class="img-fluid" alt="">
                 <a>
                     <div class="mask rgba-white-light"></div>
                 </a>
@@ -296,8 +261,7 @@
         <div class="col-md-6 mb-3">
 
             <div class="view overlay z-depth-1-half">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img(117).jpg" class="img-fluid"
-                     alt="">
+                <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img(117).jpg" class="img-fluid" alt="">
                 <a>
                     <div class="mask rgba-white-light"></div>
                 </a>
@@ -310,8 +274,7 @@
         <div class="col-md-6 mb-3">
 
             <div class="view overlay z-depth-1-half">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img(129).jpg" class="img-fluid"
-                     alt="">
+                <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img(129).jpg" class="img-fluid" alt="">
                 <a>
                     <div class="mask rgba-white-light"></div>
                 </a>
@@ -341,16 +304,9 @@
 
     </div>
     <!-- Grid row -->
+
 </section>
 <!--Section: Images-->
 
-
-<!-- Section: Js -->
-<script src="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/js/jquery-3.3.1.min.js"></script>
-<script src="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/js/popper.min.js"></script>
-<script src="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/js/bootstrap.min.js"></script>
-<script src="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/js/jquery.sticky.js"></script>
-<script src="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/js/main.js"></script>
-<!-- Section: Js -->
 </body>
 </html>

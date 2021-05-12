@@ -10,9 +10,9 @@
     <style>
       body {
         font-family: Arial, Helvetica, sans-serif;
-        background-image: url("https://images.unsplash.com/photo-1517524285303-d6fc683dddf8?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTc3fHxiYWNrZ3JvdW5kJTIwc2lnbiUyMHVwfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60");
-        background-size: 3000px 1400px;
-        background-position: ;
+        background-image: url("https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1630&q=80");
+        background-size: 1500px 800px;
+        background-position: inherit;
       }
 
       .row {
@@ -52,6 +52,7 @@
       }
 
       .formSignUp{
+        background-color: rgba(0, 0, 0, 0.4);
         text-align: center;
         border-left: 0px;
         border: 1px solid black;
@@ -86,7 +87,7 @@
     <div class="container-fluid">
       <!-- Navbar brand -->
       <img style="height: 30px; width: 30px;" src="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/img/icon.png" alt="icon">
-      <a class="navbar-brand nav-link" target="_blank" href="Menu2.html">
+      <a class="navbar-brand nav-link" target="_blank" href="user_menu.html">
         <strong>My Picture</strong>
       </a>
       <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
@@ -95,9 +96,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarExample01">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item active">
-            <a class="nav-link" aria-current="page" href="#intro">Home</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="" rel="nofollow"
                target="_blank"></a>
@@ -140,7 +138,7 @@
 
     </div>
     <div class="column">
-      <br><br><br><br><br><br><br><br><br><br><br><br>
+      <br>
     <div class="container">
       <div th:if="${param.error}">
         <p class="text-danger">
@@ -165,8 +163,8 @@
           <label for="password">Password</label><br>
           <input type="password" name="password" id="password" placeholder="Password"/>
         </div>
-        <button type="submit">Sign In</button><br><br>
-        <label style="color: white;" for="">Already a member?<a th:href="@{/register}">Register</a><br></label>
+        <button type="submit">Sign In</button><br>
+        <label style="color: white;" for="">Already a member?     <a th:href="@{/register}">Register</a><br></label>
       </form>
     </div>
     </div>
@@ -174,5 +172,6 @@
 
     </div>
   </div>
+
   </body>
 </html>
