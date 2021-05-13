@@ -5,15 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search Result</title>
+    <!-- CSS -->
     <link rel="stylesheet" href="../../Bootstrap/css/bootstrap.min.css" />
     <link
       rel="stylesheet"
       href="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/css/MDBoostrap/mdb.dark.min.css"
     />
-    <script
-      type="text/javascript"
-      src="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/js/mdb.min.js"
-    ></script>
     <style>
       .row {
         margin: 20;
@@ -24,70 +21,18 @@
         height: 250px;
       }
     </style>
+    <!-- JavaScript -->
+    <script
+      type="text/javascript"
+      src="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/js/mdb.min.js"
+    ></script>
+    <script src="../static/js/fetch.js"></script>
+
     <script>
       window.onload = function () {
-        var url = document.location.href,
-          params = url.split("?")[1].split("&"),
-          data = {},
-          tmp;
-        for (var i = 0, l = params.length; i < l; i++) {
-          tmp = params[i].split("=");
-          data[tmp[0]] = tmp[1];
-        }
-
-        fetch_search_request(data.search);
+        var url_data = parse_url();
+        fetch_api("search", url_data.search);
       };
-      window.onload = function () {
-        var url = document.location.href,
-          params = url.split("?")[1].split("&"),
-          data = {},
-          tmp;
-        for (var i = 0, l = params.length; i < l; i++) {
-          tmp = params[i].split("=");
-          data[tmp[0]] = tmp[1];
-        }
-
-        fetch_search_request(data.search);
-      };
-
-      function fetch_search_request(query) {
-        var access_key = "ciSDJprk_BRsXoaM0uQC8d5y5_bv2ekXCZv6QxquHLU";
-        var unsplash_API = "https://api.unsplash.com/";
-        var request =
-          unsplash_API +
-          "search/photos?query=" +
-          query +
-          "&client_id=" +
-          access_key;
-        var query_limit = 8;
-        console.log(request);
-        document.getElementById("result").innerHTML += query;
-
-        fetch(request)
-          .then((response) => response.json())
-          .then((json) => {
-            for (
-              let index = 0;
-              index < json.results.length && index < query_limit;
-              index++
-            ) {
-              var result = json.results[index];
-              var adj_html =
-                `<img src="${result.urls.regular}" class="w-100" id="${result.id}" onClick="open_post(this.id)">` +
-                "<br/>";
-
-              document
-                .getElementById(`frame_${index + 1}`)
-                .insertAdjacentHTML("afterend", adj_html);
-            }
-          });
-      }
-
-      // Open new post on clicked image
-      function open_post(image_id) {
-        document.location.href = url =
-          "post.html?id=" + encodeURIComponent(image_id);
-      }
     </script>
   </head>
   <body>
