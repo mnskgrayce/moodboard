@@ -27,7 +27,7 @@ function fetch_api(type, query) {
         
         switch(type) {
             case "random": 
-            insert_image(json, 6)
+            insert_image(json, 15)
             break;
             case "search":
             insert_image(json.results, 8)
@@ -39,6 +39,12 @@ function fetch_api(type, query) {
       })
     }
 
+    function open_post(image_id) {
+    document.location.href = url =
+      "post.html?id=" + encodeURIComponent(image_id);
+  }
+
+
 function insert_image(results, frame) {
     for (
         let index = 0;
@@ -46,8 +52,9 @@ function insert_image(results, frame) {
         index++
       ) {
         var result = results[index];
+        var img_url = result.urls.raw + "&w=720&dpr=2"
         var adj_html =
-          `<img src="${result.urls.raw}" class="w-100" id="${result.id}" onClick="open_post(this.id)" class="img_fluid">` +
+          `<img src="${img_url}" class="w-100" id="${result.id}" onClick="open_post(this.id)" class="img_fluid">` +
           "<br/>";
           console.log(adj_html);
 
@@ -57,11 +64,7 @@ function insert_image(results, frame) {
       }
 }
 
- function open_post(image_id) {
-    document.location.href = url =
-      "post.html?id=" + encodeURIComponent(image_id);
-  }
-
+ 
   function load_info (post) {
     var description = post.description;
     if (description == null) {
