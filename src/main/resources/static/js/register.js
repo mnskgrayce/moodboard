@@ -49,8 +49,11 @@ async function handleFormSubmit(event) {
         const responseData = await postFormDataAsJson({ url, formData });
 
         console.log({ responseData });
+        alert("Registration successful!");
+        window.location.replace("/login");
     } catch (error) {
         console.error(error);
+        alert("Registration failed!");
     }
 }
 
