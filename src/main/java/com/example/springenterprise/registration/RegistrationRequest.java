@@ -2,9 +2,9 @@ package com.example.springenterprise.registration;
 
 import lombok.*;
 
-@Getter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Getter
 @EqualsAndHashCode
 @ToString
 public class RegistrationRequest {
@@ -14,5 +14,4 @@ public class RegistrationRequest {
     private String email;
     private String password;
     private String confirmPassword;
-
 }

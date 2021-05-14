@@ -8,14 +8,6 @@
   </head>
   <body>
     <div class="container">
-      <div th:if="${param.error}">
-        <p class="text-danger">
-          [[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]
-        </p>
-      </div>
-      <div th:if="${param.logout}">
-        <p class="text-warning">You have been logged out.</p>
-      </div>
       <form th:action="@{/login}" method="POST">
         <div class="">
           <label for="email">Email</label>

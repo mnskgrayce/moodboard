@@ -1,5 +1,6 @@
 package com.example.springenterprise.user;
 
+import com.example.springenterprise.models.Moodboard;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,11 +12,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
+@NoArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode
-@NoArgsConstructor
 @Entity
 public class AppUser implements UserDetails {
 
@@ -33,6 +36,10 @@ public class AppUser implements UserDetails {
     private String lastName;
     private String email;
     private String password;
+
+    @OneToMany
+    @JoinColumn(name = "app_user_id")
+    private Set<Moodboard> moodboards = new HashSet<>();
 
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
@@ -60,13 +67,13 @@ public class AppUser implements UserDetails {
     }
 
     @Override
-    public String getPassword() {
-        return password;
+    public String getUsername() {
+        return email;
     }
 
     @Override
-    public String getUsername() {
-        return email;
+    public String getPassword() {
+        return password;
     }
 
     public String getFirstName() {
