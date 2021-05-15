@@ -19,7 +19,7 @@ function fetch_api(type, query, page_num) {
 
       break;
   }
-  console.log(page_num)
+  // console.log(page_num)
   if (page_num !== undefined) {
     api = api + "&page=" + page_num;
   }
@@ -27,7 +27,7 @@ function fetch_api(type, query, page_num) {
   fetch(api)
     .then((response) => response.json())
     .then((json) => {
-      console.log(json);
+      // console.log(json);
 
       switch (type) {
         case "random":
@@ -56,7 +56,7 @@ function insert_image(results, frame) {
       `<a href="${post_url}"><div class="mask" style="background-color: rgba(0, 0, 0, 0.2);"></div></a></div>`
     document.getElementById("gallery").innerHTML 
     += img_html;
-    console.log(img_html);
+    // console.log(img_html);
   }
 }
 
