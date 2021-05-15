@@ -52,11 +52,21 @@ public class BootstrapData implements CommandLineRunner {
         lon.setPassword(encodedPassword);
         appUserRepository.save(lon);
 
-        Moodboard moodboard = new Moodboard(
-                "My First Moodboard",
+        Moodboard moodboard1 = new Moodboard(
+                "Trang's Moodboard",
                 new HashSet<>()
         );
-        moodboard.setAppUser(trang);
-        moodboardRepository.save(moodboard);
+        moodboard1.setAppUser(trang);
+        moodboardRepository.save(moodboard1);
+
+        Moodboard moodboard2 = new Moodboard(
+                "Long's Moodboard",
+                new HashSet<>()
+        );
+        moodboard2.setAppUser(lon);
+        moodboardRepository.save(moodboard2);
+
+        System.out.println("Total number of users: " + appUserRepository.count());
+        System.out.println("Total number of moodboard: " + moodboardRepository.count());
     }
 }

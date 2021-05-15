@@ -20,7 +20,7 @@ public class MainController {
     @RequestMapping("/")
     public String getHomeView(Model model, Principal principal) {
         String userEmail = principal.getName();
-        model.addAttribute("moodboards", moodboardService.listAll());
+        model.addAttribute("moodboards", moodboardService.listByUser(userEmail));
         return "index";
     }
 
