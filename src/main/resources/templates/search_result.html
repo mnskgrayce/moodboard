@@ -4,90 +4,34 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Search Result</title>
-    <link rel="stylesheet" href="../../Bootstrap/css/bootstrap.min.css" />
+    <!-- Font Awesome -->
     <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
       rel="stylesheet"
-      href="../../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/css/mdb.dark.min.css"
     />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
+      rel="stylesheet"
+    />
+      
+    <!-- JavaScript -->
     <script
       type="text/javascript"
-      src="../../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/js/mdb.min.js"
+      src="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/js/mdb.min.js"
     ></script>
-    <style>
-      .row {
-        margin: 20;
-        scale: 90%;
-      }
-      img {
-        width: 300px;
-        height: 250px;
-      }
-    </style>
+    <script src="../static/js/unsplash.js"></script>
+
     <script>
       window.onload = function () {
-        var url = document.location.href,
-          params = url.split("?")[1].split("&"),
-          data = {},
-          tmp;
-        for (var i = 0, l = params.length; i < l; i++) {
-          tmp = params[i].split("=");
-          data[tmp[0]] = tmp[1];
-        }
-
-        fetch_search_request(data.search);
+        var url_data = parse_url();
+        fetch_api("search", url_data.search);
       };
-      window.onload = function () {
-        var url = document.location.href,
-          params = url.split("?")[1].split("&"),
-          data = {},
-          tmp;
-        for (var i = 0, l = params.length; i < l; i++) {
-          tmp = params[i].split("=");
-          data[tmp[0]] = tmp[1];
-        }
-
-        fetch_search_request(data.search);
-      };
-
-      function fetch_search_request(query) {
-        var access_key = "ciSDJprk_BRsXoaM0uQC8d5y5_bv2ekXCZv6QxquHLU";
-        var unsplash_API = "https://api.unsplash.com/";
-        var request =
-          unsplash_API +
-          "search/photos?query=" +
-          query +
-          "&client_id=" +
-          access_key;
-        var query_limit = 8;
-        console.log(request);
-        document.getElementById("result").innerHTML += query;
-
-        fetch(request)
-          .then((response) => response.json())
-          .then((json) => {
-            for (
-              let index = 0;
-              index < json.results.length && index < query_limit;
-              index++
-            ) {
-              var result = json.results[index];
-              var adj_html =
-                `<img src="${result.urls.regular}" class="w-100" id="${result.id}" onClick="open_post(this.id)">` +
-                "<br/>";
-
-              document
-                .getElementById(`frame_${index + 1}`)
-                .insertAdjacentHTML("afterend", adj_html);
-            }
-          });
-      }
-
-      // Open new post on clicked image
-      function open_post(image_id) {
-        document.location.href = url =
-          "post.html?id=" + encodeURIComponent(image_id);
-      }
     </script>
   </head>
   <body>
@@ -101,10 +45,10 @@
         <!-- Navbar brand -->
         <img
           style="height: 30px; width: 30px"
-          src="../../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/img/icon.png"
+          src="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/img/icon.png"
           alt="icon"
         />
-        <a class="navbar-brand nav-link" target="_blank" href="Menu2.html">
+        <a class="navbar-brand nav-link" target="_blank" href="user_menu.html">
           <strong>My Picture</strong>
         </a>
         <button
@@ -124,12 +68,12 @@
               <a class="nav-link" aria-current="page" href="#intro">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="../login.html"
+              <a class="nav-link" aria-current="page" href="login.html"
                 >Sign in</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="../register.html"
+              <a class="nav-link" aria-current="page" href="register.html"
                 >Register</a
               >
             </li>
@@ -229,4 +173,8 @@
       </div>
     </div>
   </body>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"
+    ></script>
 </html>
