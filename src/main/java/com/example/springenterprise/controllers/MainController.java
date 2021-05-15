@@ -1,14 +1,28 @@
 package com.example.springenterprise.controllers;
 
+import com.example.springenterprise.services.MoodboardService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-// This class only serves to display the HTML templates
+import java.security.Principal;
+
 // Do NOT use RestController
 // It will convert the response to JSON/XML
 // ..and you get a string, instead of the Thymeleaf template
 @Controller
-public class TemplateController {
+@AllArgsConstructor
+public class MainController {
+
+    private final MoodboardService moodboardService;
+
+    @RequestMapping("/")
+    public String getHomeView(Model model, Principal principal) {
+        String userEmail = principal.getName();
+        model.addAttribute("moodboards", moodboardService.listAll());
+        return "index";
+    }
 
     @RequestMapping("/login")
     public String getLoginView() {

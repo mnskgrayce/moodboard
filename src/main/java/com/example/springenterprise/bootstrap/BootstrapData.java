@@ -1,5 +1,6 @@
 package com.example.springenterprise.bootstrap;
 
+import com.example.springenterprise.models.Moodboard;
 import com.example.springenterprise.repositories.ImageRepository;
 import com.example.springenterprise.repositories.MoodboardRepository;
 import com.example.springenterprise.user.AppUser;
@@ -8,6 +9,8 @@ import com.example.springenterprise.user.AppUserRole;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import java.util.HashSet;
 
 @Component
 public class BootstrapData implements CommandLineRunner {
@@ -23,7 +26,7 @@ public class BootstrapData implements CommandLineRunner {
     private final AppUserRepository appUserRepository;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         // add sample data here if any
         AppUser trang = new AppUser(
                 "Trang",
@@ -48,5 +51,12 @@ public class BootstrapData implements CommandLineRunner {
         encodedPassword = new BCryptPasswordEncoder().encode(lon.getPassword());
         lon.setPassword(encodedPassword);
         appUserRepository.save(lon);
+
+        Moodboard moodboard = new Moodboard(
+                "My First Moodboard",
+                new HashSet<>()
+        );
+        moodboard.setAppUser(trang);
+        moodboardRepository.save(moodboard);
     }
 }
