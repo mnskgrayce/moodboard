@@ -51,3 +51,20 @@
     }
   }
 
+  #container {
+    scroll-behavior:     smooth;
+  }
+
+#topBtn, #loadBtn {
+  position:              fixed;
+  bottom:                1em; 
+  right:                 1em; 
+  background:            paleturquoise;
+  color:                 navy;
+  text-align:            center;
+  align-items:           center;
+}
+
+#loadBtn {
+  right:                 6em; 
+}

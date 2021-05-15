@@ -42,6 +42,10 @@
               reload_image();
           }
       };
+
+      function top_scroll() {
+        window.scrollTo(0,0);
+      }
     </script>
 
   </head>
@@ -50,8 +54,16 @@
       <h4 id="result">Displaying search result for:</h4>
       <div id="gallery">
       </div>
-      <button id="topBtn" class="scroll-top-btn" onclick="reload_image()"><i class="fas fa-arrow-down"></i></button>
-  
+      <button id="topBtn" class="btn-floating btn-lg btn-flat" onclick="top_scroll()"><i class="fas fa-arrow-up"></i></button>
+      <button id="loadBtn" class="btn btn-secondary btn-rounded" onclick="reload_image()">Load More Image</i></button>
+
+      <script>
+        var load_button = document.getElementById("loadBtn");
+        if (page_number > 1) {
+          load_button.classList.remove("visible");
+        }
+        
+      </script>
       <script
               type="application/javascript"
               th:src="@{/js/unsplash.js}"
