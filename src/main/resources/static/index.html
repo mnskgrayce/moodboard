@@ -1,5 +1,4 @@
 <!--
-TODO: refactor script to separate file js/search.js
 TODO: fix (index):24 Uncaught TypeError: Cannot read property 'split' of undefined
     at window.onload ((index):24)
     -->
@@ -22,38 +21,38 @@ TODO: fix (index):24 Uncaught TypeError: Cannot read property 'split' of undefin
       />
       <button type="submit">Search</button>
     </form>
-    <!--    <script type="application/javascript" th:src="@{/js/search.js}"></script>-->
+    <script type="application/javascript" th:src="@{/js/unsplash.js}"></script>
     <script>
-      window.onload = function () {
-        let url = document.location.href,
-          params = url.split("?")[1].split("&"),
-          data = {},
-          tmp;
-        let i = 0,
-          l = params.length;
-        for (; i < l; i++) {
-          tmp = params[i].split("=");
-          data[tmp[0]] = tmp[1];
-        }
+      // window.onload = function () {
+      //   let url = document.location.href,
+      //     params = url.split("?")[1].split("&"),
+      //     data = {},
+      //     tmp;
+      //   let i = 0,
+      //     l = params.length;
+      //   for (; i < l; i++) {
+      //     tmp = params[i].split("=");
+      //     data[tmp[0]] = tmp[1];
+      //   }
 
-        fetch_search_request(data.search);
-      };
+      //   fetch_search_request(data.search);
+      // };
 
-      function fetch_search_request(query) {
-        const access_key = "ciSDJprk_BRsXoaM0uQC8d5y5_bv2ekXCZv6QxquHLU";
-        const unsplash_API = "https://api.unsplash.com/";
-        const request =
-          unsplash_API +
-          "search/photos?query=" +
-          query +
-          "&client_id=" +
-          access_key;
-        const query_limit = 50;
+      // function fetch_search_request(query) {
+      //   const access_key = "ciSDJprk_BRsXoaM0uQC8d5y5_bv2ekXCZv6QxquHLU";
+      //   const unsplash_API = "https://api.unsplash.com/";
+      //   const request =
+      //     unsplash_API +
+      //     "search/photos?query=" +
+      //     query +
+      //     "&client_id=" +
+      //     access_key;
+      //   const query_limit = 50;
 
-        fetch(request)
-          .then((response) => response.json())
-          .then((json) => console.log(json));
-      }
+      //   fetch(request)
+      //     .then((response) => response.json())
+      //     .then((json) => console.log(json));
+      // }
     </script>
   </body>
 </html>

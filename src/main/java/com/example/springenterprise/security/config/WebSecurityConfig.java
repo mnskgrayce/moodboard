@@ -30,7 +30,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/register",
                             "/api/v*/registration",
                             "/css/*",
-                            "/js/*")
+                            "/js/*",
+                            "/favicon.ico")
                     .permitAll()
                 .anyRequest()
                 .authenticated().and()

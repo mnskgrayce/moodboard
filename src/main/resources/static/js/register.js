@@ -7,28 +7,28 @@
  * @return {Object} - Response body from URL that was POSTed to
  */
 async function postFormDataAsJson({ url, formData }) {
-    const plainFormData = Object.fromEntries(formData.entries());
-    const formDataJsonString = JSON.stringify(plainFormData);
+  const plainFormData = Object.fromEntries(formData.entries());
+  const formDataJsonString = JSON.stringify(plainFormData);
 
-    console.log(formDataJsonString);
+  console.log(formDataJsonString);
 
-    const fetchOptions = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            Accept: "text/html",
-        },
-        body: formDataJsonString,
-    };
+  const fetchOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "text/html",
+    },
+    body: formDataJsonString,
+  };
 
-    const response = await fetch(url, fetchOptions);
+  const response = await fetch(url, fetchOptions);
 
-    if (!response.ok) {
-        const errorMessage = await response.text();
-        throw new Error(errorMessage);
-    }
+  if (!response.ok) {
+    const errorMessage = await response.text();
+    throw new Error(errorMessage);
+  }
 
-    return response.text();
+  return response.text();
 }
 
 /**
@@ -39,22 +39,22 @@ async function postFormDataAsJson({ url, formData }) {
  * @param {SubmitEvent} event
  */
 async function handleFormSubmit(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    const form = event.currentTarget;
-    const url = form.action;
+  const form = event.currentTarget;
+  const url = form.action;
 
-    try {
-        const formData = new FormData(form);
-        const responseData = await postFormDataAsJson({ url, formData });
+  try {
+    const formData = new FormData(form);
+    const responseData = await postFormDataAsJson({ url, formData });
 
-        console.log({ responseData });
-        alert("Registration successful!");
-        window.location.replace("/login");
-    } catch (error) {
-        console.error(error);
-        alert("Registration failed!");
-    }
+    console.log({ responseData });
+    alert("Registration successful!");
+    window.location.replace("/login");
+  } catch (error) {
+    console.error(error);
+    alert("Registration failed!");
+  }
 }
 
 const registrationForm = document.getElementById("registration-form");

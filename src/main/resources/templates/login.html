@@ -27,7 +27,11 @@
       style="height: 100vh"
     >
       <div class="col-xl-5 col-md-8">
-        <div th:if="${param.error}" class="badge bg-warning text-dark fs-6">
+        <div
+          th:if="${param.error}"
+          class="badge bg-warning text-dark"
+          style="font-size: 1rem"
+        >
           Invalid credentials.
         </div>
         <form
