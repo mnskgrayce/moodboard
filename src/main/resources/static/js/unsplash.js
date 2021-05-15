@@ -1,7 +1,8 @@
 var access_key = "client_id=ciSDJprk_BRsXoaM0uQC8d5y5_bv2ekXCZv6QxquHLU";
 var unsplash_API = "https://api.unsplash.com/";
+var number_of_image = 10;
 
-function fetch_api(type, query) {
+function fetch_api(type, query, page_num) {
   var command, api;
   switch (type) {
     case "random":
@@ -10,13 +11,17 @@ function fetch_api(type, query) {
       break;
     case "search":
       command = "search/photos?query=";
-      api = unsplash_API + command + query + "&" + access_key;
+      api = unsplash_API + command + query  + "&" + access_key;
       break;
     case "get_image":
       command = "photos/";
       api = unsplash_API + command + query + "?" + access_key;
 
       break;
+  }
+  console.log(page_num)
+  if (page_num !== undefined) {
+    api = api + "&page=" + page_num;
   }
 
   fetch(api)
@@ -26,22 +31,20 @@ function fetch_api(type, query) {
 
       switch (type) {
         case "random":
-          insert_image(json, 10);
+          insert_image(json, number_of_image);
           break;
         case "search":
-          insert_image(json.results, 10);
+          if (page_num > json.total_pages)
+            console.log("total pages", json.total_pages);
+          else
+            insert_image(json.results, number_of_image);
           break;
         case "get_image":
           load_info(json);
           break;
       }
     });
-}
-
-function open_post(image_id) {
-  window.open();
-  // document.location.href = url = "pic.html?id=" + encodeURIComponent(image_id);
-}
+} 
 
 function insert_image(results, frame) {
   for (let index = 0; index < results.length && index < frame; index++) {
@@ -53,6 +56,7 @@ function insert_image(results, frame) {
       `<a href="${post_url}"><div class="mask" style="background-color: rgba(0, 0, 0, 0.2);"></div></a></div>`
     document.getElementById("gallery").innerHTML 
     += img_html;
+    console.log(img_html);
   }
 }
 
