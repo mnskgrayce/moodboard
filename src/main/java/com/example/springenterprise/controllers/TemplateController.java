@@ -19,4 +19,9 @@ public class TemplateController {
     public String getRegisterView() {
         return "register";
     }
+
+    @RequestMapping("/search_result")
+    public String getSearchResult() {
+        return "search_result";
+    }
 }
