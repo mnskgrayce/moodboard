@@ -25,7 +25,7 @@ public class BootstrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         // add sample data here if any
-        AppUser user = new AppUser(
+        AppUser trang = new AppUser(
                 "Trang",
                 "Nguyen",
                 "mtrang1812@gmail.com",
@@ -33,8 +33,20 @@ public class BootstrapData implements CommandLineRunner {
                 AppUserRole.ADMIN
         );
 
-        String encodedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
-        user.setPassword(encodedPassword);
-        appUserRepository.save(user);
+        String encodedPassword = new BCryptPasswordEncoder().encode(trang.getPassword());
+        trang.setPassword(encodedPassword);
+        appUserRepository.save(trang);
+
+        AppUser lon = new AppUser(
+                "Long",
+                "Tran",
+                "longtran2378@gmail.com",
+                "YrS526nfFs",
+                AppUserRole.ADMIN
+        );
+
+        encodedPassword = new BCryptPasswordEncoder().encode(lon.getPassword());
+        lon.setPassword(encodedPassword);
+        appUserRepository.save(lon);
     }
 }

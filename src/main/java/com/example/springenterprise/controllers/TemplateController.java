@@ -15,8 +15,6 @@ public class TemplateController {
         return "login";
     }
 
-    // TODO: Configure login error page
-
     @RequestMapping("/register")
     public String getRegisterView() {
         return "register";
