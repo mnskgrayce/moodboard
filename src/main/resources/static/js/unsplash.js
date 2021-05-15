@@ -11,7 +11,6 @@ function fetch_api(type, query) {
     case "search":
       command = "search/photos?query=";
       api = unsplash_API + command + query + "&" + access_key;
-
       break;
     case "get_image":
       command = "photos/";
@@ -27,10 +26,10 @@ function fetch_api(type, query) {
 
       switch (type) {
         case "random":
-          insert_image(json, 15);
+          insert_image(json, 10);
           break;
         case "search":
-          insert_image(json.results, 8);
+          insert_image(json.results, 10);
           break;
         case "get_image":
           load_info(json);
@@ -40,21 +39,20 @@ function fetch_api(type, query) {
 }
 
 function open_post(image_id) {
-  document.location.href = url = "post.html?id=" + encodeURIComponent(image_id);
+  window.open();
+  // document.location.href = url = "pic.html?id=" + encodeURIComponent(image_id);
 }
 
 function insert_image(results, frame) {
   for (let index = 0; index < results.length && index < frame; index++) {
     var result = results[index];
-    var img_url = result.urls.raw + "&w=720&dpr=2";
-    var adj_html =
-      `<img src="${img_url}" class="w-100" id="${result.id}" onClick="open_post(this.id)" class="img_fluid">` +
-      "<br/>";
-    console.log(adj_html);
-
-    document
-      .getElementById(`frame_${index + 1}`)
-      .insertAdjacentHTML("afterend", adj_html);
+    var post_url = "/pic" + "?id=" + encodeURIComponent(result.id);
+    var img_html =
+      `<div class="bg-image hover-overlay ripple" id="mask" style="margin-top: 0.4rem">` +
+      `<img src="${result.urls.regular}" class="w-100" alt="${result.alt_description}"  class="img_fluid">` +
+      `<a href="${post_url}"><div class="mask" style="background-color: rgba(0, 0, 0, 0.2);"></div></a></div>`
+    document.getElementById("gallery").innerHTML 
+    += img_html;
   }
 }
 
@@ -72,15 +70,4 @@ function load_info(post) {
   document.querySelector("#download_link").href = link;
 }
 
-function parse_url() {
-  var url = document.location.href,
-    params = url.split("?")[1].split("&"),
-    data = {},
-    tmp;
-  for (var i = 0, l = params.length; i < l; i++) {
-    tmp = params[i].split("=");
-    data[tmp[0]] = tmp[1];
-  }
 
-  return data;
-}

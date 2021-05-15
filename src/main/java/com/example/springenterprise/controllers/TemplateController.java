@@ -24,4 +24,9 @@ public class TemplateController {
     public String getSearchResult() {
         return "search_result";
     }
+
+    @RequestMapping("/pic")
+    public String getPic() {
+        return "pic";
+    }
 }

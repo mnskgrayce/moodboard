@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Post</title>
-    <script src="../static/js/fetch.js"></script>
-
+    <script
+            type="application/javascript"
+            th:src="@{/js/parse.js}"
+    ></script>
     <script>
       window.onload = function () {
         var url_data = parse_url();
@@ -19,5 +21,10 @@
     <h2 id="description1">Description:</h2>
     <span><h2 id="description2">Download link:</h2></span>
     <span> <a id="download_link">Click here</a> </span>
+    <script
+            type="application/javascript"
+            th:src="@{/js/unsplash.js}"
+    ></script>
   </body>
+
 </html>
