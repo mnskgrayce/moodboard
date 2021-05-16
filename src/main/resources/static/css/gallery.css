@@ -1,20 +1,21 @@
 #gallery {
     line-height: 0;
-    -webkit-column-count: 5;
+    -webkit-column-count: 4;
     -webkit-column-gap:   0.4rem;
-    -moz-column-count:    5;
+    -moz-column-count:    4;
     -moz-column-gap:      0.4rem;
-    column-count:         5;
+    column-count:         4;
     column-gap:           0.4rem;
     margin-left:          0.8rem;
     margin-right:         0.8rem;
     margin-bottom:        0.8rem;
   }
-  
+
   #gallery img {
     width:                100% !important;
     height:               auto !important;
     border-radius:        5px;
+    opacity:              1;
   }
 
   #gallery #mask {
@@ -24,9 +25,9 @@
 
   @media (max-width: 1200px) {
     #gallery {
-    -moz-column-count:    4;
-    -webkit-column-count: 4;
-    column-count:         4;
+    -moz-column-count:    3;
+    -webkit-column-count: 3;
+    column-count:         3;
     }
   }
   @media (max-width: 1000px) {
@@ -51,9 +52,11 @@
     }
   }
 
-  #container {
-    scroll-behavior:     smooth;
-  }
+#container {
+  scroll-behavior:     smooth;
+  transition:          width 2s, height 2s;
+  transition-delay:    4s;
+}
 
 #topBtn, #loadBtn {
   position:              fixed;

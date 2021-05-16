@@ -19,29 +19,41 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
       rel="stylesheet"
     />
+    <script src="https://unpkg.com/animate-css-grid@latest"></script>
+
     <script
             type="application/javascript"
             th:src="@{/js/parse.js}"
     ></script>
     <link rel="stylesheet" th:href="@{/css/gallery.css}">
+
     <script>
       var page_number = 1;
       var url_data;
+      const stopRunningScrollHandler = {
+          flag: 0
+      };
+
       window.onload = function () {
         url_data = parse_url();
         fetch_api("search", url_data.search);
       };
-      
-      function reload_image() {
+
+      function modifyingDiv() {
+        stopRunningScrollHandler.flag = 1;
         page_number += 1;
-        fetch_api("search", url_data.search, page_number);
+        console.log(page_number)
+        fetch_api("search", url_data.search, page_number, stopRunningScrollHandler);
       }
 
-      window.onscroll = function(ev) {
-          if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-              reload_image();
-          }
-      };
+      function scrollHandler() {
+        if (stopRunningScrollHandler.flag) return;
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+          modifyingDiv();
+        }
+      }
+
+      window.addEventListener("scroll", scrollHandler);
 
       function top_scroll() {
         window.scrollTo(0,0);
@@ -52,17 +64,12 @@
   <body>
     <section id="container" onscroll="scroll_bottom()">
       <h4 id="result">Displaying search result for:</h4>
-      <div id="gallery">
+      <div id="gallery" class="grid">
       </div>
       <button id="topBtn" class="btn-floating btn-lg btn-flat" onclick="top_scroll()"><i class="fas fa-arrow-up"></i></button>
-      <button id="loadBtn" class="btn btn-secondary btn-rounded" onclick="reload_image()">Load More Image</i></button>
-
       <script>
-        var load_button = document.getElementById("loadBtn");
-        if (page_number > 1) {
-          load_button.classList.remove("visible");
-        }
-        
+        const grid = document.querySelector(".grid");
+        animateCSSGrid.wrapGrid(grid, {duration : 600});
       </script>
       <script
               type="application/javascript"

@@ -59,13 +59,14 @@
             <!-- Search bar -->
             <li class="nav-item w-100">
               <form
-                th:action="@{/search_result}"
+                th:action="@{/search_result}" +
                 action="/search_result"
                 class="d-flex input-group w-auto"
               >
                 <input
                   type="search"
                   class="form-control"
+                  name="search"
                   placeholder="Search"
                   aria-label="Search"
                   aria-describedby="search-addon"

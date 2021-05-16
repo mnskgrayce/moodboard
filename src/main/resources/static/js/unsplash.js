@@ -2,7 +2,7 @@ var access_key = "client_id=ciSDJprk_BRsXoaM0uQC8d5y5_bv2ekXCZv6QxquHLU";
 var unsplash_API = "https://api.unsplash.com/";
 var number_of_image = 10;
 
-function fetch_api(type, query, page_num) {
+async function fetch_api(type, query, page_num, handler) {
   var command, api;
   switch (type) {
     case "random":
@@ -32,19 +32,22 @@ function fetch_api(type, query, page_num) {
       switch (type) {
         case "random":
           insert_image(json, number_of_image);
+          handler.flag = 0;
           break;
         case "search":
           if (page_num > json.total_pages)
             console.log("total pages", json.total_pages);
           else
             insert_image(json.results, number_of_image);
+          handler.flag = 0;
           break;
         case "get_image":
           load_info(json);
+          handler.flag = 0;
           break;
       }
     });
-} 
+}
 
 function insert_image(results, frame) {
   for (let index = 0; index < results.length && index < frame; index++) {
