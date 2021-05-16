@@ -18,6 +18,7 @@ public class Image {
     private Long id;
 
     private String apiId;
+    private String url;
 
     @ManyToMany
     @JoinTable(
@@ -26,8 +27,9 @@ public class Image {
             inverseJoinColumns = @JoinColumn(name = "moodboard_id"))
     private Set<Moodboard> moodboards;
 
-    public Image(String apiId, Set<Moodboard> moodboards) {
+    public Image(String apiId, String url, Set<Moodboard> moodboards) {
         this.apiId = apiId;
+        this.url = url;
         this.moodboards = moodboards;
     }
 }

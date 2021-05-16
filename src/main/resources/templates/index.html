@@ -26,35 +26,124 @@
     />
   </head>
   <body>
-    <p>Welcome to the Homepage!</p>
-    <form action="/search_result">
-      <input
-        type="search"
-        placeholder="Looking for something?"
-        aria-label="Search"
-        name="search"
-      />
-      <button type="submit">Search</button>
-    </form>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <!-- Container wrapper -->
+      <div class="container">
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="/">My Picture</a>
 
+        <!-- Toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-mdb-toggle="collapse"
+          data-mdb-target="#navbarButtonsExample"
+          aria-controls="navbarButtonsExample"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarButtonsExample">
+          <!-- Left links -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-baseline">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Dashboard</a>
+            </li>
+            <li class="nav-item pe-3">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <!-- Search bar -->
+            <li class="nav-item w-100">
+              <form
+                th:action="@{/search_result}"
+                action="/search_result"
+                class="d-flex input-group w-auto"
+              >
+                <input
+                  type="search"
+                  class="form-control"
+                  placeholder="Search"
+                  aria-label="Search"
+                  aria-describedby="search-addon"
+                />
+                <button type="submit" class="btn btn-light">
+                  <i class="fas fa-search"></i>
+                </button>
+              </form>
+            </li>
+          </ul>
+
+          <!-- Right links -->
+          <div class="d-flex justify-content-between align-items-center">
+            <a href="#" class="btn btn-info btn-theme me-3" role="button"
+              >Show Me Random Pictures</a
+            >
+            <a href="#" class="btn btn-danger btn-theme me-3" role="button"
+              >Log out</a
+            >
+            <a
+              class="btn btn-dark px-3"
+              href="https://github.com/mnskgrayce/spring-enterprise"
+              role="button"
+              ><i class="fab fa-github"></i
+            ></a>
+          </div>
+        </div>
+        <!-- Collapsible wrapper -->
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+
+    <!-- Moodboard collection -->
     <div class="container">
-      <div class="" th:each="moodboard : ${moodboards}">
-        <div class="" th:text="${moodboard.id}"></div>
-          <img th:src="${moodboard.name}" alt="">
+      <h1 class="text-center p-5">My Moodboards</h1>
+
+      <!-- Moodboard card -->
+      <div
+        class="
+          d-flex
+          flex-row flex-wrap
+          justify-content-center
+          align-items-center
+        "
+      >
+        <div
+          class="card col-10 col-sm-5 col-md-3 m-2"
+          th:each="moodboard : ${moodboards}"
+        >
+          <div
+            class="bg-image hover-overlay ripple"
+            data-mdb-ripple-color="light"
+          >
+            <img
+              th:src="${moodboard.thumbnailUrl}"
+              style="width: 100%; height: auto; object-fit: cover"
+            />
+            <a href="#!">
+              <div
+                class="mask"
+                style="background-color: rgba(251, 251, 251, 0.15)"
+              ></div>
+            </a>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" th:text="${moodboard.name}">Card title</h5>
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+            <a href="#!" class="btn btn-primary">Button</a>
+          </div>
         </div>
       </div>
+      <!-- Moodboard card -->
     </div>
-
-    <table>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-      </tr>
-      <tr th:each="moodboard : ${moodboards}">
-        <td th:text="${moodboard.id}"></td>
-        <td th:text="${moodboard.name}"></td>
-      </tr>
-    </table>
+    <!-- Moodboard collection -->
 
     <!-- MDB -->
     <script

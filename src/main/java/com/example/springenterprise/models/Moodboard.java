@@ -19,6 +19,7 @@ public class Moodboard {
     private Long id;
 
     private String name;
+    private String thumbnailUrl = "https://via.placeholder.com/500x300";
 
     @ManyToMany(mappedBy = "moodboards")
     private Set<Image> images;
