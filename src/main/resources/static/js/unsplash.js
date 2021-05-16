@@ -27,26 +27,26 @@ async function fetch_api(type, query, page_num, handler) {
   fetch(api)
     .then((response) => response.json())
     .then((json) => {
-      // console.log(json);
-
+      console.log(json);
       switch (type) {
         case "random":
           insert_image(json, number_of_image);
-          handler.flag = 0;
           break;
         case "search":
           if (page_num > json.total_pages)
             console.log("total pages", json.total_pages);
           else
             insert_image(json.results, number_of_image);
-          handler.flag = 0;
           break;
         case "get_image":
           load_info(json);
-          handler.flag = 0;
           break;
       }
     });
+
+  if (handler !== undefined) {
+    handler.flag = 0;
+  }
 }
 
 function insert_image(results, frame) {
@@ -68,13 +68,24 @@ function load_info(post) {
   if (description == null) {
     description = post.alt_description;
   }
-  var link = post.links.download;
-  var source = post.urls.regular;
-
-  document.querySelector("#image").src = source;
-  document.querySelector("#description1").innerHTML +=
-    " " + description + "<br/>";
-  document.querySelector("#download_link").href = link;
+  document.querySelector("#image").src = post.urls.regular;
+  document.querySelector("#description").innerHTML += description + "<br/>";
+  document.querySelector("#location").innerHTML += "<br/>" + post.location.name + "<br/>";
+  document.querySelector("#view").innerHTML += "<br/>" + post.views + "<br/>";
+  document.querySelector("#download").innerHTML += "<br/>" + post.downloads + "<br/>";
+  var button = document.getElementById("download_button");
+  button.addEventListener('click', async function (e) {
+      const picture = await fetch(post.urls.raw)
+      const picBlog = await picture.blob()
+      const pictureURL = URL.createObjectURL(picBlog)
+    
+      const link = document.createElement('a')
+      link.href = pictureURL
+      link.download = description
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+    })
 }
 
 
