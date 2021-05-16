@@ -53,7 +53,7 @@ public class BootstrapData implements CommandLineRunner {
         appUserRepository.save(lon);
 
         Moodboard moodboard1 = new Moodboard(
-                "Trang's Moodboard",
+                "https://images.unsplash.com/photo-1593642532009-6ba71e22f468?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
                 new HashSet<>()
         );
         moodboard1.setAppUser(trang);
