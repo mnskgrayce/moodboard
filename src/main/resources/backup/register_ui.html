@@ -90,8 +90,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark d-none d-lg-block" style="z-index: 2000; background-color: rgba(0, 0, 0, 0.4);">
   <div class="container-fluid">
     <!-- Navbar brand -->
-    <img style="height: 30px; width: 30px;" src="../Bootstrap/MDB5-STANDARD-UI-KIT-Free-3.5.1/img/icon.png" alt="icon">
-    <a class="navbar-brand nav-link" target="_blank" href="Menu2.html">
+    <img style="height: 30px; width: 30px;" src="../img/icon.png" alt="icon">
+    <a class="navbar-brand nav-link" target="_blank" href="../templates/index.html">
       <strong>My Picture</strong>
     </a>
     <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
@@ -101,7 +101,7 @@
     <div class="collapse navbar-collapse" id="navbarExample01">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item active">
-          <a class="nav-link" aria-current="page" href="#intro">Home</a>
+
         </li>
         <li class="nav-item">
           <a class="nav-link" href="" rel="nofollow"
@@ -121,17 +121,17 @@
           </a>
         </li>
         <li class="">
-          <a class="nav-link" href="https://www.facebook.com/mdbootstrap" rel="nofollow" target="_blank">
+          <a class="nav-link" href="" rel="nofollow" target="_blank">
             <i class="fab fa-facebook-f"></i>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://twitter.com/MDBootstrap" rel="nofollow" target="_blank">
+          <a class="nav-link" href="" rel="nofollow" target="_blank">
             <i class="fab fa-twitter"></i>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/mdbootstrap/mdb-ui-kit" rel="nofollow" target="_blank">
+          <a class="nav-link" href="" rel="nofollow" target="_blank">
             <i class="fab fa-github"></i>
           </a>
         </li>
@@ -145,17 +145,24 @@
 
   </div>
   <div class="column">
-    <form  class="formSignUp"action="">
-      <label style="color: white;" for="fullName">Full Name:</label><br>
-      <input size="1" type="text" id= "fullName" name="fullName" placeholder="Enter Full Name"><br>
+    <form
+            th:action="@{/api/v1/registration}"
+            id="registration-form"
+            method="POST"
+            class="formSignUp"
+    >
+      <label style="color: white;" for="firstName">First Name: </label><br>
+      <input type="text" name="firstName" id="firstName" placeholder="Enter First Name"/><br>
+      <label style="color: white;" for="lastName">Last Name</label><br>
+      <input type="text" name="lastName" id="lastName" placeholder="Enter Last Name"/><br>
       <label style="color: white;" for="password">Password:</label><br>
       <input type="password" id="password" name="password" placeholder="Enter Password"><br>
-      <label style="color: white;" for="repeatPassword">Repeat Password:</label><br>
-      <input type="password" id="repeatPassword" name="repeatPassword" placeholder="Repeat Password"><br>
+      <label style="color: white;" for="confirmPassword">Confirm Password</label><br>
+      <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password"/><br>
       <label style="color: white;" for="Age">Age:</label><br>
       <input type="text" id="Age" name="Age" placeholder="Enter Age"><br>
       <label style="color: white;" for="email">Email: </label><br>
-      <input type="text" id="email" name="email" placeholder="Enter Email"><br>
+      <input style="width: 400px; height: 60px" type="email" id="email" name="email" placeholder="  Enter Email"><br>
       <input type="checkbox">
       <label style="color: white;" >Remember me</label><br>
       <label style="color: white;" >By creating an account you accept to our <a style="color: dodgerblue;">Terms & Privacy</a></label><br><br>
@@ -168,6 +175,6 @@
   </div>
 </div>
 
-
+<script type="application/javascript" th:src="@{/js/register.js}"></script>
 </body>
 </html>
