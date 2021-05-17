@@ -27,7 +27,7 @@ function fetch_api(type, query) {
         
         switch(type) {
             case "random": 
-            insert_image(json, 15)
+            insert_image(json, 16)
             break;
             case "search":
             insert_image(json.results, 8)
@@ -52,7 +52,7 @@ function insert_image(results, frame) {
         index++
       ) {
         var result = results[index];
-        var img_url = result.urls.raw + "&w=720&dpr=2"
+        var img_url = result.urls.raw + "&w=1080&dpr=2"
         var adj_html =
           `<img src="${img_url}" class="w-100" id="${result.id}" onClick="open_post(this.id)" class="img_fluid">` +
           "<br/>";
