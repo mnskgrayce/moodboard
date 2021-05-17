@@ -20,6 +20,9 @@
       rel="stylesheet"
     />
     <script src="https://unpkg.com/animate-css-grid@latest"></script>
+<!--    For Front-End Testing-->
+<!--    <script src="../static/js/parse.js"></script>-->
+<!--    <script src="../static/js/unsplash.js"></script>-->
 
     <script
             type="application/javascript"
@@ -33,12 +36,7 @@
       const stopRunningScrollHandler = {
           flag: 0
       };
-
-      window.onload = function () {
-        url_data = parse_url();
-        fetch_api("search", url_data.search);
-      };
-
+      
       function modifyingDiv() {
         stopRunningScrollHandler.flag = 1;
         page_number += 1;
@@ -62,14 +60,91 @@
 
   </head>
   <body>
-    <section id="container" onscroll="scroll_bottom()">
-      <h4 id="result">Displaying search result for:</h4>
+    <section id="container">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Container wrapper -->
+        <div class="container">
+          <!-- Navbar brand -->
+          <a class="navbar-brand" href="/">My Picture</a>
+
+          <!-- Toggle button -->
+          <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-mdb-toggle="collapse"
+                  data-mdb-target="#navbarButtonsExample"
+                  aria-controls="navbarButtonsExample"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+
+          <!-- Collapsible wrapper -->
+          <div class="collapse navbar-collapse" id="navbarButtonsExample">
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-baseline">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Dashboard</a>
+              </li>
+              <li class="nav-item pe-3">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              <!-- Search bar -->
+              <li class="nav-item w-100">
+                <form
+                        th:action="@{/search_result}" +
+                        action="/search_result"
+                        class="d-flex input-group w-auto"
+                >
+                  <input
+                          type="search"
+                          class="form-control"
+                          name="search"
+                          placeholder="Search"
+                          aria-label="Search"
+                          aria-describedby="search-addon"
+                  />
+                  <button type="submit" class="btn btn-light">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </form>
+              </li>
+            </ul>
+
+            <!-- Right links -->
+            <div class="d-flex justify-content-between align-items-center">
+              <a href="#" class="btn btn-info btn-theme me-3" role="button"
+              >Show Me Random Pictures</a
+              >
+              <a href="#" class="btn btn-danger btn-theme me-3" role="button"
+              >Log out</a
+              >
+              <a
+                      class="btn btn-dark px-3"
+                      href="https://github.com/mnskgrayce/spring-enterprise"
+                      role="button"
+              ><i class="fab fa-github"></i
+              ></a>
+            </div>
+          </div>
+          <!-- Collapsible wrapper -->
+        </div>
+        <!-- Container wrapper -->
+      </nav>
+      <!-- Navbar -->
+
+      <h4 id="result">Displaying search result for: </h4>
       <div id="gallery" class="grid">
       </div>
       <button id="topBtn" class="btn-floating btn-lg btn-flat" onclick="top_scroll()"><i class="fas fa-arrow-up"></i></button>
       <script>
-        const grid = document.querySelector(".grid");
-        animateCSSGrid.wrapGrid(grid, {duration : 600});
+        window.onload = function () {
+          url_data = parse_url();
+          fetch_api("search", url_data.search);
+          document.querySelector("#result").innerHTML += url_data.search;
+        };
       </script>
       <script
               type="application/javascript"
