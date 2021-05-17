@@ -28,7 +28,7 @@
       <h1 class="py-5">New Moodboard</h1>
       <form
         th:action="@{/save_moodboard}"
-        th:object="${moodboard}"
+        th:object="${moodboardForm}"
         method="post"
       >
         <!-- Name input -->
@@ -52,124 +52,17 @@
           ></textarea>
           <label class="form-label" for="description">Description</label>
         </div>
+
+        <!-- Choose thumbnail heading -->
         <div class="py-3 text-center">
           <h2>Choose a thumbnail image</h2>
           <p class="muted">(you can change that later)</p>
         </div>
 
-        <!-- Thumb row -->
-        <div class="row m-3">
-          <!-- Fixed thumbnail image -->
-          <div class="col-md-4">
-            <label>
-              <input
-                th:field="*{thumbnailUrl}"
-                type="radio"
-                name="radio"
-                value="/images/1.jpg"
-                class="hidden-radio"
-                checked
-              />
-              <img
-                src="../static/images/1.jpg"
-                th:src="@{/images/1.jpg}"
-                alt="a random image"
-                class="img-fluid shadow-2-strong rounded"
-              />
-            </label>
-          </div>
-          <!-- Fixed thumbnail image -->
-          <div class="col-md-4">
-            <label>
-              <input
-                th:field="*{thumbnailUrl}"
-                type="radio"
-                name="radio"
-                value="../static/images/thumbnails/2"
-                class="hidden-radio"
-              />
-              <img
-                src="../static/images/thumbnails/2.jpg"
-                alt="a random image"
-                class="img-fluid shadow-2-strong rounded"
-              />
-            </label>
-          </div>
-          <!-- Fixed thumbnail image -->
-          <div class="col-md-4">
-            <label>
-              <input
-                th:field="*{thumbnailUrl}"
-                type="radio"
-                name="radio"
-                value="../static/images/thumbnails/3"
-                class="hidden-radio"
-              />
-              <img
-                src="../static/images/thumbnails/3.jpg"
-                alt="a random image"
-                class="img-fluid shadow-2-strong rounded"
-              />
-            </label>
-          </div>
+        <!-- Fixed thumbnail image -->
+        <div class="" th:each="image : ${moodboardForm.getStocks}">
+          <p th:text="${image.apiId}"></p>
         </div>
-        <!-- Thumb row -->
-
-        <!-- Thumb row -->
-        <div class="row m-3">
-          <!-- Fixed thumbnail image -->
-          <div class="col-md-4">
-            <label>
-              <input
-                th:field="*{thumbnailUrl}"
-                type="radio"
-                name="radio"
-                value="../static/images/thumbnails/4"
-                class="hidden-radio"
-              />
-              <img
-                src="../static/images/thumbnails/4.jpg"
-                alt="a random image"
-                class="img-fluid shadow-2-strong rounded"
-              />
-            </label>
-          </div>
-          <!-- Fixed thumbnail image -->
-          <div class="col-md-4">
-            <label>
-              <input
-                th:field="*{thumbnailUrl}"
-                type="radio"
-                name="radio"
-                value="../static/images/thumbnails/5"
-                class="hidden-radio"
-              />
-              <img
-                src="../static/images/thumbnails/5.jpg"
-                alt="a random image"
-                class="img-fluid shadow-2-strong rounded"
-              />
-            </label>
-          </div>
-          <!-- Fixed thumbnail image -->
-          <div class="col-md-4">
-            <label>
-              <input
-                th:field="*{thumbnailUrl}"
-                type="radio"
-                name="radio"
-                value="../static/images/thumbnails/6"
-                class="hidden-radio"
-              />
-              <img
-                src="../static/images/thumbnails/6.jpg"
-                alt="a random image"
-                class="img-fluid shadow-2-strong rounded"
-              />
-            </label>
-          </div>
-        </div>
-        <!-- Thumb row -->
 
         <!-- Submit button -->
         <div class="d-grid col-6 mx-auto">

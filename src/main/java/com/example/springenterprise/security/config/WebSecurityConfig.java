@@ -29,7 +29,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers(
                             "/register",
                             "/api/v*/registration",
-                            "/favicon.ico")
+                            "/favicon.ico",
+                            "/css/**",
+                            "/js/**",
+                            "/images/**")
                     .permitAll()
                 .anyRequest()
                 .authenticated().and()

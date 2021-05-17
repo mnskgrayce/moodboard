@@ -1,5 +1,6 @@
 package com.example.springenterprise.bootstrap;
 
+import com.example.springenterprise.models.Image;
 import com.example.springenterprise.models.Moodboard;
 import com.example.springenterprise.repositories.ImageRepository;
 import com.example.springenterprise.repositories.MoodboardRepository;
@@ -9,6 +10,10 @@ import com.example.springenterprise.user.AppUserRole;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 @Component
 public class BootstrapData implements CommandLineRunner {
@@ -26,6 +31,7 @@ public class BootstrapData implements CommandLineRunner {
     // Insert sample data to JPA
     @Override
     public void run(String... args) {
+        // Add two sample users Trang and Long
         AppUser trang = new AppUser(
                 "Trang",
                 "Nguyen",
@@ -50,17 +56,8 @@ public class BootstrapData implements CommandLineRunner {
         lon.setPassword(encodedPassword);
         appUserRepository.save(lon);
 
-        for (int i = 0; i < 3; i++) {
-            Moodboard moodboard = new Moodboard();
-            moodboard.setAppUser(trang);
-            moodboardRepository.save(moodboard);
-        }
-
-        Moodboard moodboard2 = new Moodboard();
-        moodboard2.setAppUser(lon);
-        moodboardRepository.save(moodboard2);
-
         System.out.println("Total number of users: " + appUserRepository.count());
         System.out.println("Total number of moodboards: " + moodboardRepository.count());
+        System.out.println("Total number of images: " + imageRepository.count());
     }
 }

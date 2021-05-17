@@ -4,8 +4,6 @@ import com.example.springenterprise.user.AppUser;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,13 +19,10 @@ public class Moodboard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name = "New Moodboard";
-    private String dateTimeCreated =
-            "Last updated: " + DateTimeFormatter
-                    .ofPattern("uuuu/MM/dd HH:mm:ss")
-                    .format(LocalDateTime.now());
-    private String description = "This is a new moodboard!";
-    private String thumbnailUrl = "https://via.placeholder.com/600x400";
+    private String name;
+    private String dateTimeCreated;
+    private String description;
+    private String thumbnailId;
 
     @ManyToMany(mappedBy = "moodboards")
     private Set<Image> images = new HashSet<>();
@@ -35,8 +30,10 @@ public class Moodboard {
     @ManyToOne
     private AppUser appUser;
 
-    public Moodboard(String name, String description) {
+    public Moodboard(String name, String dateTimeCreated, String description, String thumbnailId) {
         this.name = name;
+        this.dateTimeCreated = dateTimeCreated;
         this.description = description;
+        this.thumbnailId = thumbnailId;
     }
 }

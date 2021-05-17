@@ -133,7 +133,7 @@
             data-mdb-ripple-color="light"
           >
             <img
-              th:src="${moodboard.thumbnailUrl}"
+              th:src="@{https://source.unsplash.com/{apiId}/600x400(apiId=${moodboard.thumbnailId})}"
               style="width: 100%; height: auto; object-fit: cover"
             />
             <a href="#!">
