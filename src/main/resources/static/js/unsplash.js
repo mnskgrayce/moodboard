@@ -1,4 +1,4 @@
-var access_key = "client_id=ciSDJprk_BRsXoaM0uQC8d5y5_bv2ekXCZv6QxquHLU";
+var access_key = "client_id=FVo_RNxmBhPBNa84mtA5AsW1_9cEy2OEUeOAoAN6nUg";
 var unsplash_API = "https://api.unsplash.com/";
 var number_of_image = 10;
 
@@ -54,9 +54,9 @@ function insert_image(results, frame) {
     var result = results[index];
     var post_url = "/pic" + "?id=" + encodeURIComponent(result.id);
     var img_html =
-      `<div class="bg-image hover-overlay ripple" id="mask" style="margin-top: 0.4rem">` +
+      `<div class="bg-image hover-overlay" id="mask" style="margin-top: 0.4rem">` +
       `<img src="${result.urls.regular}" class="w-100" alt="${result.alt_description}"  class="img_fluid">` +
-      `<a href="${post_url}"><div class="mask" style="background-color: rgba(0, 0, 0, 0.2);"></div></a></div>`
+      `<a href="${post_url}" target="_blank"><div class="mask" style="background-color: rgba(0, 0, 0, 0.2);"></div></a></div>`
     document.getElementById("gallery").innerHTML 
     += img_html;
     // console.log(img_html);
