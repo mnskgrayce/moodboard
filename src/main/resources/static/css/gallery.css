@@ -58,16 +58,14 @@
   transition-delay:    4s;
 }
 
-#topBtn, #loadBtn {
+#topBtn {
   position:              fixed;
   bottom:                1em; 
-  right:                 1em; 
-  background:            paleturquoise;
-  color:                 navy;
-  text-align:            center;
-  align-items:           center;
+  right:                 2em;
+  color:                 white;
+  align-content:         center;
 }
 
-#loadBtn {
-  right:                 6em; 
+h4 {
+  text-align: center;
 }

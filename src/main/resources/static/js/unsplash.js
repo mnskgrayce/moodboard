@@ -54,7 +54,7 @@ function insert_image(results, frame) {
     var result = results[index];
     var post_url = "/pic" + "?id=" + encodeURIComponent(result.id);
     var img_html =
-      `<div class="bg-image hover-overlay" id="mask" style="margin-top: 0.4rem">` +
+      `<div class="bg-image hover-overlay" id="mask" style="margin-bottom: 0.4rem">` +
       `<img src="${result.urls.regular}" class="w-100" alt="${result.alt_description}"  class="img_fluid">` +
       `<a href="${post_url}" target="_blank"><div class="mask" style="background-color: rgba(0, 0, 0, 0.2);"></div></a></div>`
     document.getElementById("gallery").innerHTML 
