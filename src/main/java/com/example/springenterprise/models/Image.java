@@ -3,6 +3,7 @@ package com.example.springenterprise.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -18,18 +19,15 @@ public class Image {
     private Long id;
 
     private String apiId;
-    private String url;
 
     @ManyToMany
     @JoinTable(
             name = "moodboard_image",
             joinColumns = @JoinColumn(name = "image_id"),
             inverseJoinColumns = @JoinColumn(name = "moodboard_id"))
-    private Set<Moodboard> moodboards;
+    private Set<Moodboard> moodboards = new HashSet<>();
 
-    public Image(String apiId, String url, Set<Moodboard> moodboards) {
+    public Image(String apiId) {
         this.apiId = apiId;
-        this.url = url;
-        this.moodboards = moodboards;
     }
 }

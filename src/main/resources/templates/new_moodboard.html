@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Moodboard</title>
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
+      rel="stylesheet"
+    />
+    <!-- Library for Image Radio Button -->
+    <link rel="stylesheet" th:href="@{/css/radio_image.css}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="py-5">New Moodboard</h1>
+      <form
+        th:action="@{/save_moodboard}"
+        th:object="${moodboard}"
+        method="post"
+      >
+        <!-- Name input -->
+        <div class="form-outline mb-4">
+          <input
+            th:field="*{name}"
+            type="text"
+            id="name"
+            class="form-control"
+          />
+          <label class="form-label" for="name">Moodboard Name</label>
+        </div>
+
+        <!-- Description input -->
+        <div class="form-outline mb-4">
+          <textarea
+            th:field="*{description}"
+            class="form-control"
+            id="description"
+            rows="3"
+          ></textarea>
+          <label class="form-label" for="description">Description</label>
+        </div>
+        <div class="py-3 text-center">
+          <h2>Choose a thumbnail image</h2>
+          <p class="muted">(you can change that later)</p>
+        </div>
+
+        <!-- Thumb row -->
+        <div class="row m-3">
+          <!-- Fixed thumbnail image -->
+          <div class="col-md-4">
+            <label>
+              <input
+                th:field="*{thumbnailUrl}"
+                type="radio"
+                name="radio"
+                value="/images/1.jpg"
+                class="hidden-radio"
+                checked
+              />
+              <img
+                src="../static/images/1.jpg"
+                th:src="@{/images/1.jpg}"
+                alt="a random image"
+                class="img-fluid shadow-2-strong rounded"
+              />
+            </label>
+          </div>
+          <!-- Fixed thumbnail image -->
+          <div class="col-md-4">
+            <label>
+              <input
+                th:field="*{thumbnailUrl}"
+                type="radio"
+                name="radio"
+                value="../static/images/thumbnails/2"
+                class="hidden-radio"
+              />
+              <img
+                src="../static/images/thumbnails/2.jpg"
+                alt="a random image"
+                class="img-fluid shadow-2-strong rounded"
+              />
+            </label>
+          </div>
+          <!-- Fixed thumbnail image -->
+          <div class="col-md-4">
+            <label>
+              <input
+                th:field="*{thumbnailUrl}"
+                type="radio"
+                name="radio"
+                value="../static/images/thumbnails/3"
+                class="hidden-radio"
+              />
+              <img
+                src="../static/images/thumbnails/3.jpg"
+                alt="a random image"
+                class="img-fluid shadow-2-strong rounded"
+              />
+            </label>
+          </div>
+        </div>
+        <!-- Thumb row -->
+
+        <!-- Thumb row -->
+        <div class="row m-3">
+          <!-- Fixed thumbnail image -->
+          <div class="col-md-4">
+            <label>
+              <input
+                th:field="*{thumbnailUrl}"
+                type="radio"
+                name="radio"
+                value="../static/images/thumbnails/4"
+                class="hidden-radio"
+              />
+              <img
+                src="../static/images/thumbnails/4.jpg"
+                alt="a random image"
+                class="img-fluid shadow-2-strong rounded"
+              />
+            </label>
+          </div>
+          <!-- Fixed thumbnail image -->
+          <div class="col-md-4">
+            <label>
+              <input
+                th:field="*{thumbnailUrl}"
+                type="radio"
+                name="radio"
+                value="../static/images/thumbnails/5"
+                class="hidden-radio"
+              />
+              <img
+                src="../static/images/thumbnails/5.jpg"
+                alt="a random image"
+                class="img-fluid shadow-2-strong rounded"
+              />
+            </label>
+          </div>
+          <!-- Fixed thumbnail image -->
+          <div class="col-md-4">
+            <label>
+              <input
+                th:field="*{thumbnailUrl}"
+                type="radio"
+                name="radio"
+                value="../static/images/thumbnails/6"
+                class="hidden-radio"
+              />
+              <img
+                src="../static/images/thumbnails/6.jpg"
+                alt="a random image"
+                class="img-fluid shadow-2-strong rounded"
+              />
+            </label>
+          </div>
+        </div>
+        <!-- Thumb row -->
+
+        <!-- Submit button -->
+        <div class="d-grid col-6 mx-auto">
+          <button type="submit" class="btn btn-success btn-block btn-lg my-4">
+            Create
+          </button>
+        </div>
+      </form>
+    </div>
+    <!-- MDB -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"
+    ></script>
+  </body>
+</html>

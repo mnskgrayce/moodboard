@@ -10,8 +10,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
-
 @Component
 public class BootstrapData implements CommandLineRunner {
 
@@ -25,6 +23,7 @@ public class BootstrapData implements CommandLineRunner {
     private final MoodboardRepository moodboardRepository;
     private final AppUserRepository appUserRepository;
 
+    // Insert sample data to JPA
     @Override
     public void run(String... args) {
         AppUser trang = new AppUser(
@@ -52,22 +51,16 @@ public class BootstrapData implements CommandLineRunner {
         appUserRepository.save(lon);
 
         for (int i = 0; i < 3; i++) {
-            Moodboard moodboard = new Moodboard(
-                    "Trang's Moodboard",
-                    new HashSet<>()
-            );
+            Moodboard moodboard = new Moodboard();
             moodboard.setAppUser(trang);
             moodboardRepository.save(moodboard);
         }
 
-        Moodboard moodboard2 = new Moodboard(
-                "Long's Moodboard",
-                new HashSet<>()
-        );
+        Moodboard moodboard2 = new Moodboard();
         moodboard2.setAppUser(lon);
         moodboardRepository.save(moodboard2);
 
         System.out.println("Total number of users: " + appUserRepository.count());
-        System.out.println("Total number of moodboard: " + moodboardRepository.count());
+        System.out.println("Total number of moodboards: " + moodboardRepository.count());
     }
 }

@@ -42,6 +42,7 @@
                   name="firstName"
                   id="firstName"
                   class="form-control"
+                  required
                 />
                 <label class="form-label" for="firstName">First name</label>
               </div>
@@ -53,6 +54,7 @@
                   name="lastName"
                   id="lastName"
                   class="form-control"
+                  required
                 />
                 <label class="form-label" for="lastName">Last name</label>
               </div>
@@ -61,7 +63,13 @@
 
           <!-- Email input -->
           <div class="form-outline mb-4">
-            <input type="email" name="email" id="email" class="form-control" />
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="form-control"
+              required
+            />
             <label class="form-label" for="email">Email address</label>
           </div>
 
@@ -72,6 +80,7 @@
               name="password"
               id="password"
               class="form-control"
+              required
             />
             <label class="form-label" for="password">Password</label>
           </div>
@@ -83,6 +92,7 @@
               name="confirmPassword"
               id="confirmPassword"
               class="form-control"
+              required
             />
             <label class="form-label" for="confirmPassword"
               >Confirm password</label

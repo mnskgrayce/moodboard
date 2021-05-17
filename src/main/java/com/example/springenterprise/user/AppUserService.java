@@ -7,6 +7,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 public class AppUserService implements UserDetailsService {
@@ -40,5 +42,14 @@ public class AppUserService implements UserDetailsService {
         appUserRepository.save(appUser);
 
         return "User is registered!";
+    }
+
+    public AppUser getUserByEmail(String userEmail) {
+        Optional<AppUser> userOptional = appUserRepository.findByEmail(userEmail);
+
+        if (userOptional.isEmpty()) {
+            throw new UsernameNotFoundException(userEmail);
+        }
+        return userOptional.get();
     }
 }

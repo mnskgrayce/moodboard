@@ -11,8 +11,8 @@ import java.security.Principal;
 // Do NOT use RestController
 // It will convert the response to JSON/XML
 // ..and you get a string, instead of the Thymeleaf template
-@Controller
 @AllArgsConstructor
+@Controller
 public class MainController {
 
     private final MoodboardService moodboardService;
@@ -40,7 +40,7 @@ public class MainController {
     }
 
     @RequestMapping("/pic")
-    public String getPic() {
+    public String getPicView() {
         return "pic";
     }
 }
