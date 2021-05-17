@@ -34,16 +34,24 @@
       <div class="col-xl-5 col-md-8">
         <div
           th:if="${param.error}"
-          class="badge bg-warning text-dark"
+          class="badge bg-danger my-1"
           style="font-size: 1rem"
         >
           Invalid credentials.
+        </div>
+        <div
+          th:if="${param.logout}"
+          class="badge bg-warning text-dark my-1"
+          style="font-size: 1rem"
+        >
+          You have been logged out.
         </div>
         <form
           th:action="@{/login}"
           method="POST"
           class="bg-white rounded shadow-5-strong p-5"
         >
+          <h1 class="display-6 py-4">Please sign in to continue.</h1>
           <div class="form-outline mb-4">
             <input
               type="email"

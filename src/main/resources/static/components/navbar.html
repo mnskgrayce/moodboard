@@ -1,0 +1,76 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Container wrapper -->
+  <div class="container">
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="/">Moodboard</a>
+
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarButtonsExample"
+      aria-controls="navbarButtonsExample"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarButtonsExample">
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-baseline">
+        <li class="nav-item pe-3">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <!-- Search bar -->
+        <li class="nav-item w-100">
+          <form
+            th:action="@{/search_result}"
+            +
+            action="/search_result"
+            class="d-flex input-group w-auto"
+          >
+            <input
+              type="search"
+              class="form-control"
+              name="search"
+              placeholder="Search images"
+              aria-label="Search"
+              aria-describedby="search-addon"
+            />
+            <button type="submit" class="btn btn-light">
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+        </li>
+      </ul>
+
+      <!-- Right links -->
+      <div class="d-flex justify-content-between align-items-center">
+        <a href="#" class="btn btn-info btn-theme me-3" role="button"
+          >Show Me Random Pictures</a
+        >
+        <a
+          href="#"
+          th:href="@{/logout}"
+          class="btn btn-light btn-theme me-3"
+          data-mdb-ripple-color="dark"
+          role="button"
+          >Log out</a
+        >
+        <a
+          class="btn btn-dark px-3"
+          href="https://github.com/mnskgrayce/spring-enterprise"
+          role="button"
+          ><i class="fab fa-github"></i
+        ></a>
+      </div>
+    </div>
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
