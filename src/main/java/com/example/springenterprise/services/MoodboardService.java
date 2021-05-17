@@ -1,16 +1,12 @@
 package com.example.springenterprise.services;
 
-import com.example.springenterprise.models.Image;
 import com.example.springenterprise.models.Moodboard;
-import com.example.springenterprise.models.MoodboardCreationForm;
 import com.example.springenterprise.repositories.MoodboardRepository;
-import com.example.springenterprise.user.AppUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -20,7 +16,6 @@ import java.util.stream.Collectors;
 public class MoodboardService {
 
     private final MoodboardRepository moodboardRepository;
-    private final AppUserService appUserService;
 
     public List<Moodboard> listAll() {
         return moodboardRepository.findAll(Sort.by(Sort.Direction.DESC, "dateTimeCreated"));
@@ -35,17 +30,7 @@ public class MoodboardService {
                 .collect(Collectors.toList());
     }
 
-    public void saveNewMoodboard(MoodboardCreationForm moodboardForm, String userEmail) {
-        Moodboard moodboard = new Moodboard(
-                moodboardForm.getName(),
-                "Last updated: " + DateTimeFormatter
-                        .ofPattern("uuuu/MM/dd HH:mm:ss")
-                        .format(LocalDateTime.now()),
-                moodboardForm.getDescription(),
-                moodboardForm.getThumbnailId()
-        );
-        moodboard.getImages().add(new Image(moodboardForm.getThumbnailId()));
-        moodboard.setAppUser(appUserService.getUserByEmail(userEmail));
+    public void saveMoodboard(Moodboard moodboard) {
         moodboardRepository.save(moodboard);
     }
 

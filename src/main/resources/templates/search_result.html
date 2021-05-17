@@ -20,28 +20,30 @@
       rel="stylesheet"
     />
     <script src="https://unpkg.com/animate-css-grid@latest"></script>
-<!--    For Front-End Testing-->
-<!--    <script src="../static/js/parse.js"></script>-->
-<!--    <script src="../static/js/unsplash.js"></script>-->
+    <!--    For Front-End Testing-->
+    <!--    <script src="../static/js/parse.js"></script>-->
+    <!--    <script src="../static/js/unsplash.js"></script>-->
 
-    <script
-            type="application/javascript"
-            th:src="@{/js/parse.js}"
-    ></script>
-    <link rel="stylesheet" th:href="@{/css/gallery.css}">
+    <script type="application/javascript" th:src="@{/js/parse.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/gallery.css}" />
 
     <script>
       var page_number = 1;
       var url_data;
       const stopRunningScrollHandler = {
-          flag: 0
+        flag: 0,
       };
-      
+
       function modifyingDiv() {
         stopRunningScrollHandler.flag = 1;
         page_number += 1;
-        console.log(page_number)
-        fetch_api("search", url_data.search, page_number, stopRunningScrollHandler);
+        console.log(page_number);
+        fetch_api(
+          "search",
+          url_data.search,
+          page_number,
+          stopRunningScrollHandler
+        );
       }
 
       function scrollHandler() {
@@ -54,10 +56,9 @@
       window.addEventListener("scroll", scrollHandler);
 
       function top_scroll() {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
       }
     </script>
-
   </head>
   <body>
     <section id="container">
@@ -70,13 +71,13 @@
 
           <!-- Toggle button -->
           <button
-                  class="navbar-toggler"
-                  type="button"
-                  data-mdb-toggle="collapse"
-                  data-mdb-target="#navbarButtonsExample"
-                  aria-controls="navbarButtonsExample"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
+            class="navbar-toggler"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#navbarButtonsExample"
+            aria-controls="navbarButtonsExample"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
           >
             <i class="fas fa-bars"></i>
           </button>
@@ -94,17 +95,18 @@
               <!-- Search bar -->
               <li class="nav-item w-100">
                 <form
-                        th:action="@{/search_result}" +
-                        action="/search_result"
-                        class="d-flex input-group w-auto"
+                  th:action="@{/search_result}"
+                  +
+                  action="/search_result"
+                  class="d-flex input-group w-auto"
                 >
                   <input
-                          type="search"
-                          class="form-control"
-                          name="search"
-                          placeholder="Search"
-                          aria-label="Search"
-                          aria-describedby="search-addon"
+                    type="search"
+                    class="form-control"
+                    name="search"
+                    placeholder="Search"
+                    aria-label="Search"
+                    aria-describedby="search-addon"
                   />
                   <button type="submit" class="btn btn-light">
                     <i class="fas fa-search"></i>
@@ -116,16 +118,16 @@
             <!-- Right links -->
             <div class="d-flex justify-content-between align-items-center">
               <a href="#" class="btn btn-info btn-theme me-3" role="button"
-              >Show Me Random Pictures</a
+                >Show Me Random Pictures</a
               >
               <a href="#" class="btn btn-danger btn-theme me-3" role="button"
-              >Log out</a
+                >Log out</a
               >
               <a
-                      class="btn btn-dark px-3"
-                      href="https://github.com/mnskgrayce/spring-enterprise"
-                      role="button"
-              ><i class="fab fa-github"></i
+                class="btn btn-dark px-3"
+                href="https://github.com/mnskgrayce/spring-enterprise"
+                role="button"
+                ><i class="fab fa-github"></i
               ></a>
             </div>
           </div>
@@ -135,10 +137,15 @@
       </nav>
       <!-- Navbar -->
 
-      <h4 id="result">Displaying search result for: </h4>
-      <div id="gallery" class="grid">
-      </div>
-      <button id="topBtn" class="btn-floating btn-lg btn-flat" onclick="top_scroll()"><i class="fas fa-arrow-up"></i></button>
+      <h4 id="result">Displaying search result for:</h4>
+      <div id="gallery" class="grid"></div>
+      <button
+        id="topBtn"
+        class="btn-floating btn-lg btn-flat"
+        onclick="top_scroll()"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
       <script>
         window.onload = function () {
           url_data = parse_url();
@@ -147,12 +154,12 @@
         };
       </script>
       <script
-              type="application/javascript"
-              th:src="@{/js/unsplash.js}"
+        type="application/javascript"
+        th:src="@{/js/unsplash.js}"
       ></script>
       <script
-              type="text/javascript"
-              src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"
       ></script>
     </section>
   </body>

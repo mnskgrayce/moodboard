@@ -1,8 +1,9 @@
 package com.example.springenterprise.controllers;
 
-import com.example.springenterprise.models.MoodboardCreationForm;
-import com.example.springenterprise.services.ImageService;
+import com.example.springenterprise.models.Moodboard;
 import com.example.springenterprise.services.MoodboardService;
+import com.example.springenterprise.user.AppUser;
+import com.example.springenterprise.user.AppUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,19 +19,19 @@ import java.security.Principal;
 public class MoodboardController {
 
     private final MoodboardService moodboardService;
-    private final ImageService imageService;
+    private final AppUserService appUserService;
 
     @RequestMapping(value = "/new_moodboard")
     public String createMoodboard(Model model) {
-        MoodboardCreationForm moodboardForm = new MoodboardCreationForm();
-        model.addAttribute("moodboardForm", moodboardForm);
+        Moodboard moodboard = new Moodboard();
+        model.addAttribute("moodboard", moodboard);
         return "new_moodboard";
     }
 
     @RequestMapping(value = "/save_moodboard", method = RequestMethod.POST)
-    public String saveNewMoodboard(@ModelAttribute("moodboardForm") MoodboardCreationForm moodboardForm, Principal principal) {
-        String userEmail = principal.getName();
-        moodboardService.saveNewMoodboard(moodboardForm, userEmail);
+    public String saveNewMoodboard(@ModelAttribute("moodboard") Moodboard moodboard, Principal principal) {
+        moodboard.setAppUser(appUserService.getUserByEmail(principal.getName()));
+        moodboardService.saveMoodboard(moodboard);
         return "redirect:/";
     }
 

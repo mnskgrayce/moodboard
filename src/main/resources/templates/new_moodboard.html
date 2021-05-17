@@ -20,15 +20,13 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
       rel="stylesheet"
     />
-    <!-- Library for Image Radio Button -->
-    <link rel="stylesheet" th:href="@{/css/radio_image.css}" />
   </head>
   <body>
     <div class="container">
       <h1 class="py-5">New Moodboard</h1>
       <form
         th:action="@{/save_moodboard}"
-        th:object="${moodboardForm}"
+        th:object="${moodboard}"
         method="post"
       >
         <!-- Name input -->
@@ -51,17 +49,6 @@
             rows="3"
           ></textarea>
           <label class="form-label" for="description">Description</label>
-        </div>
-
-        <!-- Choose thumbnail heading -->
-        <div class="py-3 text-center">
-          <h2>Choose a thumbnail image</h2>
-          <p class="muted">(you can change that later)</p>
-        </div>
-
-        <!-- Fixed thumbnail image -->
-        <div class="" th:each="image : ${moodboardForm.getStocks}">
-          <p th:text="${image.apiId}"></p>
         </div>
 
         <!-- Submit button -->

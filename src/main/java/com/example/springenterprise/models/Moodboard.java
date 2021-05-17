@@ -4,13 +4,16 @@ import com.example.springenterprise.user.AppUser;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 @NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
 @ToString
 @Entity
 public class Moodboard {
@@ -19,10 +22,21 @@ public class Moodboard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    private String dateTimeCreated;
-    private String description;
-    private String thumbnailId;
+    private String name = "My Moodboard";
+    private String dateTimeCreated = "Last updated: "
+            + DateTimeFormatter
+            .ofPattern("uuuu/MM/dd HH:mm:ss")
+            .format(LocalDateTime.now());
+    private String description = "This is a new moodboard!";
+    private String thumbnailId = Arrays.asList(
+            "5TK1F5VfdIk",
+            "ineC_oi7NHs",
+            "fT49QnFucQ8",
+            "c-8C2Tl97jQ",
+            "TeCdlzOUneQ",
+            "B6sCxQzDQqE"
+            )
+            .get(new Random().nextInt(6));
 
     @ManyToMany(mappedBy = "moodboards")
     private Set<Image> images = new HashSet<>();
@@ -30,10 +44,7 @@ public class Moodboard {
     @ManyToOne
     private AppUser appUser;
 
-    public Moodboard(String name, String dateTimeCreated, String description, String thumbnailId) {
-        this.name = name;
-        this.dateTimeCreated = dateTimeCreated;
-        this.description = description;
-        this.thumbnailId = thumbnailId;
+    public Moodboard(AppUser appUser) {
+        this.appUser = appUser;
     }
 }
