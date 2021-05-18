@@ -30,7 +30,15 @@ public class MoodboardService {
     }
 
     public void saveMoodboard(Moodboard moodboard) {
+        if (moodboard.getName().isEmpty()) {
+            moodboard.setName("Untitled");
+        }
+        if (moodboard.getDescription().isEmpty()) {
+            moodboard.setDescription("");
+        }
+
         moodboardRepository.save(moodboard);
+        System.out.println(moodboard);
     }
 
     public Moodboard getMoodboard(long id) {

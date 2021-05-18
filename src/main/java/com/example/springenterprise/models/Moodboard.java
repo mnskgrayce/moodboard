@@ -22,12 +22,12 @@ public class Moodboard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String name = "Untitled";
     private String dateTimeCreated = "Last updated: "
             + DateTimeFormatter
             .ofPattern("uuuu/MM/dd HH:mm:ss")
             .format(LocalDateTime.now());
-    private String description;
+    private String description = "";
     private String thumbnailId = Arrays.asList(
             "5TK1F5VfdIk",
             "ineC_oi7NHs",
@@ -44,7 +44,4 @@ public class Moodboard {
     @ManyToOne
     private AppUser appUser;
 
-    public Moodboard(AppUser appUser) {
-        this.appUser = appUser;
-    }
 }
