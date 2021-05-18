@@ -14,7 +14,6 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
 public class Moodboard {
 
@@ -43,5 +42,15 @@ public class Moodboard {
 
     @ManyToOne
     private AppUser appUser;
+
+    @Override
+    public String toString() {
+        return "Moodboard{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", thumbnailId='" + thumbnailId + '\'' +
+                ", images=" + images +
+                '}';
+    }
 
 }

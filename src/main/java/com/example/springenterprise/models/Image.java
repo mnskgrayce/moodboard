@@ -9,7 +9,6 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
 public class Image {
 
@@ -28,5 +27,13 @@ public class Image {
 
     public Image(String apiId) {
         this.apiId = apiId;
+    }
+
+    @Override
+    public String toString() {
+        return "Image{" +
+                "id=" + id +
+                ", apiId='" + apiId + '\'' +
+                '}';
     }
 }

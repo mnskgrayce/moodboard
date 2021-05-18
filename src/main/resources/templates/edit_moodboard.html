@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns="http://www.w3.org/1999/html"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Help</title>
+  </head>
+  <body>
+    <div class="" th:object="${moodboard}">
+      <p th:text="${moodboard.images}"></p>
+
+      <div class="" th:each="image: ${moodboard.images}">
+        <img
+          th:src="@{https://source.unsplash.com/{apiId}/600x400(apiId=${image.apiId})}"
+          alt=""
+        />
+      </div>
+    </div>
+  </body>
+</html>

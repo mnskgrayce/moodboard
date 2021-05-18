@@ -2,15 +2,11 @@ package com.example.springenterprise.controllers;
 
 import com.example.springenterprise.models.Moodboard;
 import com.example.springenterprise.services.MoodboardService;
-import com.example.springenterprise.user.AppUser;
 import com.example.springenterprise.user.AppUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -33,6 +29,12 @@ public class MoodboardController {
         moodboard.setAppUser(appUserService.getUserByEmail(principal.getName()));
         moodboardService.saveMoodboard(moodboard);
         return "redirect:/";
+    }
+
+    @RequestMapping(value= "/moodboard/edit/{id}", method = RequestMethod.GET)
+    public String editMoodboard(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("moodboard", moodboardService.getMoodboard(id));
+        return "edit_moodboard";
     }
 
     @RequestMapping(value = "/delete_moodboard", method = RequestMethod.GET)

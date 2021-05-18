@@ -60,6 +60,7 @@ public class BootstrapData implements CommandLineRunner {
         Image image = new Image("5TK1F5VfdIk");
         moodboard.getImages().add(image);
         image.getMoodboards().add(moodboard);
+        moodboard.setAppUser(trang);
 
         moodboardRepository.save(moodboard);
         imageRepository.save(image);
