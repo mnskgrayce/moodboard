@@ -1,72 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html
+        lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns="http://www.w3.org/1999/html"
+>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Image</title>
     <!-- Font Awesome -->
     <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-      rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            rel="stylesheet"
     />
     <!-- Google Fonts -->
     <link
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-      rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
     />
     <!-- MDB -->
     <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
-      rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
+            rel="stylesheet"
     />
-    <script
+    
+    <link rel="stylesheet" th:href="@{/css/info.css}">
+  
+</head>
+<body>
+<div
+        class="container d-flex justify-content-center align-items-center"
+        style="height: 100vh"
+>
+    <div class="col-xl-7 col-md-8">
+        <div class="bg-white rounded shadow-5-strong p-5">
+
+            <div class="container">
+                <div class="row bg-light">
+                    <div class="col-xl-8 justify-content-lg-center">
+                        <img id="image" class="mw-100"/>
+                    </div>
+                    <div class="col-xl justify-content-lg-center">
+                        <!-- <h5 id="description"></h5> -->
+                        <!-- Image information -->
+                        <h6 id="view">Views:</h6>
+                        <h6 id="download">Downloads:</h6>
+                        <h6 id="location">Taken at:</h6>
+                        <button id="download_button" class="btn btn-primary btn-rounded" onclick="">Download</button>
+                        <button id="save_button" class="btn btn-info btn-rounded" onclick="">Save</button>
+
+<!--                        <div th:if="${moodboards.empty}">-->
+<!--                            <p class="p-5">You don't have any moodboards yet.</p>-->
+<!--                        </div>-->
+
+                        <!-- Moodboard Selection -->
+                        <div id="sb-container" style="display: none;">
+                            <label for="scrollbox">Choose Your Moodboards:</label>
+                            <div id="scrollbox" class="custom-scrollbox">
+
+                            </div>
+                            <button id="confirm_button" class="btn btn-info btn-rounded" onclick="">Confirm</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- &lt;!&ndash; For Front-End Testing &ndash;&gt;-->
+<!-- <script src="../static/js/parse.js"></script>-->
+<!-- <script src="../static/js/unsplash.js"></script>-->
+<!-- <script src="../static/js/moodboard_option.js"></script>-->
+ <script
             type="application/javascript"
             th:src="@{/js/parse.js}"
     ></script>
+<script
+        type="application/javascript"
+        th:src="@{/js/unsplash.js}"
+></script>
+<script
+        type="application/javascript"
+        th:src="@{/js/moodboard_option.js}"
+></script>
+<!-- MDB -->
+ <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"
+></script>
 
-    <script>
-      window.onload = function () {
+ 
+<script>
+    window.onload = function () {
         var url_data = parse_url("id");
         fetch_api("get_image", url_data.id);
-      };
-    </script>
-  </head>
-  <body>
-    <div
-    class="container d-flex justify-content-center align-items-center"
-    style="height: 100vh"
-  >
-    <div class="col-xl-5 col-md-8">
-      <div class="bg-white rounded shadow-5-strong p-5">
-        <div class="container">
-        <div class="row">
-          <div class="col-sm">
-            <img id="image" class="w-100" />
-          </div>
-          <div class="col-sm">
-            <h1 id="description"></h1>
-            <h6 id="view">Views:</h6>
-            <h6 id="download">Downloads:</h6>
-            <h6 id="location">Taken at:</h6>
-            <button id="download_button" class="btn btn-primary btn-rounded" onclick="">Download</button>
-            <button id="save_button" class="btn btn-info btn-rounded" onclick="">Save</button>
-          </div>
-        </div>
-      </div>
-      </div>
-     </div>
-  </div>
-  
-  <!-- MDB -->
-  <script
-    type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"
-  ></script>
-    <script
-            type="application/javascript"
-            th:src="@{/js/unsplash.js}"
-    ></script>
-  </body>
+    };
+    insert_options();
 
+</script>
+</body>
 </html>

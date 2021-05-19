@@ -64,21 +64,24 @@ function insert_image(results, frame) {
 }
 
 function load_info(post) {
-  var description = post.description;
+  // var description = post.description;
   var location = post.location.name;
-  if (description == null) {
-    description = post.alt_description;
-  }
+  // if (description == null) {
+  //   description = post.alt_description;
+  // }
   if (location == null) {
     location = "Unknown";
   }
 
   document.querySelector("#image").src = post.urls.regular;
-  document.querySelector("#description").innerHTML += description + "<br/>";
+  // document.querySelector("#description").innerHTML += description + "<br/>";
   document.querySelector("#location").innerHTML += "<br/>" + location + "<br/>";
   document.querySelector("#view").innerHTML += "<br/>" + post.views + "<br/>";
   document.querySelector("#download").innerHTML += "<br/>" + post.downloads + "<br/>";
   var button = document.getElementById("download_button");
+  var save_button = document.getElementById("save_button");
+  
+  // Download button
   button.addEventListener('click', async function (e) {
       const picture = await fetch(post.urls.raw)
       const picBlog = await picture.blob()
@@ -91,6 +94,11 @@ function load_info(post) {
       link.click()
       document.body.removeChild(link)
     })
+
+  save_button.addEventListener('click', function (e) {
+    save_button.style.display ="none";
+    document.getElementById("sb-container").style.display = "block";
+  })
 }
 
 
