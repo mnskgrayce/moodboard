@@ -7,7 +7,6 @@ function insert_options () {
             My option ${index}
         </label>
         </div>`
-        
         document.querySelector(".custom-scrollbox").innerHTML += checkbox_html;
     }       
 }

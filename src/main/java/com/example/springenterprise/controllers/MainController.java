@@ -46,7 +46,9 @@ public class MainController {
     }
 
     @RequestMapping("/pic")
-    public String getPicView() {
+    public String getPicView(Model model, Principal principal) {
+        String userEmail = principal.getName();
+        model.addAttribute("moodboards", moodboardService.listByUser(userEmail));
         return "pic";
     }
 

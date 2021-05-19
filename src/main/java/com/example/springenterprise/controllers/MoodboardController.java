@@ -1,5 +1,6 @@
 package com.example.springenterprise.controllers;
 
+import com.example.springenterprise.models.Image;
 import com.example.springenterprise.models.Moodboard;
 import com.example.springenterprise.services.MoodboardService;
 import com.example.springenterprise.user.AppUserService;
@@ -28,6 +29,16 @@ public class MoodboardController {
     public String saveNewMoodboard(@ModelAttribute("moodboard") Moodboard moodboard, Principal principal) {
         moodboard.setAppUser(appUserService.getUserByEmail(principal.getName()));
         moodboardService.saveMoodboard(moodboard);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/add_to_moodboards/image-id/{iid}/mb-id/{mid}", method = RequestMethod.POST)
+    public String addToMoodboard(@PathVariable("iid") String iID, @PathVariable("mid") Long mID) {
+        Image image = new Image(iID);
+        Moodboard moodboard = moodboardService.getMoodboard(mID);
+        moodboard.getImages().add(image);
+        image.getMoodboards().add(moodboard);
+        System.out.println("Passed ID: " + iID + " " + mID);
         return "redirect:/";
     }
 

@@ -88,11 +88,12 @@ function load_info(post) {
       const pictureURL = URL.createObjectURL(picBlog)
     
       const link = document.createElement('a')
-      link.href = pictureURL
-      link.download = description
+      link.href = pictureURL;
+      link.download = post.id;
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
+      console.log("Download button clicked")
     })
 
   save_button.addEventListener('click', function (e) {
