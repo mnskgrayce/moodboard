@@ -38,21 +38,23 @@
             <div class="container">
                 <div class="row bg-light">
                     <div class="col-xl-8 justify-content-lg-center">
-                        <img id="image" class="mw-100"/>
+                        <img style="width: 500px; height: 400px" id="image" class="mw-100"/>
                     </div>
                     <div class="col-xl justify-content-lg-center">
                         <!-- <h5 id="description"></h5> -->
                         <!-- Image information -->
+                        <br><br>
                         <h6 id="view">Views:</h6>
                         <h6 id="download">Downloads:</h6>
                         <h6 id="location">Taken at:</h6>
+                        <br>
                         <button id="download_button" class="btn btn-primary btn-rounded" onclick="">Download</button>
                         <div th:if="${not moodboards.empty}">
                             <button id="save_button" class="btn btn-info btn-rounded" style="margin-top: 1em">Save To
                                 Moodboard
                             </button>
                         </div>
-
+                        <br><br>
                         <div th:if="${moodboards.empty}" class="justify-content-start">
                             <p class="p-5">You don't have any moodboards yet.</p>
                         </div>
