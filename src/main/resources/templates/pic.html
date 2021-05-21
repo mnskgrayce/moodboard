@@ -29,6 +29,84 @@
 
 </head>
 <body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Container wrapper -->
+    <div class="container">
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="/">Moodboard</a>
+
+        <!-- Toggle button -->
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarButtonsExample"
+                aria-controls="navbarButtonsExample"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarButtonsExample">
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-baseline">
+                <li class="nav-item pe-3">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <!-- Search bar -->
+                <li class="nav-item w-100">
+                    <form
+                            th:action="@{/search_result}"
+                            +
+                            action="/search_result"
+                            class="d-flex input-group w-auto"
+                    >
+                        <input
+                                type="search"
+                                class="form-control"
+                                name="search"
+                                placeholder="Search images"
+                                aria-label="Search"
+                                aria-describedby="search-addon"
+                        />
+                        <button type="submit" class="btn btn-light">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+
+            <!-- Right links -->
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="#" class="btn btn-info btn-theme me-3" role="button"
+                   th:href="@{/random}"
+                >Show Me Random Pictures</a
+                >
+                <a
+                        href="#"
+                        th:href="@{/logout}"
+                        class="btn btn-light btn-theme me-3"
+                        data-mdb-ripple-color="dark"
+                        role="button"
+                >Log out</a
+                >
+                <a
+                        class="btn btn-dark px-3"
+                        href="https://github.com/mnskgrayce/spring-enterprise"
+                        role="button"
+                ><i class="fab fa-github"></i
+                ></a>
+            </div>
+        </div>
+        <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+
 <div
         class="container d-flex justify-content-center align-items-center"
         style="height: 100vh"
@@ -37,30 +115,33 @@
         <div class="bg-white rounded shadow-5-strong p-5">
             <div class="container">
                 <div class="row bg-light">
-                    <div class="col-xl-8 justify-content-lg-center">
-                        <img style="width: 500px; height: 400px" id="image" class="mw-100"/>
+                    <div class="col-xl-8 justify-content-lg-start">
+                        <img id="image" class="w-100"/>
                     </div>
-                    <div class="col-xl justify-content-lg-center">
-                        <!-- <h5 id="description"></h5> -->
+                    <div class="col-xl justify-content-lg-start">
                         <!-- Image information -->
                         <br><br>
                         <h6 id="view">Views:</h6>
                         <h6 id="download">Downloads:</h6>
                         <h6 id="location">Taken at:</h6>
-                        <br>
                         <button id="download_button" class="btn btn-primary btn-rounded" onclick="">Download</button>
+                        <button id="show_description" class="btn btn-info btn-rounded" style="margin-top: 1em">
+                            Description
+                        </button>
+
                         <div th:if="${not moodboards.empty}">
-                            <button id="save_button" class="btn btn-info btn-rounded" style="margin-top: 1em">Save To
+                            <button id="save_button" class="btn btn-secondary btn-rounded" style="margin-top: 1em">Save
+                                To
                                 Moodboard
                             </button>
                         </div>
-                        <br><br>
+
                         <div th:if="${moodboards.empty}" class="justify-content-start">
                             <p class="p-5">You don't have any moodboards yet.</p>
                         </div>
 
                         <!-- Moodboard Selection -->
-                        <form method="post" th:action="@{/add_to_moodboards/}" id="sb-container" style="display: none;" >
+                        <form method="post" th:action="@{/add_to_moodboards/}" id="sb-container" style="display: none;">
                             <label for="scrollbox">Choose Your Moodboards:</label>
                             <div id="scrollbox" class="custom-scrollbox">
                                 <div th:each="moodboard : ${moodboards}">
@@ -68,7 +149,7 @@
                                         <input
                                                 class="form-check-input"
                                                 type="radio"
-                                                th:value= " ${moodboard.id}"
+                                                th:value=" ${moodboard.id}"
                                                 id="radio"
                                         />
                                         <label class="form-check-label" for="radio"
@@ -78,9 +159,13 @@
                                 </div>
                             </div>
                             <div id="placeholder"></div>
-                            <button class="btn btn-info btn-rounded" type="submit"> Confirm</button>
+                            <button class="btn btn-success btn-rounded" type="submit"> Confirm</button>
                         </form>
                     </div>
+                </div>
+                <div class="row bg-light" id="description-container" style="display: none; margin-top: 1em">
+                    <h6>Description</h6>
+                    <p id="description"></p>
                 </div>
             </div>
         </div>

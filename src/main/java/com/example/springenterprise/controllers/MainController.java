@@ -41,8 +41,13 @@ public class MainController {
     }
 
     @RequestMapping("/search_result")
-    public String getSearchResult() {
+    public String getSearchView() {
         return "search_result";
+    }
+
+    @RequestMapping("/random")
+    public String getRandomView() {
+        return "random";
     }
 
     @RequestMapping("/pic")
