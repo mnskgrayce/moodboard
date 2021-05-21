@@ -11,10 +11,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-
 @Component
 public class BootstrapData implements CommandLineRunner {
 
@@ -56,14 +52,23 @@ public class BootstrapData implements CommandLineRunner {
         lon.setPassword(encodedPassword);
         appUserRepository.save(lon);
 
+        // Add a sample moodboard with images for user Trang
         Moodboard moodboard = new Moodboard();
         Image image = new Image("5TK1F5VfdIk");
+        Image image2 = new Image("ineC_oi7NHs");
+
         moodboard.getImages().add(image);
+        moodboard.getImages().add(image2);
+
         image.getMoodboards().add(moodboard);
+        image2.getMoodboards().add(moodboard);
+
+        moodboard.setName("Sample Moodboard");
         moodboard.setAppUser(trang);
 
         moodboardRepository.save(moodboard);
         imageRepository.save(image);
+        imageRepository.save(image2);
 
         System.out.println("Total number of users: " + appUserRepository.count());
         System.out.println("Total number of moodboards: " + moodboardRepository.count());

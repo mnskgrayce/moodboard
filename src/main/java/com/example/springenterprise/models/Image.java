@@ -29,6 +29,7 @@ public class Image {
         this.apiId = apiId;
     }
 
+    // Custom toString() to handle parsing issues
     @Override
     public String toString() {
         return "Image{" +

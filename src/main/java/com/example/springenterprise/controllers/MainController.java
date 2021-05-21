@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 
+// Main class to resolve template requests
 // Do NOT use RestController
 // It will convert the response to JSON/XML
 // ..and you get a string, instead of the Thymeleaf template
@@ -23,33 +24,39 @@ public class MainController {
 
     private final MoodboardService moodboardService;
 
+    // Get the home page with all the user's moodboards
     @RequestMapping("/")
-    public String getHomeView(Model model, Principal principal) {
+    public String getHome(Model model, Principal principal) {
         String userEmail = principal.getName();
         model.addAttribute("moodboards", moodboardService.listByUser(userEmail));
         return "index";
     }
 
+    // Get login form
     @RequestMapping("/login")
     public String getLoginView() {
         return "login";
     }
 
+    // Get registration form
     @RequestMapping("/register")
     public String getRegisterView() {
         return "register";
     }
 
+    // Get the page with searched images
     @RequestMapping("/search_result")
-    public String getSearchView() {
+    public String getSearchResultView() {
         return "search_result";
     }
 
+    // Get the page with random images
     @RequestMapping("/random")
     public String getRandomView() {
         return "random";
     }
 
+    // Show picture detail page (+ list of moodboards to save to)
     @RequestMapping("/pic")
     public String getPicView(Model model, Principal principal) {
         String userEmail = principal.getName();
@@ -57,6 +64,7 @@ public class MainController {
         return "pic";
     }
 
+    // Log current user out and redirect to login page
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String getLogoutView (HttpServletRequest request, HttpServletResponse response) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

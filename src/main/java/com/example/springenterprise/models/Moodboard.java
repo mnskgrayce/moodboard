@@ -43,6 +43,7 @@ public class Moodboard {
     @ManyToOne
     private AppUser appUser;
 
+    // Custom toString() to handle parsing issues
     @Override
     public String toString() {
         return "Moodboard{" +

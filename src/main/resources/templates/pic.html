@@ -107,10 +107,7 @@
 </nav>
 <!-- Navbar -->
 
-<div
-        class="container d-flex justify-content-center align-items-center"
-        style="height: 100vh"
->
+<div class="container d-flex justify-content-center align-items-center">
     <div class="col-xl-7 col-md-8">
         <div class="bg-white rounded shadow-5-strong p-5">
             <div class="container">
@@ -136,8 +133,8 @@
 
                         <div th:if="${not moodboards.empty}">
                             <button id="save_button" class="btn btn-secondary btn-rounded" style="margin-top: 1em">Save
-                                To
-                                Moodboard
+                                to
+                                moodboard:
                             </button>
                         </div>
 
@@ -147,7 +144,7 @@
 
                         <!-- Moodboard Selection -->
                         <form method="post" th:action="@{/add_to_moodboards/}" id="sb-container" style="display: none;">
-                            <label for="scrollbox">Choose Your Moodboards:</label>
+                            <label for="scrollbox">Choose your moodboard:</label>
                             <div id="scrollbox" class="custom-scrollbox">
                                 <div th:each="moodboard : ${moodboards}">
                                     <div class="form-check">

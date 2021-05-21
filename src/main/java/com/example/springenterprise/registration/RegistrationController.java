@@ -10,7 +10,7 @@ public class RegistrationController {
 
     private final RegistrationService registrationService;
 
-    // Handle full body POST requests sent to "api/v1/registration"
+    // Handle POST requests sent to "api/v1/registration"
     @PostMapping
     public String register(@RequestBody RegistrationRequest request) {
         return registrationService.register(request);
