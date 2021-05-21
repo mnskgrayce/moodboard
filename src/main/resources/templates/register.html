@@ -1,134 +1,134 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register</title>
     <!-- Font Awesome -->
     <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-            rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      rel="stylesheet"
     />
     <!-- Google Fonts -->
     <link
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-            rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
     />
     <!-- MDB -->
     <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
-            rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
+      rel="stylesheet"
     />
     <style>
-        body {
-            background-image: url("https://source.unsplash.com/random/1920x1080");
-        }
+      body {
+        background-image: url("https://source.unsplash.com/random/1920x1080");
+      }
     </style>
-</head>
-<body>
-<div
-        class="container d-flex justify-content-center align-items-center"
-        style="height: 100vh"
->
-    <div class="col-xl-5 col-md-8">
+  </head>
+  <body>
+    <div
+      class="container d-flex justify-content-center align-items-center"
+      style="height: 100vh"
+    >
+      <div class="col-xl-5 col-md-8">
         <form
-                th:action="@{/api/v1/registration}"
-                id="registration-form"
-                method="POST"
-                class="bg-white rounded shadow-5-strong p-5"
+          th:action="@{/api/v1/registration}"
+          id="registration-form"
+          method="POST"
+          class="bg-white rounded shadow-5-strong p-5"
         >
-            <div class="py-4">
-                <h1 class="display-6">Welcome to Moodboard!</h1>
-                <p>Please fill in your information.</p>
-            </div>
+          <div class="py-4">
+            <h1 class="display-6">Welcome to Moodboard!</h1>
+            <p>Please fill in your information.</p>
+          </div>
 
-            <!-- 2 column grid layout with text inputs for the first and last names -->
-            <div class="row mb-4">
-                <div class="col">
-                    <div class="form-outline">
-                        <input
-                                type="text"
-                                name="firstName"
-                                id="firstName"
-                                class="form-control"
-                                required
-                        />
-                        <label class="form-label" for="firstName">First name</label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-outline">
-                        <input
-                                type="text"
-                                name="lastName"
-                                id="lastName"
-                                class="form-control"
-                                required
-                        />
-                        <label class="form-label" for="lastName">Last name</label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Email input -->
-            <div class="form-outline mb-4">
+          <!-- 2 column grid layout with text inputs for the first and last names -->
+          <div class="row mb-4">
+            <div class="col">
+              <div class="form-outline">
                 <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        class="form-control"
-                        required
+                  type="text"
+                  name="firstName"
+                  id="firstName"
+                  class="form-control"
+                  required
                 />
-                <label class="form-label" for="email">Email address</label>
+                <label class="form-label" for="firstName">First name</label>
+              </div>
             </div>
-
-            <!-- Password input -->
-            <div class="form-outline mb-4">
+            <div class="col">
+              <div class="form-outline">
                 <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        class="form-control"
-                        required
+                  type="text"
+                  name="lastName"
+                  id="lastName"
+                  class="form-control"
+                  required
                 />
-                <label class="form-label" for="password">Password</label>
+                <label class="form-label" for="lastName">Last name</label>
+              </div>
             </div>
+          </div>
 
-            <!-- Confirm password input -->
-            <div class="form-outline mb-4">
-                <input
-                        type="password"
-                        name="confirmPassword"
-                        id="confirmPassword"
-                        class="form-control"
-                        required
-                />
-                <label class="form-label" for="confirmPassword"
-                >Confirm password</label
-                >
-            </div>
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="form-control"
+              required
+            />
+            <label class="form-label" for="email">Email address</label>
+          </div>
 
-            <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block">
-                Register
-            </button>
-            <button type="reset" class="btn btn-secondary btn-block">
-                Clear
-            </button>
-            <a role="button" class="btn btn-link btn-block" href="/login"
-            >Already a Member? Sign In</a
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="form-control"
+              required
+            />
+            <label class="form-label" for="password">Password</label>
+          </div>
+
+          <!-- Confirm password input -->
+          <div class="form-outline mb-4">
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              class="form-control"
+              required
+            />
+            <label class="form-label" for="confirmPassword"
+              >Confirm password</label
             >
+          </div>
+
+          <!-- Submit button -->
+          <button type="submit" class="btn btn-primary btn-block">
+            Register
+          </button>
+          <button type="reset" class="btn btn-secondary btn-block">
+            Clear
+          </button>
+          <a role="button" class="btn btn-link btn-block" href="/login"
+            >Already a Member? Sign In</a
+          >
         </form>
         <script
-                type="application/javascript"
-                th:src="@{/js/register.js}"
+          type="application/javascript"
+          th:src="@{/js/register.js}"
         ></script>
+      </div>
     </div>
-</div>
-<script
-        type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"
-></script>
-</body>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"
+    ></script>
+  </body>
 </html>

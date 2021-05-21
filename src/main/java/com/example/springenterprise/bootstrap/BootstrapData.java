@@ -52,21 +52,26 @@ public class BootstrapData implements CommandLineRunner {
         lon.setPassword(encodedPassword);
         appUserRepository.save(lon);
 
-        // Add a sample moodboard with images for user Trang
-        Moodboard moodboard = new Moodboard();
+        // Add sample moodboards with images for user Trang
+        Moodboard moodboard1 = new Moodboard();
+        Moodboard moodboard2 = new Moodboard();
         Image image = new Image("5TK1F5VfdIk");
         Image image2 = new Image("ineC_oi7NHs");
 
-        moodboard.getImages().add(image);
-        moodboard.getImages().add(image2);
+        moodboard1.getImages().add(image);
+        moodboard1.getImages().add(image2);
 
-        image.getMoodboards().add(moodboard);
-        image2.getMoodboards().add(moodboard);
+        image.getMoodboards().add(moodboard1);
+        image2.getMoodboards().add(moodboard1);
 
-        moodboard.setName("Sample Moodboard");
-        moodboard.setAppUser(trang);
+        moodboard1.setName("Sample Moodboard 1");
+        moodboard1.setAppUser(trang);
 
-        moodboardRepository.save(moodboard);
+        moodboard2.setName("Sample Moodboard 2");
+        moodboard2.setAppUser(trang);
+
+        moodboardRepository.save(moodboard1);
+        moodboardRepository.save(moodboard2);
         imageRepository.save(image);
         imageRepository.save(image2);
 

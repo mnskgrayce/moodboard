@@ -8,8 +8,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.StringTokenizer;
 import java.util.stream.Collectors;
 
 // Implementation for Moodboard Controller's methods
@@ -57,12 +59,23 @@ public class MoodboardService {
         return moodboardOptional.get();
     }
 
-    // Get an image from the database
-    public Image getImage(long id) {
+    // Get an image from the database by ID
+    public Image getImageById(long id) {
         Optional<Image> imageOptional = imageRepository.findById(id);
 
         if (imageOptional.isEmpty()) {
             throw new IllegalStateException("Image with ID " + id + " is not found!");
+        }
+
+        return imageOptional.get();
+    }
+
+    // Get an image from the database by apiId
+    public Image getImageByApiId(String apiId) {
+        Optional<Image> imageOptional = imageRepository.findByApiId(apiId);
+
+        if (imageOptional.isEmpty()) {
+            throw new IllegalStateException("Image with apiID " + apiId + " is not found!");
         }
 
         return imageOptional.get();
@@ -89,7 +102,7 @@ public class MoodboardService {
     // Delete an image from the moodboard
     public void deleteImageFromMoodboard(Long mid, Long iid) {
         Moodboard moodboard = getMoodboard(mid);
-        Image image = getImage(iid);
+        Image image = getImageById(iid);
 
         // Remove moodboard and image from each other
         moodboard.getImages().remove(image);
@@ -112,6 +125,44 @@ public class MoodboardService {
             if (image.getMoodboards().isEmpty()) {
                 imageRepository.deleteById(image.getId());
             }
+        }
+    }
+
+    // Add image to moodboard(s) by request
+    public void parseSaveImageRequest(String request) {
+        System.out.println(request);
+
+        List<String> tokens = new ArrayList<>();
+        StringTokenizer tokenizer = new StringTokenizer(request, ",");
+        while (tokenizer.hasMoreElements()) {
+            tokens.add(tokenizer.nextToken());
+        }
+
+        // Only save if moodboards are selected
+        if (tokens.size() > 0) {
+            String apiId = tokens.get(0);
+
+            try {
+                // Check if image is already in database
+                Image image = getImageByApiId(apiId);
+                saveImageToMoodboard(tokens, image);
+
+            } catch (IllegalStateException e) {
+                // If not, create a new one
+                Image image = new Image(apiId);
+                saveImageToMoodboard(tokens, image);
+            }
+        }
+    }
+
+    private void saveImageToMoodboard(List<String> mIds, Image image) {
+        for (int i = 1; i < mIds.size(); i++) {
+            Moodboard moodboard = getMoodboard(Long.parseLong(mIds.get(i)));
+            moodboard.getImages().add(image);
+            image.getMoodboards().add(moodboard);
+
+            moodboardRepository.save(moodboard);
+            imageRepository.save(image);
         }
     }
 }

@@ -29,6 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers(
                             "/register",
                             "/api/v*/registration",
+                            "/moodboard/add",
                             "/favicon.ico",
                             "/css/**",
                             "/js/**",

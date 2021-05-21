@@ -1,6 +1,5 @@
 package com.example.springenterprise.controllers;
 
-import com.example.springenterprise.models.Image;
 import com.example.springenterprise.models.Moodboard;
 import com.example.springenterprise.services.MoodboardService;
 import com.example.springenterprise.user.AppUserService;
@@ -35,21 +34,10 @@ public class MoodboardController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/add_to_moodboards/image-id/{iid}/mb-id/{mid}", method = RequestMethod.POST)
-    public String addToMoodboard(@PathVariable("iid") String iID, @PathVariable("mid") Long mID) {
-        Image image = new Image(iID);
-        Moodboard moodboard = moodboardService.getMoodboard(mID);
-        moodboard.getImages().add(image);
-        image.getMoodboards().add(moodboard);
-        System.out.println("Passed ID: " + iID + " " + mID);
+    @PostMapping("/moodboard/add")
+    public String addToMoodboard(@RequestBody String request) {
+        moodboardService.parseSaveImageRequest(request);
         return "redirect:/";
-    }
-
-    // Get the moodboard detail page
-    @RequestMapping(value= "/moodboard/edit/{id}", method = RequestMethod.GET)
-    public String editMoodboard(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("moodboard", moodboardService.getMoodboard(id));
-        return "edit_moodboard";
     }
 
     // Show picture detail page (+ list of moodboards to save to)
@@ -60,6 +48,13 @@ public class MoodboardController {
         return "pic";
     }
 
+    // Get the moodboard detail page
+    @RequestMapping(value= "/moodboard/edit/{id}", method = RequestMethod.GET)
+    public String editMoodboard(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("moodboard", moodboardService.getMoodboard(id));
+        return "edit_moodboard";
+    }
+
     // Delete a moodboard and redirect to homepage
     @RequestMapping(value = "/delete_moodboard", method = RequestMethod.GET)
     public String deleteMoodboard(@RequestParam(name="id") Long id) {
@@ -67,9 +62,9 @@ public class MoodboardController {
         return "redirect:/";
     }
 
-    @RequestMapping("/delete_image/{mid}/{iid}")
-    public String deleteImageFromMoodboard( @PathVariable(value = "mid") Long mid, @PathVariable(value = "iid") Long iid) {
+    @RequestMapping("/delete_image/{mId}/{iId}")
+    public String deleteImageFromMoodboard(@PathVariable(value = "mId") Long mid, @PathVariable(value = "iId") Long iid) {
         moodboardService.deleteImageFromMoodboard(mid, iid);
-        return "redirect:/moodboard/edit/{mid}";
+        return "redirect:/moodboard/edit/{mId}";
     }
 }
