@@ -125,7 +125,12 @@
                         <h6 id="download">Downloads:</h6>
                         <h6 id="location">Taken at:</h6>
                         <button id="download_button" class="btn btn-primary btn-rounded" onclick="">Download</button>
-                        <button id="show_description" class="btn btn-info btn-rounded" style="margin-top: 1em">
+                        <button id="show_description"
+                                class="btn btn-primary active btn-rounded"
+                                style="margin-top: 1em"
+                                data-mdb-toggle="button"
+                                autocomplete="off"
+                                aria-pressed="true">
                             Description
                         </button>
 
@@ -163,7 +168,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="row bg-light" id="description-container" style="display: none; margin-top: 1em">
+                <div class="row bg-light" id="description-container" style="display: none; padding-top: 1em">
                     <h6>Description</h6>
                     <p id="description"></p>
                 </div>

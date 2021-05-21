@@ -8,18 +8,210 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Help</title>
+    <title>Moodboard</title>
+    <!-- Font Awesome -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
+            rel="stylesheet"
+    />
   </head>
   <body>
-    <div class="" th:object="${moodboard}">
-      <p th:text="${moodboard.images}"></p>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Container wrapper -->
+    <div class="container">
+      <!-- Navbar brand -->
+      <a class="navbar-brand" href="/">Moodboard</a>
 
-      <div class="" th:each="image: ${moodboard.images}">
-        <img
-          th:src="@{https://source.unsplash.com/{apiId}/600x400(apiId=${image.apiId})}"
-          alt=""
-        />
+      <!-- Toggle button -->
+      <button
+              class="navbar-toggler"
+              type="button"
+              data-mdb-toggle="collapse"
+              data-mdb-target="#navbarButtonsExample"
+              aria-controls="navbarButtonsExample"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarButtonsExample">
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-baseline">
+          <li class="nav-item pe-3">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <!-- Search bar -->
+          <li class="nav-item w-100">
+            <form
+                    th:action="@{/search_result}"
+                    +
+                    action="/search_result"
+                    class="d-flex input-group w-auto"
+            >
+              <input
+                      type="search"
+                      class="form-control"
+                      name="search"
+                      placeholder="Search images"
+                      aria-label="Search"
+                      aria-describedby="search-addon"
+              />
+              <button type="submit" class="btn btn-light">
+                <i class="fas fa-search"></i>
+              </button>
+            </form>
+          </li>
+        </ul>
+
+        <!-- Right links -->
+        <div class="d-flex justify-content-between align-items-center">
+          <a href="#" class="btn btn-info btn-theme me-3" role="button"
+             th:href="@{/random}"
+          >Show Me Random Pictures</a
+          >
+          <a
+                  href="#"
+                  th:href="@{/logout}"
+                  class="btn btn-light btn-theme me-3"
+                  data-mdb-ripple-color="dark"
+                  role="button"
+          >Log out</a
+          >
+          <a
+                  class="btn btn-dark px-3"
+                  href="https://github.com/mnskgrayce/spring-enterprise"
+                  role="button"
+          ><i class="fab fa-github"></i
+          ></a>
+        </div>
       </div>
+      <!-- Collapsible wrapper -->
     </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+
+  <!-- Image collection -->
+  <div class="container">
+    <div class="text-center p-5">
+      <h1 class="p-3">My Images</h1>
+        <div th:if="${moodboard.images.empty}">
+          <p class="p-5">You don't have any images yet.</p>
+        </div>
+    </div>
+
+
+    <!-- Moodboard flex layout -->
+    <div
+            class="
+          d-flex
+          flex-row flex-wrap
+          justify-content-center
+          align-items-center
+        "
+            th:object="${moodboard}"
+    >
+
+      <!-- Moodboard card -->
+      <div
+              class="card col-10 col-sm-5 col-md-3 m-2"
+              th:each="image: ${moodboard.images}"
+      >
+        <div
+                class="bg-image hover-overlay ripple"
+                data-mdb-ripple-color="light"
+        >
+          <img
+                  th:src="@{https://source.unsplash.com/{apiId}/600x400(apiId=${image.apiId})}"
+                  style="width: 100%; height: auto; object-fit: cover"
+          />
+          <a th:href="@{/pic(id=${image.apiId})}">
+            <div
+                    class="mask"
+                    style="background-color: rgba(251, 251, 251, 0.15)"
+            ></div>
+          </a>
+
+        </div>
+        <div class="card-body">
+
+          <!-- Button trigger delete moodboard modal -->
+          <button
+                  type="button"
+                  class="btn btn-danger"
+                  data-mdb-toggle="modal"
+                  data-mdb-target="#deleteImageModal"
+          >
+            Delete
+          </button>
+          <!-- Button trigger delete moodboard modal -->
+        </div>
+        <!-- Delete Moodboard Modal -->
+        <div
+                class="modal fade"
+                id="deleteImageModal"
+                tabindex="-1"
+                aria-labelledby="deleteImageModalLabel"
+                aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                        class="modal-title"
+                        id="deleteMoodboardModalLabel">
+<!--                        th:text="${'Delete ' + image.apiId + '?'}"-->
+                </h5>
+                <button
+                        type="button"
+                        class="btn-close"
+                        data-mdb-dismiss="modal"
+                        aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">You cannot undo this action.</div>
+              <div class="modal-footer">
+                <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-mdb-dismiss="modal"
+                >
+                  Close
+                </button>
+                <a
+                        class="btn btn-danger">
+<!--                        th:href="@{/delete_image(id=${image.id})}"-->
+                Delete</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Delete Moodboard Modal -->
+      </div>
+      <!-- Moodboard card -->
+    </div>
+    <!-- Moodboard flex layout -->
+  </div>
+  <!-- Moodboard collection -->
+
+  <!-- MDB -->
+  <script
+          type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"
+  ></script>
   </body>
 </html>
