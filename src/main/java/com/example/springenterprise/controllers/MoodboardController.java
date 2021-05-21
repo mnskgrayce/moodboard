@@ -35,7 +35,6 @@ public class MoodboardController {
         return "redirect:/";
     }
 
-    // Add a picture to a moodboard and redirect to homepage
     @RequestMapping(value = "/add_to_moodboards/image-id/{iid}/mb-id/{mid}", method = RequestMethod.POST)
     public String addToMoodboard(@PathVariable("iid") String iID, @PathVariable("mid") Long mID) {
         Image image = new Image(iID);
@@ -53,6 +52,14 @@ public class MoodboardController {
         return "edit_moodboard";
     }
 
+    // Show picture detail page (+ list of moodboards to save to)
+    @RequestMapping("/pic")
+    public String getPicView(Model model, Principal principal) {
+        String userEmail = principal.getName();
+        model.addAttribute("moodboards", moodboardService.listByUser(userEmail));
+        return "pic";
+    }
+
     // Delete a moodboard and redirect to homepage
     @RequestMapping(value = "/delete_moodboard", method = RequestMethod.GET)
     public String deleteMoodboard(@RequestParam(name="id") Long id) {
@@ -61,7 +68,7 @@ public class MoodboardController {
     }
 
     @RequestMapping("/delete_image/{mid}/{iid}")
-    public String deleteImageFromMoodboard( @PathVariable(value = "mid") Long mid, @PathVariable(value = "iid") String iid) {
+    public String deleteImageFromMoodboard( @PathVariable(value = "mid") Long mid, @PathVariable(value = "iid") Long iid) {
         moodboardService.deleteImageFromMoodboard(mid, iid);
         return "redirect:/moodboard/edit/{mid}";
     }

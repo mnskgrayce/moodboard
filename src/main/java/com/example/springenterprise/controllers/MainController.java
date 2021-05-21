@@ -56,14 +56,6 @@ public class MainController {
         return "random";
     }
 
-    // Show picture detail page (+ list of moodboards to save to)
-    @RequestMapping("/pic")
-    public String getPicView(Model model, Principal principal) {
-        String userEmail = principal.getName();
-        model.addAttribute("moodboards", moodboardService.listByUser(userEmail));
-        return "pic";
-    }
-
     // Log current user out and redirect to login page
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String getLogoutView (HttpServletRequest request, HttpServletResponse response) {

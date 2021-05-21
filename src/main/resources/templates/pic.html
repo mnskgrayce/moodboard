@@ -1,211 +1,252 @@
 <!DOCTYPE html>
 <html
-        lang="en"
-        xmlns:th="http://www.thymeleaf.org"
-        xmlns="http://www.w3.org/1999/html"
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns="http://www.w3.org/1999/html"
 >
-<head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Image</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Detail</title>
     <!-- Font Awesome -->
     <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-            rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      rel="stylesheet"
     />
     <!-- Google Fonts -->
     <link
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-            rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
     />
     <!-- MDB -->
     <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
-            rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
+      rel="stylesheet"
     />
-
-    <link rel="stylesheet" th:href="@{/css/info.css}">
-
-</head>
-<body>
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <!-- Container wrapper -->
-    <div class="container">
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <!-- Container wrapper -->
+      <div class="container">
         <!-- Navbar brand -->
         <a class="navbar-brand" href="/">Moodboard</a>
 
         <!-- Toggle button -->
         <button
-                class="navbar-toggler"
-                type="button"
-                data-mdb-toggle="collapse"
-                data-mdb-target="#navbarButtonsExample"
-                aria-controls="navbarButtonsExample"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
+          class="navbar-toggler"
+          type="button"
+          data-mdb-toggle="collapse"
+          data-mdb-target="#navbarButtonsExample"
+          aria-controls="navbarButtonsExample"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
-            <i class="fas fa-bars"></i>
+          <i class="fas fa-bars"></i>
         </button>
 
         <!-- Collapsible wrapper -->
         <div class="collapse navbar-collapse" id="navbarButtonsExample">
-            <!-- Left links -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-baseline">
-                <li class="nav-item pe-3">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <!-- Search bar -->
-                <li class="nav-item w-100">
-                    <form
-                            th:action="@{/search_result}"
-                            +
-                            action="/search_result"
-                            class="d-flex input-group w-auto"
-                    >
-                        <input
-                                type="search"
-                                class="form-control"
-                                name="search"
-                                placeholder="Search images"
-                                aria-label="Search"
-                                aria-describedby="search-addon"
-                        />
-                        <button type="submit" class="btn btn-light">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
-                </li>
-            </ul>
+          <!-- Left links -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-baseline">
+            <li class="nav-item pe-3">
+              <a class="nav-link" href="#" th:href="@{/about}">About</a>
+            </li>
+            <!-- Search bar -->
+            <li class="nav-item w-100">
+              <form
+                th:action="@{/search_result}"
+                +
+                action="/search_result"
+                class="d-flex input-group w-auto"
+              >
+                <input
+                  type="search"
+                  class="form-control"
+                  name="search"
+                  placeholder="Search images"
+                  aria-label="Search"
+                  aria-describedby="search-addon"
+                />
+                <button type="submit" class="btn btn-light">
+                  <i class="fas fa-search"></i>
+                </button>
+              </form>
+            </li>
+          </ul>
 
-            <!-- Right links -->
-            <div class="d-flex justify-content-between align-items-center">
-                <a href="#" class="btn btn-info btn-theme me-3" role="button"
-                   th:href="@{/random}"
-                >Show Me Random Pictures</a
-                >
-                <a
-                        href="#"
-                        th:href="@{/logout}"
-                        class="btn btn-light btn-theme me-3"
-                        data-mdb-ripple-color="dark"
-                        role="button"
-                >Log out</a
-                >
-                <a
-                        class="btn btn-dark px-3"
-                        href="https://github.com/mnskgrayce/spring-enterprise"
-                        role="button"
-                ><i class="fab fa-github"></i
-                ></a>
-            </div>
+          <!-- Right links -->
+          <div class="d-flex justify-content-between align-items-center">
+            <a
+              href="#"
+              class="btn btn-info btn-theme me-3"
+              role="button"
+              th:href="@{/random}"
+              >Show Me Random Pictures</a
+            >
+            <a
+              href="#"
+              th:href="@{/logout}"
+              class="btn btn-light btn-theme me-3"
+              data-mdb-ripple-color="dark"
+              role="button"
+              >Log out</a
+            >
+            <a
+              class="btn btn-dark px-3"
+              href="https://github.com/mnskgrayce/spring-enterprise"
+              role="button"
+              ><i class="fab fa-github"></i
+            ></a>
+          </div>
         </div>
         <!-- Collapsible wrapper -->
-    </div>
-    <!-- Container wrapper -->
-</nav>
-<!-- Navbar -->
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
 
-<div class="container d-flex justify-content-center align-items-center">
-    <div class="col-xl-7 col-md-8">
-        <div class="bg-white rounded shadow-5-strong p-5">
-            <div class="container">
-                <div class="row bg-light">
-                    <div class="col-xl-8 justify-content-lg-start">
-                        <img id="image" class="w-100"/>
-                    </div>
-                    <div class="col-xl justify-content-lg-start">
-                        <!-- Image information -->
-                        <br><br>
-                        <h6 id="view">Views:</h6>
-                        <h6 id="download">Downloads:</h6>
-                        <h6 id="location">Taken at:</h6>
-                        <button id="download_button" class="btn btn-primary btn-rounded" onclick="">Download</button>
-                        <button id="show_description"
-                                class="btn btn-primary active btn-rounded"
-                                style="margin-top: 1em"
-                                data-mdb-toggle="button"
-                                autocomplete="off"
-                                aria-pressed="true">
-                            Description
-                        </button>
-
-                        <div th:if="${not moodboards.empty}">
-                            <button id="save_button" class="btn btn-secondary btn-rounded" style="margin-top: 1em">Save
-                                to
-                                moodboard:
-                            </button>
-                        </div>
-
-                        <div th:if="${moodboards.empty}" class="justify-content-start">
-                            <p class="p-5">You don't have any moodboards yet.</p>
-                        </div>
-
-                        <!-- Moodboard Selection -->
-                        <form method="post" th:action="@{/add_to_moodboards/}" id="sb-container" style="display: none;">
-                            <label for="scrollbox">Choose your moodboard:</label>
-                            <div id="scrollbox" class="custom-scrollbox">
-                                <div th:each="moodboard : ${moodboards}">
-                                    <div class="form-check">
-                                        <input
-                                                class="form-check-input"
-                                                type="radio"
-                                                th:value=" ${moodboard.id}"
-                                                id="radio"
-                                        />
-                                        <label class="form-check-label" for="radio"
-                                               th:text="${moodboard.name}">
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="placeholder"></div>
-                            <button class="btn btn-success btn-rounded" type="submit"> Confirm</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="row bg-light" id="description-container" style="display: none; padding-top: 1em">
-                    <h6>Description</h6>
-                    <p id="description"></p>
-                </div>
-            </div>
+    <!-- Image container -->
+    <div
+      class="container py-5 d-flex justify-content-center align-items-center"
+    >
+      <div class="row g-4">
+        <div class="col-md-8">
+          <img
+            id="image"
+            class="img-fluid shadow-1-strong"
+            style="max-height: 80vh"
+          />
         </div>
+
+        <div class="col-md-4">
+          <h6>Description</h6>
+          <p id="description"></p>
+
+          <h6>Location</h6>
+          <p id="location"></p>
+
+          <h6>Views</h6>
+          <p id="view"></p>
+
+          <h6>Downloads</h6>
+          <p id="download"></p>
+
+          <button
+            id="download_button"
+            class="btn btn-secondary my-2 me-2"
+            onclick=""
+          >
+            Download
+          </button>
+
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn-primary my-2 me-2"
+            data-mdb-toggle="modal"
+            data-mdb-target="#exampleModal"
+          >
+            Save
+          </button>
+
+          <!-- Save image to moodboards form -->
+          <form th:action="@{/moodboard/save}" method="POST">
+            <!-- Modal -->
+            <div
+              class="modal top fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+              data-mdb-backdrop="true"
+              data-mdb-keyboard="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Save to Moodboard(s)
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-mdb-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <div
+                      th:if="${moodboards.empty}"
+                      class="
+                        d-flex
+                        flex-column
+                        justify-content-center
+                        align-items-center
+                      "
+                    >
+                      <p class="p-2">You don't have any moodboards yet.</p>
+                    </div>
+                    <!-- Moodboard checkbox -->
+                    <div class="form-check" th:each="moodboard : ${moodboards}">
+                      <label
+                        class="form-check-label"
+                        for="flexCheckDefault"
+                        th:text="${moodboard.name}"
+                      >
+                        Moodboard Name
+                      </label>
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        name="moodboards"
+                        id="flexCheckDefault"
+                        th:value="${moodboard.id}"
+                      />
+                    </div>
+                    <!-- Moodboard checkbox -->
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-mdb-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                      Save changes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          <!-- Save image to moodboards form -->
+        </div>
+      </div>
     </div>
-</div>
-</div>
-</div>
+    <!-- Image container -->
 
-<!-- &lt;!&ndash; For Front-End Testing &ndash;&gt;-->
-<!-- <script src="../static/js/parse.js"></script>-->
-<!-- <script src="../static/js/unsplash.js"></script>-->
-<!-- <script src="../static/js/moodboard_option.js"></script>-->
-<script
-        type="application/javascript"
-        th:src="@{/js/parse.js}"
-></script>
-<script
-        type="application/javascript"
-        th:src="@{/js/unsplash.js}"
-></script>
-<script
-        type="application/javascript"
-        th:src="@{/js/moodboard_option.js}"
-></script>
-<!-- MDB -->
-<script
-        type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"
-></script>
+    <!-- MDB -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"
+    ></script>
 
+    <!-- Custom scripts for fetching from API -->
 
-<script>
-    var img_id;
-    window.onload = function () {
+    <script type="application/javascript" th:src="@{/js/parse.js}"></script>
+    <script type="application/javascript" th:src="@{/js/unsplash.js}"></script>
+
+    <script>
+      var img_id;
+      window.onload = function () {
         var url_data = parse_url("id");
         img_id = url_data.id;
         fetch_api("get_image", img_id);
-    };
-</script>
-</body>
+      };
+    </script>
+  </body>
 </html>

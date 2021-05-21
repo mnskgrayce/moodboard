@@ -51,7 +51,7 @@
           <!-- Left links -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-baseline">
             <li class="nav-item pe-3">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="#" th:href="@{/about}">About</a>
             </li>
             <!-- Search bar -->
             <li class="nav-item w-100">
@@ -78,8 +78,11 @@
 
           <!-- Right links -->
           <div class="d-flex justify-content-between align-items-center">
-            <a href="#" class="btn btn-info btn-theme me-3" role="button"
-               th:href="@{/random}"
+            <a
+              href="#"
+              class="btn btn-info btn-theme me-3"
+              role="button"
+              th:href="@{/random}"
               >Show Me Random Pictures</a
             >
             <a

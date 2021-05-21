@@ -9,7 +9,4 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface ImageRepository extends JpaRepository<Image, Long> {
 
-    Image findByApiId(String apiId);
-
-    void deleteByApiId(String apiId);
 }

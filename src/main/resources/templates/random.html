@@ -1,153 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Random Image</title>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Random Images</title>
     <!-- Font Awesome -->
     <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-            rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      rel="stylesheet"
     />
     <!-- Google Fonts -->
     <link
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-            rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
     />
     <!-- MDB -->
     <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
-            rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
+      rel="stylesheet"
     />
     <script src="https://unpkg.com/animate-css-grid@latest"></script>
     <script type="application/javascript" th:src="@{/js/parse.js}"></script>
-    <link rel="stylesheet" th:href="@{/css/gallery.css}"/>
+    <link rel="stylesheet" th:href="@{/css/gallery.css}" />
     <script>
-        var page_number = 1;
-        const stopRunningScrollHandler = {
-            flag: 0,
-        };
+      var page_number = 1;
+      const stopRunningScrollHandler = {
+        flag: 0,
+      };
 
-        function modifyingDiv() {
-            stopRunningScrollHandler.flag = 1;
-            page_number += 1;
-            console.log(page_number);
-            fetch_api("random", 10, page_number, stopRunningScrollHandler);
+      function modifyingDiv() {
+        stopRunningScrollHandler.flag = 1;
+        page_number += 1;
+        console.log(page_number);
+        fetch_api("random", 10, page_number, stopRunningScrollHandler);
+      }
+
+      function scrollHandler() {
+        if (stopRunningScrollHandler.flag) return;
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+          modifyingDiv();
         }
+      }
 
-        function scrollHandler() {
-            if (stopRunningScrollHandler.flag) return;
-            if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-                modifyingDiv();
-            }
-        }
+      window.addEventListener("scroll", scrollHandler);
 
-        window.addEventListener("scroll", scrollHandler);
-
-        function top_scroll() {
-            window.scrollTo(0, 0);
-        }
+      function top_scroll() {
+        window.scrollTo(0, 0);
+      }
     </script>
-</head>
-<body>
-<section id="container">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  </head>
+  <body>
+    <section id="container">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <!-- Container wrapper -->
         <div class="container">
-            <!-- Navbar brand -->
-            <a class="navbar-brand" href="/">Moodboard</a>
+          <!-- Navbar brand -->
+          <a class="navbar-brand" href="/">Moodboard</a>
 
-            <!-- Toggle button -->
-            <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-mdb-toggle="collapse"
-                    data-mdb-target="#navbarButtonsExample"
-                    aria-controls="navbarButtonsExample"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-            >
-                <i class="fas fa-bars"></i>
-            </button>
+          <!-- Toggle button -->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#navbarButtonsExample"
+            aria-controls="navbarButtonsExample"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
 
-            <!-- Collapsible wrapper -->
-            <div class="collapse navbar-collapse" id="navbarButtonsExample">
-                <!-- Left links -->
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-baseline">
-                    <li class="nav-item pe-3">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <!-- Search bar -->
-                    <li class="nav-item w-100">
-                        <form
-                                th:action="@{/search_result}"
-                                +
-                                action="/search_result"
-                                class="d-flex input-group w-auto"
-                        >
-                            <input
-                                    type="search"
-                                    class="form-control"
-                                    name="search"
-                                    placeholder="Search images"
-                                    aria-label="Search"
-                                    aria-describedby="search-addon"
-                            />
-                            <button type="submit" class="btn btn-light">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </form>
-                    </li>
-                </ul>
+          <!-- Collapsible wrapper -->
+          <div class="collapse navbar-collapse" id="navbarButtonsExample">
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-baseline">
+              <li class="nav-item pe-3">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              <!-- Search bar -->
+              <li class="nav-item w-100">
+                <form
+                  th:action="@{/search_result}"
+                  +
+                  action="/search_result"
+                  class="d-flex input-group w-auto"
+                >
+                  <input
+                    type="search"
+                    class="form-control"
+                    name="search"
+                    placeholder="Search images"
+                    aria-label="Search"
+                    aria-describedby="search-addon"
+                  />
+                  <button type="submit" class="btn btn-light">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </form>
+              </li>
+            </ul>
 
-                <!-- Right links -->
-                <div class="d-flex justify-content-between align-items-center">
-                    <a
-                            href="#"
-                            th:href="@{/log_out}"
-                            class="btn btn-light btn-theme me-3"
-                            data-mdb-ripple-color="dark"
-                            role="button"
-                    >Log out</a
-                    >
-                    <a
-                            class="btn btn-dark px-3"
-                            href="https://github.com/mnskgrayce/spring-enterprise"
-                            role="button"
-                    ><i class="fab fa-github"></i
-                    ></a>
-                </div>
+            <!-- Right links -->
+            <div class="d-flex justify-content-between align-items-center">
+              <a
+                href="#"
+                th:href="@{/logout}"
+                class="btn btn-light btn-theme me-3"
+                data-mdb-ripple-color="dark"
+                role="button"
+                >Log out</a
+              >
+              <a
+                class="btn btn-dark px-3"
+                href="https://github.com/mnskgrayce/spring-enterprise"
+                role="button"
+                ><i class="fab fa-github"></i
+              ></a>
             </div>
-            <!-- Collapsible wrapper -->
+          </div>
+          <!-- Collapsible wrapper -->
         </div>
         <!-- Container wrapper -->
-    </nav>
-    <!-- Navbar -->
+      </nav>
+      <!-- Navbar -->
 
-    <h1 id="result" class="display-6 p-5">Explore our vast gallery:</h1>
+      <h1 id="result" class="display-6 p-5 text-center">
+        Explore our vast gallery
+      </h1>
 
-    <div id="gallery" class="grid"></div>
-    <button
-            id="topBtn"
-            class="btn btn-danger btn-lg btn-floating"
-            onclick="top_scroll()"
-    >
+      <div id="gallery" class="grid"></div>
+      <button
+        id="topBtn"
+        class="btn btn-danger btn-lg btn-floating"
+        onclick="top_scroll()"
+      >
         <i class="fas fa-arrow-up"></i>
-    </button>
+      </button>
 
-    <script>
+      <script>
         window.onload = function () {
-            fetch_api("random", 10);
+          fetch_api("random", 10);
         };
-    </script>
-    <script
-            type="application/javascript"
-            th:src="@{/js/unsplash.js}"
-    ></script>
-    <script
-            type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"
-    ></script>
-</section>
-</body>
+      </script>
+      <script
+        type="application/javascript"
+        th:src="@{/js/unsplash.js}"
+      ></script>
+      <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"
+      ></script>
+    </section>
+  </body>
 </html>

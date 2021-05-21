@@ -44,7 +44,6 @@ public class MoodboardService {
         }
 
         moodboardRepository.save(moodboard);
-        System.out.println(moodboard);
     }
 
     // Get a moodboard from the database
@@ -58,25 +57,61 @@ public class MoodboardService {
         return moodboardOptional.get();
     }
 
+    // Get an image from the database
+    public Image getImage(long id) {
+        Optional<Image> imageOptional = imageRepository.findById(id);
+
+        if (imageOptional.isEmpty()) {
+            throw new IllegalStateException("Image with ID " + id + " is not found!");
+        }
+
+        return imageOptional.get();
+    }
+
     // Delete a moodboard from the database
     public void deleteMoodboard(long id) {
+        Moodboard moodboard = getMoodboard(id);
+
+        // First, remove all images from the current moodboard
+        // Beware of ConcurrentModification error and JPA key violation!
+        for (Image image : moodboard.getImages()) {
+            image.getMoodboards().remove(moodboard);
+            imageRepository.save(image);
+        }
+
+        // Then delete the moodboard
         moodboardRepository.deleteById(id);
+
+        // Purge stray images after the moodboard is deleted
+        deleteAllStrayImages();
     }
 
     // Delete an image from the moodboard
-    public void deleteImageFromMoodboard(Long mid, String iid) {
+    public void deleteImageFromMoodboard(Long mid, Long iid) {
         Moodboard moodboard = getMoodboard(mid);
-        Image image = imageRepository.findByApiId(iid);
+        Image image = getImage(iid);
 
+        // Remove moodboard and image from each other
         moodboard.getImages().remove(image);
         moodboardRepository.save(moodboard);
-
         image.getMoodboards().remove(moodboard);
 
+        // Delete the image from database if not in any moodboard
         if (image.getMoodboards().isEmpty()) {
-            imageRepository.deleteByApiId(iid);
+            imageRepository.deleteById(iid);
         } else {
             imageRepository.save(image);
+        }
+    }
+
+    // Purge all images without a moodboard
+    public void deleteAllStrayImages() {
+        List<Image> images = imageRepository.findAll();
+
+        for (Image image : images) {
+            if (image.getMoodboards().isEmpty()) {
+                imageRepository.deleteById(image.getId());
+            }
         }
     }
 }
