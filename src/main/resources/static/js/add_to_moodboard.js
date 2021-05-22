@@ -1,4 +1,4 @@
-const form = document.getElementById("add-form");
+const form = document.getElementById("add-image-form");
 form.addEventListener("submit", addImageToMoodboards);
 
 /**
@@ -37,7 +37,7 @@ async function addImageToMoodboards(event) {
   try {
     const response = await fetch("/moodboard/add", fetchOptions);
     if (response.ok) {
-      alert("Changes saved!");
+      alert("Image saved!");
 
       // Disable moodboards that are already saved
       for (var moodboard of moodboards) {

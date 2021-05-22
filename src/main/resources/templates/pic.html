@@ -116,7 +116,7 @@
           <img
             id="image"
             class="img-fluid shadow-1-strong"
-            style="max-height: 80vh"
+            style="max-height: 90vh"
           />
         </div>
 
@@ -152,7 +152,7 @@
           </button>
 
           <!-- Save image to moodboards form -->
-          <form th:action="@{/moodboard/add}" method="POST" id="add-form">
+          <form th:action="@{/moodboard/add}" method="POST" id="add-image-form">
             <!-- Modal -->
             <div
               class="modal top fade"
@@ -219,9 +219,7 @@
                     >
                       Close
                     </button>
-                    <button type="submit" class="btn btn-primary">
-                      Save changes
-                    </button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                   </div>
                 </div>
               </div>

@@ -111,6 +111,67 @@
     <div class="container">
       <div class="text-center p-5">
         <h1 class="display-6 p-3" th:text="${moodboard.name}">Untitled</h1>
+        <!-- Button trigger modal -->
+        <button
+          type="button"
+          class="btn btn-success btn-rounded my-3"
+          data-mdb-toggle="modal"
+          data-mdb-target="#renameModal"
+        >
+          Rename
+        </button>
+
+        <!-- Rename Modal -->
+        <div
+          class="modal fade"
+          id="renameModal"
+          tabindex="-1"
+          aria-labelledby="renameModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="renameModal">Rename Moodboard?</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-mdb-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <form
+                th:action="@{/moodboard/{mId}/rename(mId=${moodboard.id})}"
+                method="POST"
+                enctype="text/plain"
+              >
+                <div class="modal-body">
+                  <input
+                    type="text"
+                    class="form-control"
+                    autofocus
+                    th:object="${moodboard}"
+                    th:value="${moodboard.name}"
+                    name="mName"
+                    id="mName"
+                  />
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-mdb-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">Rename</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- Rename Modal -->
+
         <p th:text="${'Image count: ' + moodboard.images.size()}"></p>
         <div th:if="${moodboard.images.empty}">
           <p class="p-5">You don't have any images yet.</p>
@@ -137,10 +198,10 @@
             data-mdb-ripple-color="light"
           >
             <img
-              th:src="@{https://source.unsplash.com/{apiId}/600x400(apiId=${image.apiId})}"
+              th:src="@{https://source.unsplash.com/{apiId}/500x500(apiId=${image.apiId})}"
               style="width: 100%; height: auto; object-fit: cover"
             />
-            <a th:href="@{/pic(id=${image.apiId})}">
+            <a th:href="@{/pic(id=${image.apiId})}" target="_blank">
               <div
                 class="mask"
                 style="background-color: rgba(251, 251, 251, 0.15)"

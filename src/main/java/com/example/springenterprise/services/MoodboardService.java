@@ -59,6 +59,22 @@ public class MoodboardService {
         return moodboardOptional.get();
     }
 
+    // Rename a moodboard
+    public void renameMoodboard(String mName, Long mId) {
+        // mName is in format "mName=something"
+        List<String> tokens = new ArrayList<>();
+        StringTokenizer tokenizer = new StringTokenizer(mName, "=");
+        while (tokenizer.hasMoreElements()) {
+            tokens.add(tokenizer.nextToken());
+        }
+        String name = tokens.get(1).strip();
+        if (name.isBlank()) name = "Blank";
+
+        Moodboard moodboard = getMoodboard(mId);
+        moodboard.setName(name);
+        moodboardRepository.save(moodboard);
+    }
+
     // Get an image from the database by ID
     public Image getImageById(long id) {
         Optional<Image> imageOptional = imageRepository.findById(id);
@@ -130,8 +146,6 @@ public class MoodboardService {
 
     // Add image to moodboard(s) by request
     public void parseSaveImageRequest(String request) {
-        System.out.println(request);
-
         List<String> tokens = new ArrayList<>();
         StringTokenizer tokenizer = new StringTokenizer(request, ",");
         while (tokenizer.hasMoreElements()) {

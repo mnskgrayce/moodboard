@@ -34,10 +34,18 @@ public class MoodboardController {
         return "redirect:/";
     }
 
+    // Add one image to one or more moodboards
     @PostMapping("/moodboard/add")
     public String addToMoodboard(@RequestBody String request) {
         moodboardService.parseSaveImageRequest(request);
         return "redirect:/";
+    }
+
+    // Rename moodboard
+    @PostMapping("/moodboard/{mId}/rename")
+    public String renameMoodboard(@RequestBody String mName, @PathVariable("mId") Long mId) {
+        moodboardService.renameMoodboard(mName, mId);
+        return "redirect:/moodboard/edit/{mId}";
     }
 
     // Show picture detail page (+ list of moodboards to save to)
