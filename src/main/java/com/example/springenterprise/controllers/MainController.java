@@ -65,4 +65,10 @@ public class MainController {
 
         return "redirect:/login";
     }
+
+    // Proceed to about page
+    @RequestMapping("/about")
+    public String getAbout(){
+        return "about";
+    }
 }
