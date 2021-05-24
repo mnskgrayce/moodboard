@@ -22,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                // Send POST requests without being rejected
+                // Send requests without being rejected
                 .csrf().disable()
                 .authorizeRequests()
                     // Permit any request coming from the following endpoints

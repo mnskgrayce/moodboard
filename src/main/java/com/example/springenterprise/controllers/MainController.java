@@ -66,9 +66,9 @@ public class MainController {
         return "redirect:/login";
     }
 
-    // Proceed to about page
+    // Get the about page
     @RequestMapping("/about")
-    public String getAbout(){
+    public String getAboutView(){
         return "about";
     }
 }

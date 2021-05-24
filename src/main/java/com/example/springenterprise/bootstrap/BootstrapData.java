@@ -68,6 +68,7 @@ public class BootstrapData implements CommandLineRunner {
         moodboard1.setAppUser(trang);
 
         moodboard2.setName("Sample Moodboard 2");
+        moodboard2.setDescription("Sample description to test moodboard grid layout.");
         moodboard2.setAppUser(trang);
 
         moodboardRepository.save(moodboard1);

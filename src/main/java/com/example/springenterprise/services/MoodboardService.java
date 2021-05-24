@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -45,6 +47,13 @@ public class MoodboardService {
             moodboard.setDescription("");
         }
 
+        // Update the date of a moodboard
+        moodboard.setDateTimeCreated(
+                "Last updated: "
+                + DateTimeFormatter
+                .ofPattern("uuuu/MM/dd HH:mm:ss")
+                .format(LocalDateTime.now()));
+
         moodboardRepository.save(moodboard);
     }
 
@@ -72,7 +81,7 @@ public class MoodboardService {
 
         Moodboard moodboard = getMoodboard(mId);
         moodboard.setName(name);
-        moodboardRepository.save(moodboard);
+        saveMoodboard(moodboard);
     }
 
     // Get an image from the database by ID
@@ -122,7 +131,7 @@ public class MoodboardService {
 
         // Remove moodboard and image from each other
         moodboard.getImages().remove(image);
-        moodboardRepository.save(moodboard);
+        saveMoodboard(moodboard);
         image.getMoodboards().remove(moodboard);
 
         // Delete the image from database if not in any moodboard
@@ -175,7 +184,7 @@ public class MoodboardService {
             moodboard.getImages().add(image);
             image.getMoodboards().add(moodboard);
 
-            moodboardRepository.save(moodboard);
+            saveMoodboard(moodboard);
             imageRepository.save(image);
         }
     }
