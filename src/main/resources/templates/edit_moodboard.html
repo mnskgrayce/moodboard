@@ -111,6 +111,7 @@
     <div class="container">
       <div class="text-center p-5">
         <h1 class="display-6 p-3" th:text="${moodboard.name}">Untitled</h1>
+        <p th:text="${moodboard.description}">Lorem ipsum dolor sit amet.</p>
         <!-- Button trigger modal -->
         <button
           type="button"
@@ -141,20 +142,36 @@
                 ></button>
               </div>
               <form
-                th:action="@{/moodboard/{mId}/rename(mId=${moodboard.id})}"
+                th:action="@{/moodboard/rename/{mId}(mId=${moodboard.id})}"
+                th:object="${moodboard}"
                 method="POST"
-                enctype="text/plain"
               >
                 <div class="modal-body">
-                  <input
-                    type="text"
-                    class="form-control"
-                    autofocus
-                    th:object="${moodboard}"
-                    th:value="${moodboard.name}"
-                    name="mName"
-                    id="mName"
-                  />
+                  <div class="form-outline mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      autofocus
+                      th:field="*{name}"
+                      th:value="${moodboard.name}"
+                      name="mName"
+                      id="mName"
+                    />
+                    <label class="form-label" for="mName">Name</label>
+                  </div>
+
+                  <div class="form-outline">
+                    <textarea
+                      class="form-control"
+                      rows="4"
+                      th:field="*{description}"
+                      th:text="${moodboard.description}"
+                      name="mDesc"
+                      id="mDesc"
+                      maxlength="255"
+                    ></textarea>
+                    <label class="form-label" for="mDesc">Description</label>
+                  </div>
                 </div>
                 <div class="modal-footer">
                   <button

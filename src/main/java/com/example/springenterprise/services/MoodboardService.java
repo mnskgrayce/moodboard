@@ -55,6 +55,7 @@ public class MoodboardService {
                 .format(LocalDateTime.now()));
 
         moodboardRepository.save(moodboard);
+        System.out.println(moodboard);
     }
 
     // Get a moodboard from the database
@@ -69,19 +70,14 @@ public class MoodboardService {
     }
 
     // Rename a moodboard
-    public void renameMoodboard(String mName, Long mId) {
-        // mName is in format "mName=something"
-        List<String> tokens = new ArrayList<>();
-        StringTokenizer tokenizer = new StringTokenizer(mName, "=");
-        while (tokenizer.hasMoreElements()) {
-            tokens.add(tokenizer.nextToken());
-        }
-        String name = tokens.get(1).strip();
-        if (name.isBlank()) name = "Blank";
+    public void renameMoodboard(Moodboard moodboard, Long mId) {
+        String name = moodboard.getName();
+        String desc = moodboard.getDescription();
 
-        Moodboard moodboard = getMoodboard(mId);
-        moodboard.setName(name);
-        saveMoodboard(moodboard);
+        Moodboard updated = getMoodboard(mId);
+        updated.setName(name);
+        updated.setDescription(desc);
+        saveMoodboard(updated);
     }
 
     // Get an image from the database by ID

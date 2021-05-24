@@ -49,6 +49,8 @@ public class Moodboard {
         return "Moodboard{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", dateTimeCreated='" + dateTimeCreated + '\'' +
+                ", description='" + description + '\'' +
                 ", thumbnailId='" + thumbnailId + '\'' +
                 ", images=" + images +
                 '}';

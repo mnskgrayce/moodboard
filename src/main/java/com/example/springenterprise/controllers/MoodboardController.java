@@ -42,9 +42,9 @@ public class MoodboardController {
     }
 
     // Rename moodboard
-    @PostMapping("/moodboard/{mId}/rename")
-    public String renameMoodboard(@RequestBody String mName, @PathVariable("mId") Long mId) {
-        moodboardService.renameMoodboard(mName, mId);
+    @PostMapping("/moodboard/rename/{mId}")
+    public String renameMoodboard(@ModelAttribute Moodboard moodboard, @PathVariable("mId") Long mId) {
+        moodboardService.renameMoodboard(moodboard, mId);
         return "redirect:/moodboard/edit/{mId}";
     }
 
