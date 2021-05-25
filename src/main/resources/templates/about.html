@@ -50,7 +50,9 @@
         <div class="collapse navbar-collapse" id="navbarButtonsExample">
           <!-- Left links -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-baseline">
-            <li class="nav-item pe-3"></li>
+            <li class="nav-item pe-3">
+              <a class="nav-link" href="#" th:href="@{/about}">About</a>
+            </li>
             <!-- Search bar -->
             <li class="nav-item w-100">
               <form
@@ -116,34 +118,32 @@
           <h2 class="font-weight-bold text-center h1 my-5">About</h2>
           <!--Section description-->
           <p class="text-center grey-text mb-5">
-            Moodboard is a simple online gallery that allows users to search for
-            images (by keyword or random) and save them to customizable
-            moodboards. <br />
+            Simple online gallery that allows users to search for images (by
+            keyword or random) and save them to customizable moodboards. <br />
             By: Nguyen Minh Trang - s3751450, Tran Kim Long - s3755614, and Bui
             Thanh Huy - s3740934
           </p>
           <!--Grid row-->
           <div class="row">
             <!--Grid column-->
-            <div class="col-lg-4 mb-4">
+            <div class="col-lg-6 mb-4">
               <!--Featured image-->
               <div class="view overlay z-depth-1">
                 <img
                   src="https://source.unsplash.com/random/600x400"
-                  class="img-fluid"
-                  alt="First sample image"
+                  class="img-fluid shadow-1-strong"
+                  alt="random image"
                 />
               </div>
             </div>
             <!--Grid column-->
 
             <!--Grid column-->
-            <div class="col-lg-7 mb-4">
+            <div class="col-lg-6 mb-4">
               <!--Excerpt-->
               <a href="" class="teal-text">
                 <h6 class="pb-1">
-                  <i class="fas fa-heart"></i
-                  ><strong> Get a new picture </strong>
+                  <i class="fas fa-image"></i><strong> Get a picture? </strong>
                 </h6>
               </a>
               <h4 class="mb-4">
