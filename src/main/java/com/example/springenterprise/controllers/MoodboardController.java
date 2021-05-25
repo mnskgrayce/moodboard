@@ -69,8 +69,8 @@ public class MoodboardController {
     }
 
     // Delete a moodboard and redirect to homepage
-    @RequestMapping(value = "/delete_moodboard", method = RequestMethod.GET)
-    public String deleteMoodboard(@RequestParam(name="id") Long id) {
+    @GetMapping(value = "/delete_moodboard/{id}")
+    public String deleteMoodboard(@PathVariable(value="id") Long id) {
         moodboardService.deleteMoodboard(id);
         return "redirect:/";
     }
