@@ -183,4 +183,11 @@ public class MoodboardService {
             imageRepository.save(image);
         }
     }
+
+    // Set an image as the moodboard thumbnail
+    public void setImageAsMoodboardThumbnail(Long mId, String apiId) {
+        Moodboard moodboard = getMoodboard(mId);
+        moodboard.setThumbnailId(apiId);
+        saveMoodboard(moodboard);
+    }
 }

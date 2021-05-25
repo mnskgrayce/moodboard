@@ -75,9 +75,17 @@ public class MoodboardController {
         return "redirect:/";
     }
 
+    // Delete an image from moodboard
     @RequestMapping("/delete_image/{mId}/{apiId}")
     public String deleteImageFromMoodboard(@PathVariable(value = "mId") Long mId, @PathVariable(value = "apiId") String apiId) {
         moodboardService.deleteImageFromMoodboard(mId, apiId);
+        return "redirect:/moodboard/edit/{mId}";
+    }
+
+    // Set an image as the moodboard thumbnail
+    @RequestMapping("/set_thumbnail/{mId}/{apiId}")
+    public String setImageAsMoodboardThumbnail(@PathVariable(value = "mId") Long mId, @PathVariable(value = "apiId") String apiId) {
+        moodboardService.setImageAsMoodboardThumbnail(mId, apiId);
         return "redirect:/moodboard/edit/{mId}";
     }
 }
