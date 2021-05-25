@@ -22,7 +22,59 @@
     <title>About</title>
   </head>
   <body>
-    <p>Click <a href="/">here</a> to go back.</p>
+    <div class="container text-center p-5">
+      <h1 class="display-6 mb-3">Moodboard</h1>
+      <p class="lead">A simple online gallery and moodboard collection.</p>
+      <p>
+        <i class="fas fa-grin"></i> We hope you enjoyed your time
+        <i class="fas fa-grin"></i>
+      </p>
+      <p class="note note-primary font-monospace">
+        Created for Assignment 2: Group Project for EEET2580 - Enterprise
+        Application Development <br />
+        [2021A] RMIT University Vietnam
+      </p>
+      <div class="m-4">
+        <h3>Features</h3>
+        <p class="small">
+          <i class="fas fa-image"></i> Search images by keyword or randomly via
+          the Unsplash API
+        </p>
+        <p class="small">
+          <i class="fas fa-pen-square"></i> Create, view, update, and delete
+          moodboards
+        </p>
+        <p class="small">
+          <i class="fas fa-plus-square"></i> Add, delete, or set images as
+          moodboard thumbnail
+        </p>
+      </div>
+      <div class="m-4">
+        <h3>Team Members</h3>
+        <p class="small">
+          <i class="fas fa-bug"></i> Nguyen Minh Trang - s3751450
+        </p>
+        <p class="small"><i class="fab fa-js"></i> Tran Kim Long - s3755614</p>
+        <p class="small">
+          <i class="fas fa-heart"></i> Bui Thanh Huy - s3740934
+        </p>
+      </div>
+      <div>
+        <a class="btn btn-primary my-1" th:href="@{/}">Landing Page</a>
+        <a class="btn btn-secondary my-1" th:href="@{/home}">Home</a>
+        <a class="btn btn-success my-1" th:href="@{/login}">Sign In</a>
+        <a class="btn btn-danger my-1" th:href="@{/register}">Register</a>
+        <a
+          class="btn btn-dark my-1"
+          role="button"
+          href="https://github.com/mnskgrayce/spring-enterprise"
+          rel="nofollow"
+          target="_blank"
+        >
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+    </div>
     <script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"

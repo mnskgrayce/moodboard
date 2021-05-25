@@ -25,7 +25,7 @@ public class MainController {
     private final MoodboardService moodboardService;
 
     // Get index page (landing page)
-    @RequestMapping("/")
+    @RequestMapping(value={"", "/", "index"})
     public String getIndexView() {
         return "index";
     }
