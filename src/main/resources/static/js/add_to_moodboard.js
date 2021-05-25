@@ -37,8 +37,6 @@ async function addImageToMoodboards(event) {
   try {
     const response = await fetch("/moodboard/add", fetchOptions);
     if (response.ok) {
-      alert("Image saved!");
-
       // Disable moodboards that are already saved
       for (var moodboard of moodboards) {
         if (moodboard.checked) {

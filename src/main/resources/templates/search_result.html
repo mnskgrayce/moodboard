@@ -154,19 +154,18 @@
       <script>
         window.onload = function () {
           url_data = parse_url();
-          if ( url_data !== undefined) {
+          if (url_data !== undefined) {
             if (url_data.search === "") {
               document.querySelector("#result").innerHTML =
-                      "Try enter your query in our search bar";
-            }
-            else {
+                "Try enter your query in our search bar";
+            } else {
               fetch_api("search", url_data.search);
               search_elem = " " + "<b>" + url_data.search + "</b>";
               document.querySelector("#result").innerHTML += search_elem;
             }
           } else
             document.querySelector("#result").innerHTML =
-              "Try enter your query in our search bar";
+              "Please enter a keyword into the search bar.";
         };
       </script>
       <script

@@ -55,7 +55,6 @@ public class MoodboardService {
                 .format(LocalDateTime.now()));
 
         moodboardRepository.save(moodboard);
-        System.out.println(moodboard);
     }
 
     // Get a moodboard from the database
@@ -121,9 +120,9 @@ public class MoodboardService {
     }
 
     // Delete an image from the moodboard
-    public void deleteImageFromMoodboard(Long mid, Long iid) {
-        Moodboard moodboard = getMoodboard(mid);
-        Image image = getImageById(iid);
+    public void deleteImageFromMoodboard(Long mId, String apiId) {
+        Moodboard moodboard = getMoodboard(mId);
+        Image image = getImageByApiId(apiId);
 
         // Remove moodboard and image from each other
         moodboard.getImages().remove(image);
@@ -132,7 +131,7 @@ public class MoodboardService {
 
         // Delete the image from database if not in any moodboard
         if (image.getMoodboards().isEmpty()) {
-            imageRepository.deleteById(iid);
+            imageRepository.deleteById(image.getId());
         } else {
             imageRepository.save(image);
         }

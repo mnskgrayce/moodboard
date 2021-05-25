@@ -1,5 +1,6 @@
 package com.example.springenterprise.controllers;
 
+import com.example.springenterprise.models.Image;
 import com.example.springenterprise.models.Moodboard;
 import com.example.springenterprise.services.MoodboardService;
 import com.example.springenterprise.user.AppUserService;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Comparator;
 
 // Class to handle moodboard-specific issues
 @AllArgsConstructor
@@ -59,7 +61,10 @@ public class MoodboardController {
     // Get the moodboard detail page
     @RequestMapping(value= "/moodboard/edit/{id}", method = RequestMethod.GET)
     public String editMoodboard(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("moodboard", moodboardService.getMoodboard(id));
+        Moodboard moodboard = moodboardService.getMoodboard(id);
+        model.addAttribute("moodboard", moodboard);
+        model.addAttribute("images", moodboard.getImages());
+        model.addAttribute("byId", Comparator.comparing(Image::getId));
         return "edit_moodboard";
     }
 
@@ -70,9 +75,9 @@ public class MoodboardController {
         return "redirect:/";
     }
 
-    @RequestMapping("/delete_image/{mId}/{iId}")
-    public String deleteImageFromMoodboard(@PathVariable(value = "mId") Long mid, @PathVariable(value = "iId") Long iid) {
-        moodboardService.deleteImageFromMoodboard(mid, iid);
+    @RequestMapping("/delete_image/{mId}/{apiId}")
+    public String deleteImageFromMoodboard(@PathVariable(value = "mId") Long mId, @PathVariable(value = "apiId") String apiId) {
+        moodboardService.deleteImageFromMoodboard(mId, apiId);
         return "redirect:/moodboard/edit/{mId}";
     }
 }
