@@ -116,8 +116,18 @@
           <button type="reset" class="btn btn-secondary btn-block">
             Clear
           </button>
-          <a role="button" class="btn btn-link btn-block" href="/login"
+          <a
+            role="button"
+            class="btn btn-outline-success btn-block"
+            href="/login"
             >Already a Member? Sign In</a
+          >
+          <a
+            role="button"
+            class="btn btn-link btn-block"
+            data-mdb-ripple-color="dark"
+            th:href="@{/}"
+            >Back To Landing Page</a
           >
         </form>
         <script
