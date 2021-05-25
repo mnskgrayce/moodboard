@@ -31,7 +31,7 @@
       <!-- Container wrapper -->
       <div class="container">
         <!-- Navbar brand -->
-        <a class="navbar-brand" href="/">Moodboard</a>
+        <a class="navbar-brand" th:href="@{/home}">Moodboard</a>
 
         <!-- Toggle button -->
         <button
@@ -57,8 +57,6 @@
             <li class="nav-item w-100">
               <form
                 th:action="@{/search_result}"
-                +
-                action="/search_result"
                 class="d-flex input-group w-auto"
               >
                 <input

@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html
-  lang="en"
-  xmlns:th="http://www.thymeleaf.org"
-  xmlns="http://www.w3.org/1999/html"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="https://www.thymeleaf.org"
+  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
 >
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title>Welcome</title>
     <!-- Font Awesome -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
@@ -26,146 +23,223 @@
     />
   </head>
   <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <!-- Container wrapper -->
-      <div class="container">
-        <!-- Navbar brand -->
-        <a class="navbar-brand" href="/">Moodboard</a>
+    <!--Main Navigation-->
+    <header>
+      <style>
+        /* Carousel styling */
+        #introCarousel,
+        .carousel-inner,
+        .carousel-item,
+        .carousel-item.active {
+          height: 100vh;
+        }
 
-        <!-- Toggle button -->
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-mdb-toggle="collapse"
-          data-mdb-target="#navbarButtonsExample"
-          aria-controls="navbarButtonsExample"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <i class="fas fa-bars"></i>
-        </button>
+        .carousel-item:nth-child(1) {
+          background-image: url("https://source.unsplash.com/random/1920x1080?1");
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center center;
+        }
 
-        <!-- Collapsible wrapper -->
-        <div class="collapse navbar-collapse" id="navbarButtonsExample">
-          <!-- Left links -->
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-baseline">
-            <li class="nav-item pe-3">
-              <a
-                class="nav-link"
-                href="/templates/about.html"
-                th:href="@{/about}"
-                >About</a
-              >
-            </li>
-            <!-- Search bar -->
-            <li class="nav-item w-100">
-              <form
-                th:action="@{/search_result}"
-                +
-                action="/search_result"
-                class="d-flex input-group w-auto"
-              >
-                <input
-                  type="search"
-                  class="form-control"
-                  name="search"
-                  placeholder="Search images"
-                  aria-label="Search"
-                  aria-describedby="search-addon"
-                />
-                <button type="submit" class="btn btn-light">
-                  <i class="fas fa-search"></i>
-                </button>
-              </form>
-            </li>
-          </ul>
+        .carousel-item:nth-child(2) {
+          background-image: url("https://source.unsplash.com/random/1920x1080?2");
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center center;
+        }
 
-          <!-- Right links -->
-          <div class="d-flex justify-content-between align-items-center">
-            <a
-              href="#"
-              class="btn btn-info btn-theme me-3"
-              role="button"
-              th:href="@{/random}"
-              >Show Me Random Pictures</a
-            >
-            <a
-              href="#"
-              th:href="@{/logout}"
-              class="btn btn-light btn-theme me-3"
-              data-mdb-ripple-color="dark"
-              role="button"
-              >Log out</a
-            >
-            <a
-              class="btn btn-dark px-3"
-              href="https://github.com/mnskgrayce/spring-enterprise"
-              role="button"
-              ><i class="fab fa-github"></i
-            ></a>
-          </div>
-        </div>
-        <!-- Collapsible wrapper -->
-      </div>
-      <!-- Container wrapper -->
-    </nav>
-    <!-- Navbar -->
+        .carousel-item:nth-child(3) {
+          background-image: url("https://source.unsplash.com/random/1920x1080?3");
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center center;
+        }
 
-    <!-- Moodboard collection -->
-    <div class="container">
-      <div class="text-center p-5">
-        <h1 class="p-3">My Moodboards</h1>
-        <a href="/new_moodboard" class="btn btn-primary" role="button"
-          >Create A New Moodboard</a
-        >
-        <div th:if="${moodboards.empty}">
-          <p class="p-5">You don't have any moodboards yet.</p>
-        </div>
-      </div>
+        /* Height for devices larger than 576px */
+        @media (min-width: 992px) {
+          #introCarousel {
+            margin-top: -58.59px;
+          }
+        }
 
-      <!-- Moodboard flex layout -->
-      <div class="d-flex flex-row flex-wrap justify-content-center">
-        <!-- Moodboard card -->
-        <div
-          class="card col-10 col-sm-5 col-md-3 m-2"
-          th:each="moodboard : ${moodboards}"
-        >
-          <div
-            class="bg-image hover-overlay ripple"
-            data-mdb-ripple-color="light"
+        .navbar .nav-link {
+          color: #fff !important;
+        }
+      </style>
+
+      <!-- Navbar -->
+      <nav
+        class="navbar navbar-expand-lg navbar-dark d-none d-lg-block"
+        style="z-index: 2000"
+      >
+        <div class="container-fluid">
+          <!-- Navbar brand -->
+          <a class="navbar-brand nav-link" href=".">
+            <strong>Moodboard</strong>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#navbarExample01"
+            aria-controls="navbarExample01"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
           >
-            <img
-              th:src="@{https://source.unsplash.com/{apiId}/600x400(apiId=${moodboard.thumbnailId})}"
-              style="width: 100%; height: auto; object-fit: cover"
-            />
-            <a th:href="@{'/moodboard/edit/' + ${moodboard.id}}">
-              <div
-                class="mask"
-                style="background-color: rgba(251, 251, 251, 0.15)"
-              ></div>
-            </a>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title" th:text="${moodboard.name}">Card title</h5>
-            <p class="small text-muted" th:text="${moodboard.dateTimeCreated}">
-              1970/01/01 00:00:00
-            </p>
-            <p class="card-text" th:text="${moodboard.description}">
-              Lorem ipsum.
-            </p>
-            <a
-              class="btn btn-danger"
-              th:href="@{/delete_moodboard/{id}(id=${moodboard.id})}"
-              >Delete</a
-            >
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarExample01">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" th:href="@{/home}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" th:href="@{/login}">Sign In</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" th:href="@{/register}">Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" th:href="@{/about}">About</a>
+              </li>
+            </ul>
+
+            <ul class="navbar-nav list-inline">
+              <!-- Icons -->
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://github.com/mnskgrayce/spring-enterprise"
+                  rel="nofollow"
+                  target="_blank"
+                >
+                  <i class="fab fa-github"></i>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-        <!-- Moodboard card -->
+      </nav>
+      <!-- Navbar -->
+
+      <!-- Carousel wrapper -->
+      <div
+        id="introCarousel"
+        class="carousel slide carousel-fade shadow-2-strong"
+        data-mdb-ride="carousel"
+      >
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li
+            data-mdb-target="#introCarousel"
+            data-mdb-slide-to="0"
+            class="active"
+          ></li>
+          <li data-mdb-target="#introCarousel" data-mdb-slide-to="1"></li>
+          <li data-mdb-target="#introCarousel" data-mdb-slide-to="2"></li>
+        </ol>
+
+        <!-- Inner -->
+        <div class="carousel-inner">
+          <!-- Single item -->
+          <div class="carousel-item active">
+            <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)">
+              <div
+                class="d-flex justify-content-center align-items-center h-100"
+              >
+                <div class="text-white text-center">
+                  <h1 class="mb-3">Beautiful and free pictures</h1>
+                  <h5 class="mb-4">
+                    Search for anything in our vast image API
+                  </h5>
+                  <a
+                    class="btn btn-outline-light btn-lg m-2"
+                    role="button"
+                    th:href="@{/about}"
+                    >Learn more</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Single item -->
+          <div class="carousel-item">
+            <div class="mask" style="background-color: rgba(0, 0, 0, 0.3)">
+              <div
+                class="d-flex justify-content-center align-items-center h-100"
+              >
+                <div class="text-white text-center">
+                  <h2 class="mb-3">Create your own moodboards</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Single item -->
+          <div class="carousel-item">
+            <div
+              class="mask"
+              style="
+                /* fallback for old browsers */
+                background: #6a11cb;
+
+                /* Chrome 10-25, Safari 5.1-6 */
+                background: -webkit-linear-gradient(
+                  to right,
+                  rgba(106, 17, 203, 0.5),
+                  rgba(37, 117, 252, 0.5)
+                );
+
+                /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                background: linear-gradient(
+                  to right,
+                  rgba(106, 17, 203, 0.5),
+                  rgba(37, 117, 252, 0.5)
+                );
+              "
+            >
+              <div
+                class="d-flex justify-content-center align-items-center h-100"
+              >
+                <div class="text-white text-center">
+                  <h2>And fill them with anything you like</h2>
+                  <a
+                    class="btn btn-outline-light btn-lg m-2"
+                    role="button"
+                    th:href="@{/register}"
+                    >Sign me up</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Inner -->
+
+        <!-- Controls -->
+        <a
+          class="carousel-control-prev"
+          href="#introCarousel"
+          role="button"
+          data-mdb-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a
+          class="carousel-control-next"
+          href="#introCarousel"
+          role="button"
+          data-mdb-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
-      <!-- Moodboard flex layout -->
-    </div>
-    <!-- Moodboard collection -->
+      <!-- Carousel wrapper -->
+    </header>
+    <!--Main Navigation-->
 
     <!-- MDB -->
     <script

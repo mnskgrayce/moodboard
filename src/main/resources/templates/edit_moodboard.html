@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  xmlns:th="http://www.thymeleaf.org"
-  xmlns="http://www.w3.org/1999/html"
->
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -32,7 +28,7 @@
         <!-- Container wrapper -->
         <div class="container">
           <!-- Navbar brand -->
-          <a class="navbar-brand" href="/">Moodboard</a>
+          <a class="navbar-brand" th:href="@{/home}">Moodboard</a>
 
           <!-- Toggle button -->
           <button
@@ -58,8 +54,6 @@
               <li class="nav-item w-100">
                 <form
                   th:action="@{/search_result}"
-                  +
-                  action="/search_result"
                   class="d-flex input-group w-auto"
                 >
                   <input
@@ -115,7 +109,6 @@
       >
         <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)">
           <div class="d-flex justify-content-center align-items-center h-100">
-
             <!-- Moodboard info -->
             <div class="text-white">
               <h1 class="mb-3" th:text="${moodboard.name}">Heading</h1>
@@ -123,90 +116,94 @@
                 <p class="mb-4" th:text="${moodboard.description}">
                   Lorem ipsum dolor sit amet.
                 </p>
-                <p class="mb-3" th:text="${'Image count: ' + images.size()}"></p>
+                <p
+                  class="mb-3"
+                  th:text="${'Image count: ' + images.size()}"
+                ></p>
               </div>
-              
+
               <button
                 class="btn btn-outline-light btn-lg"
                 data-mdb-toggle="modal"
                 data-mdb-target="#renameModal"
-                >Rename</button
               >
-
-              <!-- Rename Modal -->
-              <div
-                class="modal fade"
-                id="renameModal"
-                tabindex="-1"
-                aria-labelledby="renameModalLabel"
-                aria-hidden="true"
-              >
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title text-body" id="renameModal">
-                        Rename Moodboard?
-                      </h5>
-                      <button
-                        type="button"
-                        class="btn-close"
-                        data-mdb-dismiss="modal"
-                        aria-label="Close"
-                      ></button>
-                    </div>
-                    <form
-                      th:action="@{/moodboard/rename/{mId}(mId=${moodboard.id})}"
-                      th:object="${moodboard}"
-                      method="POST"
-                    >
-                      <div class="modal-body">
-                        <div class="form-outline mb-3">
-                          <input
-                            type="text"
-                            class="form-control"
-                            autofocus
-                            th:field="*{name}"
-                            th:value="${moodboard.name}"
-                            name="mName"
-                            id="mName"
-                          />
-                          <label class="form-label" for="mName">Name</label>
-                        </div>
-
-                        <div class="form-outline">
-                          <textarea
-                            class="form-control"
-                            rows="4"
-                            th:field="*{description}"
-                            th:text="${moodboard.description}"
-                            name="mDesc"
-                            id="mDesc"
-                            maxlength="255"
-                          ></textarea>
-                          <label class="form-label" for="mDesc"
-                            >Description</label
-                          >
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button
-                          type="button"
-                          class="btn btn-secondary"
-                          data-mdb-dismiss="modal"
-                        >
-                          Close
-                        </button>
-                        <button type="submit" class="btn btn-primary">
-                          Rename
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-              <!-- Rename Modal -->
+                Rename
+              </button>
             </div>
             <!-- Moodboard info -->
+
+            <!-- Rename Modal -->
+            <div
+              class="modal fade"
+              id="renameModal"
+              tabindex="-1"
+              aria-labelledby="renameModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title text-body" id="renameModal">
+                      Rename Moodboard?
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-mdb-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <form
+                    th:action="@{/moodboard/rename/{mId}(mId=${moodboard.id})}"
+                    th:object="${moodboard}"
+                    method="POST"
+                  >
+                    <div class="modal-body">
+                      <div class="form-outline mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          autofocus
+                          th:field="*{name}"
+                          th:value="${moodboard.name}"
+                          name="mName"
+                          id="mName"
+                        />
+                        <label class="form-label" for="mName">Name</label>
+                      </div>
+
+                      <div class="form-outline">
+                        <textarea
+                          class="form-control"
+                          rows="4"
+                          th:field="*{description}"
+                          th:text="${moodboard.description}"
+                          name="mDesc"
+                          id="mDesc"
+                          maxlength="255"
+                        ></textarea>
+                        <label class="form-label" for="mDesc"
+                          >Description</label
+                        >
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-mdb-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      <button type="submit" class="btn btn-primary">
+                        Rename
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!-- Rename Modal -->
           </div>
         </div>
       </div>
@@ -217,56 +214,55 @@
       <p class="p-5">You don't have any images yet.</p>
     </div>
 
-      <!-- Image collection -->
+    <!-- Image collection -->
+    <div
+      class="
+        container
+        d-flex
+        flex-row flex-wrap
+        justify-content-start
+        align-items-center
+        py-5
+      "
+    >
+      <!-- Image card -->
       <div
-        class="
-          container
-          d-flex
-          flex-row flex-wrap
-          justify-content-start
-          align-items-center
-          py-5
-        "
+        class="card text-center col-md-3"
+        th:each="image: ${#lists.sort(images, byId)}"
       >
-        <!-- Image card -->
         <div
-          class="card text-center col-md-3"
-          th:each="image: ${#lists.sort(images, byId)}"
+          class="bg-image hover-overlay ripple"
+          data-mdb-ripple-color="light"
         >
-          <div
-            class="bg-image hover-overlay ripple"
-            data-mdb-ripple-color="light"
-          >
-            <img
-              th:src="@{https://source.unsplash.com/{apiId}/500x500(apiId=${image.apiId})}"
-              class="img-thumbnail"
-              style="width: 100%; height: auto; object-fit: cover"
-            />
-            <a th:href="@{/pic(id=${image.apiId})}" target="_blank">
-              <div
-                class="mask"
-                style="background-color: rgba(251, 251, 251, 0.15)"
-              ></div>
-            </a>
-          </div>
-
-          <div class="card-body">
-            <a
-              class="btn btn-danger btn-floating m-1"
-              th:href="@{/delete_image/{mId}/{apiId}(mId=${moodboard.id},apiId=${image.apiId})}"
-              ><i class="fas fa-trash"></i
-            ></a>
-            <a
-              class="btn btn-success btn-floating m-1"
-              th:href="@{/set_thumbnail/{mId}/{apiId}(mId=${moodboard.id},apiId=${image.apiId})}"
-              ><i class="fas fa-star"></i
-            ></a>
-          </div>
+          <img
+            th:src="@{https://source.unsplash.com/{apiId}/500x500(apiId=${image.apiId})}"
+            class="img-thumbnail"
+            style="width: 100%; height: auto; object-fit: cover"
+          />
+          <a th:href="@{/pic(id=${image.apiId})}" target="_blank">
+            <div
+              class="mask"
+              style="background-color: rgba(251, 251, 251, 0.15)"
+            ></div>
+          </a>
         </div>
-        <!-- Image card -->
+
+        <div class="card-body">
+          <a
+            class="btn btn-danger btn-floating m-1"
+            th:href="@{/delete_image/{mId}/{apiId}(mId=${moodboard.id},apiId=${image.apiId})}"
+            ><i class="fas fa-trash"></i
+          ></a>
+          <a
+            class="btn btn-success btn-floating m-1"
+            th:href="@{/set_thumbnail/{mId}/{apiId}(mId=${moodboard.id},apiId=${image.apiId})}"
+            ><i class="fas fa-star"></i
+          ></a>
+        </div>
       </div>
-      <!-- Image collection -->
+      <!-- Image card -->
     </div>
+    <!-- Image collection -->
 
     <!-- MDB -->
     <script

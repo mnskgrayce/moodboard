@@ -27,7 +27,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     // Permit any request coming from the following endpoints
                     .antMatchers(
+                            "/",
+                            "/index",
                             "/register",
+                            "/about",
                             "/api/v*/registration",
                             "/moodboard/add",
                             "/favicon.ico",
@@ -39,6 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated().and()
                 .formLogin()
                     .loginPage("/login")
+                    .defaultSuccessUrl("/home", true)
                     .usernameParameter("email")
                     .permitAll().and()
                 .logout()

@@ -33,14 +33,14 @@ public class MoodboardController {
     public String saveNewMoodboard(@ModelAttribute("moodboard") Moodboard moodboard, Principal principal) {
         moodboard.setAppUser(appUserService.getUserByEmail(principal.getName()));
         moodboardService.saveMoodboard(moodboard);
-        return "redirect:/";
+        return "redirect:/home";
     }
 
     // Add one image to one or more moodboards
     @PostMapping("/moodboard/add")
     public String addToMoodboard(@RequestBody String request) {
         moodboardService.parseSaveImageRequest(request);
-        return "redirect:/";
+        return "redirect:/home";
     }
 
     // Rename moodboard
@@ -72,7 +72,7 @@ public class MoodboardController {
     @GetMapping(value = "/delete_moodboard/{id}")
     public String deleteMoodboard(@PathVariable(value="id") Long id) {
         moodboardService.deleteMoodboard(id);
-        return "redirect:/";
+        return "redirect:/home";
     }
 
     // Delete an image from moodboard

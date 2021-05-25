@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns="http://www.w3.org/1999/html"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <!-- Container wrapper -->
+      <div class="container">
+        <!-- Navbar brand -->
+        <a class="navbar-brand" th:href="@{/home}">Moodboard</a>
+
+        <!-- Toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-mdb-toggle="collapse"
+          data-mdb-target="#navbarButtonsExample"
+          aria-controls="navbarButtonsExample"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarButtonsExample">
+          <!-- Left links -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-baseline">
+            <li class="nav-item pe-3">
+              <a class="nav-link" href="#" th:href="@{/about}">About</a>
+            </li>
+            <!-- Search bar -->
+            <li class="nav-item w-100">
+              <form
+                th:action="@{/search_result}"
+                class="d-flex input-group w-auto"
+              >
+                <input
+                  type="search"
+                  class="form-control"
+                  name="search"
+                  placeholder="Search images"
+                  aria-label="Search"
+                  aria-describedby="search-addon"
+                />
+                <button type="submit" class="btn btn-light">
+                  <i class="fas fa-search"></i>
+                </button>
+              </form>
+            </li>
+          </ul>
+
+          <!-- Right links -->
+          <div class="d-flex justify-content-between align-items-center">
+            <a
+              href="#"
+              class="btn btn-info btn-theme me-3"
+              role="button"
+              th:href="@{/random}"
+              >Show Me Random Pictures</a
+            >
+            <a
+              href="#"
+              th:href="@{/logout}"
+              class="btn btn-light btn-theme me-3"
+              data-mdb-ripple-color="dark"
+              role="button"
+              >Log out</a
+            >
+            <a
+              class="btn btn-dark px-3"
+              href="https://github.com/mnskgrayce/spring-enterprise"
+              role="button"
+              ><i class="fab fa-github"></i
+            ></a>
+          </div>
+        </div>
+        <!-- Collapsible wrapper -->
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+
+    <!-- Moodboard collection -->
+    <div class="container">
+      <div class="text-center p-5">
+        <h1 class="p-3">My Moodboards</h1>
+        <a href="/new_moodboard" class="btn btn-primary" role="button"
+          >Create A New Moodboard</a
+        >
+        <div th:if="${moodboards.empty}">
+          <p class="p-5">You don't have any moodboards yet.</p>
+        </div>
+      </div>
+
+      <!-- Moodboard flex layout -->
+      <div class="d-flex flex-row flex-wrap justify-content-center">
+        <!-- Moodboard card -->
+        <div
+          class="card col-10 col-sm-5 col-md-3 m-2"
+          th:each="moodboard : ${moodboards}"
+        >
+          <div
+            class="bg-image hover-overlay ripple"
+            data-mdb-ripple-color="light"
+          >
+            <img
+              th:src="@{https://source.unsplash.com/{apiId}/600x400(apiId=${moodboard.thumbnailId})}"
+              style="width: 100%; height: auto; object-fit: cover"
+            />
+            <a th:href="@{'/moodboard/edit/' + ${moodboard.id}}">
+              <div
+                class="mask"
+                style="background-color: rgba(251, 251, 251, 0.15)"
+              ></div>
+            </a>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" th:text="${moodboard.name}">Card title</h5>
+            <p class="small text-muted" th:text="${moodboard.dateTimeCreated}">
+              1970/01/01 00:00:00
+            </p>
+            <p class="card-text" th:text="${moodboard.description}">
+              Lorem ipsum.
+            </p>
+            <a
+              class="btn btn-danger"
+              th:href="@{/delete_moodboard/{id}(id=${moodboard.id})}"
+              >Delete</a
+            >
+          </div>
+        </div>
+        <!-- Moodboard card -->
+      </div>
+      <!-- Moodboard flex layout -->
+    </div>
+    <!-- Moodboard collection -->
+
+    <!-- MDB -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"
+    ></script>
+  </body>
+</html>

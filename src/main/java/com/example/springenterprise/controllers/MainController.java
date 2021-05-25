@@ -24,12 +24,18 @@ public class MainController {
 
     private final MoodboardService moodboardService;
 
-    // Get the home page with all the user's moodboards
+    // Get index page (landing page)
     @RequestMapping("/")
-    public String getHome(Model model, Principal principal) {
+    public String getIndexView() {
+        return "index";
+    }
+
+    // Get the home page with all the user's moodboards
+    @RequestMapping("/home")
+    public String getHomeView(Model model, Principal principal) {
         String userEmail = principal.getName();
         model.addAttribute("moodboards", moodboardService.listByUser(userEmail));
-        return "index";
+        return "home";
     }
 
     // Get login form

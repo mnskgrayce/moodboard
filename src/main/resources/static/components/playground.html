@@ -1,53 +1,6 @@
-<!-- Button trigger delete moodboard modal -->
-<button
-  type="button"
-  class="btn btn-danger"
-  data-mdb-toggle="modal"
-  data-mdb-target="#deleteMoodboardModal"
->
-  Delete
-</button>
-<!-- Button trigger delete moodboard modal -->
+<h1>Welcome!</h1>
 
-<!-- Delete Moodboard Modal -->
-<div
-  class="modal fade"
-  id="deleteMoodboardModal"
-  tabindex="-1"
-  aria-labelledby="deleteMoodboardModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5
-          class="modal-title"
-          id="deleteMoodboardModalLabel"
-          th:text="${'Delete ' + moodboard.name + '?'}"
-        ></h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-mdb-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">You cannot undo this action.</div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-mdb-dismiss="modal"
-        >
-          Close
-        </button>
-        <a
-          class="btn btn-danger"
-          th:href="@{/delete_moodboard/{id}(id=${moodboard.id})}"
-          >Delete</a
-        >
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Delete Moodboard Modal -->
+<p>Click <a th:href="@{/home}">here</a> to see home page.</p>
+<p>Click <a th:href="@{/login}">here</a> to sign in.</p>
+<p>Click <a th:href="@{/register}">here</a> to register.</p>
+<p>Click <a th:href="@{/about}">here</a> to learn more.</p>
