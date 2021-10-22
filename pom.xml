@@ -11,8 +11,8 @@
 	<groupId>com.example</groupId>
 	<artifactId>spring-enterprise</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-enterprise</name>
-	<description>User registration and login in Spring</description>
+	<name>Moodboard</name>
+	<description>Simple image saver web application inspired by Pinterest</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
