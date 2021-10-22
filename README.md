@@ -18,7 +18,7 @@ Built with the following tools:
 2. Create user **minesk** with password **admin**
 3. Create database **db** with all privileges granted to the user
 4. Build and run the project inside IntelliJ IDEA
-5. Go to https://localhost:8081 to log in and test
+5. Go to http://localhost:8081 to log in and test
 
 These credentials can be tweaked inside the `application.yml` file.
 
