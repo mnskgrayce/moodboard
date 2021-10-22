@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>spring-enterprise</artifactId>
+	<artifactId>moodboard</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Moodboard</name>
 	<description>Simple image saver web application inspired by Pinterest</description>
